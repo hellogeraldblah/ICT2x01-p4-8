@@ -16,4 +16,8 @@
     <!-- End Navbar -->
   </div>
 
-  </body
+  <!-- Footer -->
+  <?php include "footer.php" ?>
+  <!-- End Footer -->
+
+</body>
