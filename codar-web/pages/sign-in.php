@@ -52,7 +52,8 @@
                   <p class="mb-0">Team P4-8</p>
                 </div>
                 <div class="card-body">
-                  <form method="" action="login.php">
+
+                  <form method="POST" action="login.php">
                     <label>Username</label>
                     <div class="mb-3">
                       <input type="text" name="username" class="form-control" placeholder="Username" aria-label="Username">
@@ -69,8 +70,6 @@
                       <button type="submit" class="btn bg-gradient-info w-100 mt-4 mb-0">Sign in</button>
                     </div>
                   </form>
-
-                  <?php include "login.php" ?>
 
                 </div>
                 <div class="card-footer text-center pt-0 px-lg-2 px-1">

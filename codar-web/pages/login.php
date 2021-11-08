@@ -1,5 +1,4 @@
 <?php
-
   // session_start();
 
   if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
@@ -25,13 +24,13 @@
           $password = trim($_POST["password"]);
       }
 
-      echo $username, $password;
+      echo "HHH", $username, $password;
 
       // Validate credentials
       if(empty($username_err) && empty($password_err)){
 
     		// Select Query for counting the row that has the same value of the given username and password. This query is for checking if the access is valid or not.
-    		$query = "SELECT * as count FROM `users` WHERE `username` = :username AND `password` = :password";
+        $stmt = $mysqli->prepare("SELECT * as count FROM `users` WHERE `username` = :username AND `password` = :password");
 
     		$stmt = $conn->prepare($query);
 

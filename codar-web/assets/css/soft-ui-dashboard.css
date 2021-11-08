@@ -24933,3 +24933,8 @@ pre[class*="language-"] {
 }
 
 /*# sourceMappingURL=dashboard-free.css.map */
+
+
+.checked {
+  color: orange;
+}
