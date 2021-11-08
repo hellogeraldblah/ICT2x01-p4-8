@@ -6,3 +6,14 @@ Team P4-8
 
 ## Members
 
+### How To Run
+description...
+
+### Development Workflow
+description...
+
+### UAT
+description...
+
+### Whitebox Testing
+description...
