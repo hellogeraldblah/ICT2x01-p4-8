@@ -28,9 +28,17 @@
                 Challenge 1
               </a>
               <p class="card-description mb-4 text-center">
-                <span class="fa fa-star fa-4x checked"></span>
-                <span class="fa fa-star fa-4x"></span>
-                <span class="fa fa-star fa-4x"></span>
+                <div class="row text-center">
+                  <div class="col-sm">
+                    <span class="fa fa-star fa-3x checked"></span>
+                  </div>
+                  <div class="col-sm">
+                    <span class="fa fa-star fa-3x"></span>
+                  </div>
+                  <div class="col-sm">
+                    <span class="fa fa-star fa-3x"></span>
+                </div>
+              </div>
               </p>
             </div>
           </div>
