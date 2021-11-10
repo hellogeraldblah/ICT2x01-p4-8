@@ -55,7 +55,7 @@
       </li>
 
       <li class="nav-item">
-        <a <?php if($page=="Challenges"){ ?> class= "nav-link active" <?php } else { ?> class="nav-link" <?php } ?>  href="../pages/challenges.php">
+        <a <?php if($page=="Challenges" or $page=="Play Challenge" or $page=="Edit Challenge"){ ?> class= "nav-link active" <?php } else { ?> class="nav-link" <?php } ?>  href="../pages/challenges.php">
           <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list-ul" viewBox="0 0 16 16">
               <title>challenges</title>

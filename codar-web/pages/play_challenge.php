@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<?php $page="Challenges"; ?>
+<?php $page="Play Challenge"; ?>
 
 <body class="g-sidenav-show bg-gray-100">
 
@@ -16,33 +16,47 @@
     <!-- End Navbar -->
 
     <div class="container-fluid py-4">
-      <div class="row mt-4">
-        <div class="col-lg-3">
-          <div class="card">
-            <div class="card-body p-3">
-              <div class="card-header p-0 mx-3 mt-3 position-relative z-index-1">
-                <img src="../assets/img/ChallengeDesign.png" class="img-fluid border-radius-lg">
-              </div>
-              </br>
-              <a href="javascript:;" class="card-title h5 d-block text-darker">
-                Challenge 1
-              </a>
-              <p class="card-description mb-4 text-center">
-                <div class="row text-center">
-                <div class="col-sm">
-                  <a href="play_challenge.php" type="button" class="btn btn-outline-dark">Play</a>
-                </div>
-                <div class="col-sm">
-                  <a href="edit_challenge.php" type="button" class="btn btn-outline-dark">Edit</a>
-                </div>
-              </div>
 
-              </p>
+      <div class="row my-4">
+
+        <!-- Container for map design -->
+        <div class="col-lg-6">
+          <div class="card">
+            <div class="card-header pb-0">
+              <div class="row">
+                <div class="col-lg-6 col-7">
+                  <h6>Map Design</h6>
+                </div>
+              </div>
+            </div>
+            <div class="card-body px-0 pb-2">
+              <p></p>
             </div>
           </div>
         </div>
-
+        <div class="col-lg-3">
+          <div class="card h-100">
+            <div class="card-header pb-0">
+              <h6>Solution</h6>
+            </div>
+            <div class="card-body p-3">
+              <p></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="card h-100">
+            <div class="card-header pb-0">
+              <h6>Commands</h6>
+            </div>
+            <div class="card-body p-3">
+              <p></p>
+            </div>
+          </div>
+        </div>
       </div>
+
+
 
       <!-- Footer -->
       <?php include "footer.php" ?>
