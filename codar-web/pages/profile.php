@@ -21,13 +21,13 @@
 <body class="g-sidenav-show bg-gray-100">
 
   <!-- Side Panel -->
-  <?php include "sidepanel.php" ?>
+  <?php include "shared_sections/sidepanel.php" ?>
   <!-- End Side Panel -->
 
   <div class="main-content position-relative bg-gray-100 max-height-vh-100 h-100">
 
     <!-- Navbar -->
-    <?php include "navbar.php" ?>
+    <?php include "shared_sections/navbar.php" ?>
     <!-- End Navbar -->
 
     <div class="container-fluid">
@@ -408,11 +408,11 @@
         </div>
       </div>
       <!-- Footer -->
-      <?php include "footer.php" ?>
+      <?php include "shared_sections/footer.php" ?>
       <!-- End Footer -->
     </div>
   </div>
-  
+
   <!--   Core JS Files   -->
   <script src="../assets/js/core/popper.min.js"></script>
   <script src="../assets/js/core/bootstrap.min.js"></script>
