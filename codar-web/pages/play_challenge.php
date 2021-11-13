@@ -3,63 +3,130 @@
 
 <?php $page="Play Challenge"; ?>
 
-<body class="g-sidenav-show bg-gray-100">
+<body class="g-sidenav-show bg-gray-100" onload="start()">
 
   <!-- Side Panel -->
-  <?php include "sidepanel.php" ?>
+  <?php include "shared_sections/sidepanel.php" ?>
   <!-- End Side Panel -->
 
   <main class="main-content position-relative max-height-vh-100 h-100 mt-1 border-radius-lg ">
 
     <!-- Navbar -->
-    <?php include "navbar.php" ?>
+    <?php include "shared_sections/navbar.php" ?>
     <!-- End Navbar -->
 
     <div class="container-fluid py-4">
-
       <div class="row my-4">
 
         <!-- Container for map design -->
-        <div class="col-lg-6">
+        <div class="col-lg-4">
           <div class="card">
             <div class="card-header pb-0">
               <div class="row">
-                <div class="col-lg-6 col-7">
+                <div class="col-lg-4 col-7">
                   <h6>Map Design</h6>
                 </div>
               </div>
             </div>
-            <div class="card-body px-0 pb-2">
-              <p></p>
+            <div class="card-body px-0 pb-2 text-center">
+              <img src="../assets/img/ChallengeDesign.png" alt="Challenge Map" class="img-fluid border-radius-lg">
             </div>
           </div>
         </div>
-        <div class="col-lg-3">
+        <div class="col-lg-2">
           <div class="card h-100">
             <div class="card-header pb-0">
-              <h6>Solution</h6>
+              <div class="row">
+                <div class="col-lg-6 col-7">
+                  <h6>History</h6>
+                </div>
+              </div>
             </div>
-            <div class="card-body p-3">
-              <p></p>
+            <div class="card-body px-0 pb-2 text-center">
+
             </div>
           </div>
         </div>
-        <div class="col-lg-3">
+        <div class="col-lg-6">
           <div class="card h-100">
             <div class="card-header pb-0">
               <h6>Commands</h6>
             </div>
             <div class="card-body p-3">
-              <p></p>
+              <div id="blocklyDiv" style="height: 480px; width: 690px;"></div>
+              <xml id="toolbox-categories" style="display: none">
+
+                <!-- Control Category -->
+                <category name="Movement" categorystyle="list_category">
+                  <block type="forward"></block>
+                  <block type="left"></block>
+                  <block type="right"></block>
+                  <block type="backward"></block>
+                </category>
+
+                <!-- Logic Category -->
+                <category name="Logic" categorystyle="logic_category">
+                  <block type="controls_if"></block>
+                  <!-- <block type="logic_compare"></block> -->
+                  <!-- <block type="logic_operation"></block> -->
+                  <block type="logic_negate"></block>
+                  <block type="logic_boolean"></block>
+                  <!-- <block type="logic_null"></block> -->
+                  <!-- <block type="logic_ternary"></block> -->
+                </category>
+
+                <!-- Loop Category -->
+                <category name="Loops" categorystyle="loop_category">
+                  <block type="controls_repeat_ext">
+                    <value name="TIMES">
+                      <shadow type="math_number">
+                        <field name="NUM">5</field>
+                      </shadow>
+                    </value>
+                  </block>
+                  <block type="controls_whileUntil"></block>
+                  <block type="controls_for">
+                    <value name="FROM">
+                      <shadow type="math_number">
+                        <field name="NUM">1</field>
+                      </shadow>
+                    </value>
+                    <value name="TO">
+                      <shadow type="math_number">
+                        <field name="NUM">10</field>
+                      </shadow>
+                    </value>
+                    <value name="BY">
+                      <shadow type="math_number">
+                        <field name="NUM">1</field>
+                      </shadow>
+                    </value>
+                  </block>
+                  <!-- <block type="controls_forEach"></block> -->
+                  <block type="controls_flow_statements"></block>
+                </category>
+              </xml>
+
+
             </div>
           </div>
         </div>
+        <!-- <div class="col-lg-3">
+          <div class="card h-100">
+            <div class="card-header pb-0">
+              <h6>Commands</h6>
+            </div>
+            <div class="card-body p-3">
+
+            </div>
+          </div>
+        </div> -->
       </div>
 
-
+      <button type="button" class="btn btn-outline-primary" onclick="showCode()">Send Commands</button>
 
       <!-- Footer -->
-      <?php include "footer.php" ?>
+      <?php include "shared_sections/footer.php" ?>
       <!-- End Footer -->
 
     </div>
@@ -67,12 +134,45 @@
   </main>
 
 
+  <!-- Blockly javascript -->
+  <script src="https://unpkg.com/blockly/blockly.min.js"></script>
+  <!-- <script src="https://unpkg.com/@blockly/dev-tools@2.0.0/dist/index.js"></script> -->
+  <script src="../assets/js/blockly/index.js"></script>
+  <script src="../assets/js/blockly/javascript_compressed.js"></script>
+  <!-- End of Blockly javascript -->
+
   <script src="../assets/js/core/popper.min.js"></script>
   <script src="../assets/js/core/bootstrap.min.js"></script>
   <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
   <script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
   <script src="../assets/js/plugins/chartjs.min.js"></script>
   <script>
+
+
+    // Move forward block return
+    Blockly.JavaScript['forward'] = function(block) {
+      var code = "moveForward()\n";
+      return code;
+    };
+
+    // Move left block return
+    Blockly.JavaScript['left'] = function(block) {
+      var code = "moveLeft()\n";
+      return code;
+    };
+
+    // Move right block return
+    Blockly.JavaScript['right'] = function(block) {
+      var code = "moveRight()\n";
+      return code;
+    };
+
+    // Move backward block return
+    Blockly.JavaScript['backward'] = function(block) {
+      var code = "moveBackward()\n";
+      return code;
+    };
+
     var ctx = document.getElementById("chart-bars").getContext("2d");
 
     new Chart(ctx, {

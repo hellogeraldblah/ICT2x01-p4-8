@@ -6,13 +6,13 @@
 <body class="g-sidenav-show bg-gray-100">
 
   <!-- Side Panel -->
-  <?php include "sidepanel.php" ?>
+  <?php include "shared_sections/sidepanel.php" ?>
   <!-- End Side Panel -->
 
   <main class="main-content position-relative max-height-vh-100 h-100 mt-1 border-radius-lg ">
 
     <!-- Navbar -->
-    <?php include "navbar.php" ?>
+    <?php include "shared_sections/navbar.php" ?>
     <!-- End Navbar -->
 
     <div class="container-fluid py-4">
@@ -47,7 +47,7 @@
       </div>
 
       <!-- Footer -->
-      <?php include "footer.php" ?>
+      <?php include "shared_sections/footer.php" ?>
       <!-- End Footer -->
 
     </div>
