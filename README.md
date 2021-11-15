@@ -82,7 +82,7 @@ Main Branch -
 If you are planning to add a new feature/fix, create the feature based off the development branch.  
 
 Example:  
-`git branch -d features/x development`
+`git branch -b features/x development`
 
 #### 3. Merging Of Feature/Fix Branch
 When you have finalised your code and are ready to merge the branch (feature/fix) into the development branch, create a new "Pull Request" and select the merging from new branch to development branch.
