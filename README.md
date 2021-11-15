@@ -7,13 +7,13 @@ Team P4-8
 ## Members
 
 ### How To Run
-## Mac/Linux OS
+#### Mac/Linux OS
 1. Change directory to codar-web
 
 `cd ../codar-web`
 
 ### Development Workflow
-## Branches
+#### Branches
 main - 
 
 1. 
