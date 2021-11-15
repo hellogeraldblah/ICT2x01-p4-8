@@ -9,6 +9,7 @@ Team P4-8
 ### How To Run
 ## Mac/Linux OS
 1. Change directory to codar-web
+
 `cd ../codar-web`
 
 ### Development Workflow
