@@ -13,7 +13,10 @@ Team P4-8
 `cd ../codar-web`
 
 ### Development Workflow
-description...
+## Branches
+main - 
+
+1. 
 
 ### UAT
 description...
