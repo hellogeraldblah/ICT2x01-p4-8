@@ -1,15 +1,14 @@
 [![Welcome to Codar!](https://pimp-my-readme.webapp.io/pimp-my-readme/sliding-text?emojis=1f697&text=Welcome%2520to%2520Codar%21)](#)
 
-
 ## ICT2x01 Introduction to Software Engineering
 Team P4-8
 
 ## Members
-- KAREEM MOHAMED ASHIQ (Leader)
-- GERALD PEH
-- POEY JIN RONG, JEROME
-- LEE HUI SHAN
-- QUEK CHECK WEE
+- Kareem Mohamed Ashiq (Leader)
+- Gerald Peh
+- Poey Jin Rong, Jerome
+- Lee Hui Shan
+- Quek Chek Wee
 
 ## Repository Structure
 ```
