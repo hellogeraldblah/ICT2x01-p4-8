@@ -24,6 +24,7 @@ Team P4-8
 
 ### Development Workflow
 _As of **Mon 15 Nov 2021**_
+
 #### Branches
 1. **main** - The master/main branch, merges to this branch will indicate a production-ready application.
 2. **development** - The pre-production stage of the application.
@@ -41,10 +42,11 @@ For example (bugfix/x):
 #### Creating A New Feature/Fix Branch
 [!] If you are developing a fix for a bug, open a new issue before creating the branch.
 
+
 #### 1. Determine Meaningful Branch Name
 Ensure that the name of the branch correctly identifies the feature that you are planning to develop/fix.
 
-#### 2. Create The Branch Off The `development` Branch
+#### 2. Create The Branch Off The development Branch
 If you are planning to add a new feature/fix, create the feature based off the development branch.  
 
 Example:  
@@ -56,7 +58,7 @@ When you have finalised your code and are ready to merge the branch (feature/fix
 #### 4. Deletion Of Branch
 Once the pull request is approved, you may delete the branch to avoid cluttering of branches in the repository.
 
-** Any lost of data or progress by deletion of branch will not be held liable by the owner or collaborators of the repository. The sole user who deleted the branch will be held responsibly.   
+* Any lost of data or progress by deletion of branch will not be held liable by the owner or collaborators of the repository. The sole user who deleted the branch will be held responsibly.   
 
 
 ### UAT
