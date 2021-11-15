@@ -7,7 +7,9 @@ Team P4-8
 ## Members
 
 ### How To Run
-description...
+## Mac/Linux OS
+1. Change directory to codar-web
+`cd ../codar-web`
 
 ### Development Workflow
 description...
