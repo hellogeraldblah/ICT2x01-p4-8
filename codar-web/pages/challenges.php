@@ -3,6 +3,9 @@
 
 <?php $page="Challenges"; ?>
 
+<!-- Challenge Class -->
+<?php require_once "../classes/challenges.php"; ?>
+
 <!-- Header -->
 <?php require_once "shared_sections/head.php" ?>
 <!-- End of Header -->
@@ -20,40 +23,42 @@
     <!-- End Navbar -->
 
     <div class="container-fluid py-4">
-      <div class="row mt-4">
-        <div class="col-lg-3">
-          <div class="card">
-            <div class="card-body p-3">
-              <div class="card-header p-0 mx-3 mt-3 position-relative z-index-1">
-                <img src="../assets/img/ChallengeDesign.png" class="img-fluid border-radius-lg">
-              </div>
-              </br>
-              <a href="javascript:;" class="card-title h5 d-block text-darker">
-                Challenge 1
-              </a>
-              <p class="card-description mb-4 text-center">
-                <div class="row text-center">
-                <div class="col-sm">
-                  <a href="play_challenge.php" type="button" class="btn btn-outline-dark">Play</a>
-                </div>
-                <div class="col-sm">
-                  <a href="edit_challenge.php" type="button" class="btn btn-outline-dark">Edit</a>
-                </div>
-              </div>
 
-              </p>
+      <!-- <div class="row mt-4"> -->
+        <?php foreach ($challenge_list as $key=>$challenge) { ?> <!-- Start of Foreach -->
+
+        <?php if ($key == 0 or $key % 4 == 0) { echo '<div class="row mt-4">'; } ?> <!-- Opening <div> for class="row" -->
+
+          <div class="col-lg-3">
+            <div class="card">
+              <div class="card-body p-3">
+                <div class="card-header p-0 mx-3 mt-3 position-relative z-index-1">
+                  <img src="<?php echo "/assets/img/challenges/" . $challenge->filepath; ?>" class="img-fluid border-radius-lg">
+                </div>
+                </br>
+                <a href="javascript:;" class="card-title h5 d-block text-darker text-center">
+                  <?php echo $challenge->name; ?>
+                </a>
+                <p class="card-description mb-4 text-center">
+                  <div class="row text-center">
+                  <div class="col-sm">
+                    <a href="play_challenge.php" type="button" class="btn btn-outline-dark">Play</a>
+                  </div>
+                  <div class="col-sm">
+                    <a href="edit_challenge.php" type="button" class="btn btn-outline-dark">Edit</a>
+                  </div>
+                </div>
+                </p>
+              </div>
             </div>
           </div>
-        </div>
 
-      </div>
+        <?php if ($key + 1 % 4 == 0) { echo '</div>'; } ?> <!-- Closing <div> for class="row" -->
 
-      <!-- Footer -->
-      <?php require_once "shared_sections/footer.php" ?>
-      <!-- End Footer -->
+      <?php } ?> <!-- End of Foreach -->
 
+      <?php require_once "shared_sections/footer.php" ?> <!-- Footer -->
     </div>
-
   </main>
 
 
@@ -62,6 +67,7 @@
   <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
   <script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
   <script src="../assets/js/plugins/chartjs.min.js"></script>
+
   <script>
     var ctx = document.getElementById("chart-bars").getContext("2d");
 
