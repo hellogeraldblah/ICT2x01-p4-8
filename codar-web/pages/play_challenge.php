@@ -3,33 +3,44 @@
 
 <?php $page="Play Challenge"; ?>
 
+<!-- Challenge Class -->
+<?php require_once "../classes/challenges.php"; ?>
+
+<!-- Header -->
+<?php require_once "shared_sections/head.php" ?>
+<!-- End of Header -->
+
 <body class="g-sidenav-show bg-gray-100" onload="start()">
 
   <!-- Side Panel -->
-  <?php include "shared_sections/sidepanel.php" ?>
+  <?php require_once "shared_sections/sidepanel.php" ?>
   <!-- End Side Panel -->
 
   <main class="main-content position-relative max-height-vh-100 h-100 mt-1 border-radius-lg ">
 
     <!-- Navbar -->
-    <?php include "shared_sections/navbar.php" ?>
+    <?php require_once "shared_sections/navbar.php" ?>
     <!-- End Navbar -->
 
-    <div class="container-fluid py-4">
-      <div class="row my-4">
+    <?php $challenge = $challenge_list_obj->search_challenge($_POST["challenge_id"]); ?>
 
+    <div class="container-fluid py-4">
+
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#tutorialModal">
+        Help
+      </button>
+
+      <div class="row my-4">
         <!-- Container for map design -->
         <div class="col-lg-4">
-          <div class="card">
+          <div class="card h-100">
             <div class="card-header pb-0">
-              <div class="row">
-                <div class="col-lg-4 col-7">
-                  <h6>Map Design</h6>
-                </div>
-              </div>
+              <h4><?php echo $challenge->name; ?></h4>
+              <h6>Map #<?php echo $challenge->id; ?></h6>
             </div>
             <div class="card-body px-0 pb-2 text-center">
-              <img src="../assets/img/ChallengeDesign.png" alt="Challenge Map" class="img-fluid border-radius-lg">
+              <img src="<?php echo $challenge->filepath; ?>" alt="Challenge Map" class="img-fluid border-radius-lg">
             </div>
           </div>
         </div>
@@ -67,12 +78,12 @@
                 <!-- Logic Category -->
                 <category name="Logic" categorystyle="logic_category">
                   <block type="controls_if"></block>
-                  <!-- <block type="logic_compare"></block> -->
-                  <!-- <block type="logic_operation"></block> -->
+                  <block type="logic_compare"></block>
+                  <block type="logic_operation"></block>
                   <block type="logic_negate"></block>
                   <block type="logic_boolean"></block>
-                  <!-- <block type="logic_null"></block> -->
-                  <!-- <block type="logic_ternary"></block> -->
+                  <block type="logic_null"></block>
+                  <block type="logic_ternary"></block>
                 </category>
 
                 <!-- Loop Category -->
@@ -102,8 +113,63 @@
                       </shadow>
                     </value>
                   </block>
-                  <!-- <block type="controls_forEach"></block> -->
+                  <block type="controls_forEach"></block>
                   <block type="controls_flow_statements"></block>
+                </category>
+                <category name="Math" colour="%{BKY_MATH_HUE}">
+                  <block type="math_number">
+                    <field name="NUM">123</field>
+                  </block>
+                  <block type="math_arithmetic"></block>
+                  <block type="math_single"></block>
+                  <block type="math_trig"></block>
+                  <block type="math_constant"></block>
+                  <block type="math_number_property"></block>
+                  <block type="math_round"></block>
+                  <block type="math_on_list"></block>
+                  <block type="math_modulo"></block>
+                  <block type="math_constrain">
+                    <value name="LOW">
+                      <block type="math_number">
+                        <field name="NUM">1</field>
+                      </block>
+                    </value>
+                    <value name="HIGH">
+                      <block type="math_number">
+                        <field name="NUM">100</field>
+                      </block>
+                    </value>
+                  </block>
+                  <block type="math_random_int">
+                    <value name="FROM">
+                      <block type="math_number">
+                        <field name="NUM">1</field>
+                      </block>
+                    </value>
+                    <value name="TO">
+                      <block type="math_number">
+                        <field name="NUM">100</field>
+                      </block>
+                    </value>
+                  </block>
+                  <block type="math_random_float"></block>
+                  <block type="math_atan2"></block>
+                </category>
+                <category name="Lists" colour="%{BKY_LISTS_HUE}">
+                  <block type="lists_create_empty"></block>
+                  <block type="lists_create_with"></block>
+                  <block type="lists_repeat">
+                    <value name="NUM">
+                      <block type="math_number">
+                        <field name="NUM">5</field>
+                      </block>
+                    </value>
+                  </block>
+                  <block type="lists_length"></block>
+                  <block type="lists_isEmpty"></block>
+                  <block type="lists_indexOf"></block>
+                  <block type="lists_getIndex"></block>
+                  <block type="lists_setIndex"></block>
                 </category>
               </xml>
 
@@ -111,22 +177,14 @@
             </div>
           </div>
         </div>
-        <!-- <div class="col-lg-3">
-          <div class="card h-100">
-            <div class="card-header pb-0">
-              <h6>Commands</h6>
-            </div>
-            <div class="card-body p-3">
-
-            </div>
-          </div>
-        </div> -->
       </div>
 
-      <button type="button" class="btn btn-outline-primary" onclick="showCode()">Send Commands</button>
+      <button type="button" class="btn btn-outline-primary" onclick="showCode()" data-bs-toggle="modal" data-bs-target="#showCodeModal">
+        Show Code
+      </button>
 
       <!-- Footer -->
-      <?php include "shared_sections/footer.php" ?>
+      <?php require_once "shared_sections/footer.php" ?>
       <!-- End Footer -->
 
     </div>
@@ -134,12 +192,50 @@
   </main>
 
 
-  <!-- Blockly javascript -->
-  <script src="https://unpkg.com/blockly/blockly.min.js"></script>
-  <!-- <script src="https://unpkg.com/@blockly/dev-tools@2.0.0/dist/index.js"></script> -->
-  <script src="../assets/js/blockly/index.js"></script>
-  <script src="../assets/js/blockly/javascript_compressed.js"></script>
-  <!-- End of Blockly javascript -->
+    <!-- Tutorial Modal -->
+    <div class="modal fade" id="tutorialModal" tabindex="-1" role="dialog" aria-labelledby="tutorialModal" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Tutorial</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body" id="tutorial">Guide here</div>
+          <div class="modal-footer">
+            <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Show Code Modal -->
+    <div class="modal fade" id="showCodeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Generated Javascript</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body" id="showCode">If you see this message, it means you have nothing in the workspace!</div>
+          <div class="modal-footer">
+            <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
+            <!-- <button type="button" class="btn bg-gradient-primary">Save changes</button> -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+<!-- Blockly javascript -->
+<script src="https://unpkg.com/blockly/blockly.min.js"></script>
+<!-- <script src="https://unpkg.com/@blockly/dev-tools@2.0.0/dist/index.js"></script> -->
+<script src="../assets/js/blockly/index.js"></script>
+<script src="../assets/js/blockly/javascript_compressed.js"></script>
+<!-- End of Blockly javascript -->
 
   <script src="../assets/js/core/popper.min.js"></script>
   <script src="../assets/js/core/bootstrap.min.js"></script>
@@ -147,7 +243,6 @@
   <script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
   <script src="../assets/js/plugins/chartjs.min.js"></script>
   <script>
-
 
     // Move forward block return
     Blockly.JavaScript['forward'] = function(block) {
