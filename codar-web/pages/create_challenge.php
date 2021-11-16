@@ -3,16 +3,20 @@
 
 <?php $page="Create Challenge"; ?>
 
+<!-- Header -->
+<?php require_once "shared_sections/head.php" ?>
+<!-- End of Header -->
+
 <body class="g-sidenav-show bg-gray-100" onload="start()">
 
   <!-- Side Panel -->
-  <?php include "shared_sections/sidepanel.php" ?>
+  <?php require_once "shared_sections/sidepanel.php" ?>
   <!-- End Side Panel -->
 
   <main class="main-content position-relative max-height-vh-100 h-100 mt-1 border-radius-lg ">
 
     <!-- Navbar -->
-    <?php include "shared_sections/navbar.php" ?>
+    <?php require_once "shared_sections/navbar.php" ?>
     <!-- End Navbar -->
 
     <div class="container-fluid py-4">
@@ -109,11 +113,33 @@
         </div> -->
       </div>
 
-      <button type="button" class="btn btn-outline-primary" onclick="showCode()">Show JavaScript</button>
+      <!-- <button type="button" class="btn btn-outline-primary" onclick="showCode()">Show JavaScript</button> -->
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-outline-primary" onclick="showCode()" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Show Code
+      </button>
 
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Generated Javascript</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body" id="showCode">If you see this message, it means you have nothing in the workspace!</div>
+            <div class="modal-footer">
+              <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
+              <!-- <button type="button" class="btn bg-gradient-primary">Save changes</button> -->
+            </div>
+          </div>
+        </div>
+      </div>
 
       <!-- Footer -->
-      <?php include "shared_sections/footer.php" ?>
+      <?php require_once "shared_sections/footer.php" ?>
       <!-- End Footer -->
 
     </div>
