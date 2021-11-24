@@ -49,6 +49,8 @@
     <block type="controls_forEach"></block>
     <block type="controls_flow_statements"></block>
   </category>
+
+  <!-- Math Category -->
   <category name="Math" colour="%{BKY_MATH_HUE}">
     <block type="math_number">
       <field name="NUM">123</field>
@@ -88,6 +90,8 @@
     <block type="math_random_float"></block>
     <block type="math_atan2"></block>
   </category>
+
+
   <category name="Lists" colour="%{BKY_LISTS_HUE}">
     <block type="lists_create_empty"></block>
     <block type="lists_create_with"></block>
@@ -104,4 +108,8 @@
     <block type="lists_getIndex"></block>
     <block type="lists_setIndex"></block>
   </category>
+
+  <category name="Variables" colour="330" custom="VARIABLE"></category>
+
+
 </xml>

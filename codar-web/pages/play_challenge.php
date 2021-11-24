@@ -4,22 +4,29 @@
 <?php $page="Play Challenge"; ?>
 
 <!-- Challenge Class -->
-<?php require_once "../classes/challenges.php"; ?>
+<?php
+  require_once "../classes/challenges.php";
+  require_once "../classes/database.php";
+
+  $challenge_list_obj = new Challenges_List($conn);
+  $challenge_list = $challenge_list_obj->get_challenges_list();
+
+ ?>
 
 <!-- Header -->
-<?php require_once "shared_sections/head.php" ?>
+<?php require_once "shared_view/head.php" ?>
 <!-- End of Header -->
 
 <body class="g-sidenav-show bg-gray-100" onload="start()">
 
   <!-- Side Panel -->
-  <?php require_once "shared_sections/sidepanel.php" ?>
+  <?php require_once "shared_view/sidepanel.php" ?>
   <!-- End Side Panel -->
 
   <main class="main-content position-relative max-height-vh-100 h-100 mt-1 border-radius-lg ">
 
     <!-- Navbar -->
-    <?php require_once "shared_sections/navbar.php" ?>
+    <?php require_once "shared_view/navbar.php" ?>
     <!-- End Navbar -->
 
     <?php $challenge = $challenge_list_obj->search_challenge($_POST["challenge_id"]); ?>
@@ -80,7 +87,7 @@
       </button>
 
       <!-- Footer -->
-      <?php require_once "shared_sections/footer.php" ?>
+      <?php require_once "shared_view/footer.php" ?>
       <!-- End Footer -->
 
     </div>

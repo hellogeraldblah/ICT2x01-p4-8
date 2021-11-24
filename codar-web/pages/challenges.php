@@ -4,22 +4,30 @@
 <?php $page="Challenges"; ?>
 
 <!-- Challenge Class -->
-<?php require_once "../classes/challenges.php"; ?>
+<?php
+
+  require_once "../classes/challenges.php";
+  require_once "../classes/database.php";
+
+  $challenge_list_obj = new Challenges_List($conn);
+  $challenge_list = $challenge_list_obj->get_challenges_list();
+
+?>
 
 <!-- Header -->
-<?php require_once "shared_sections/head.php" ?>
+<?php require_once "shared_view/head.php" ?>
 <!-- End of Header -->
 
 <body class="g-sidenav-show bg-gray-100">
 
   <!-- Side Panel -->
-  <?php require_once "shared_sections/sidepanel.php" ?>
+  <?php require_once "shared_view/sidepanel.php" ?>
   <!-- End Side Panel -->
 
   <main class="main-content position-relative max-height-vh-100 h-100 mt-1 border-radius-lg ">
 
     <!-- Navbar -->
-    <?php require_once "shared_sections/navbar.php" ?>
+    <?php require_once "shared_view/navbar.php" ?>
     <!-- End Navbar -->
 
     <div class="container-fluid py-4">
@@ -61,7 +69,7 @@
 
       <?php } ?> <!-- End of Foreach -->
 
-      <?php require_once "shared_sections/footer.php" ?> <!-- Footer -->
+      <?php require_once "shared_view/footer.php" ?> <!-- Footer -->
     </div>
   </main>
 

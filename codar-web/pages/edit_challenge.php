@@ -4,19 +4,19 @@
 <?php $page="Edit Challenge"; ?>
 
 <!-- Header -->
-<?php require_once "shared_sections/head.php" ?>
+<?php require_once "shared_view/head.php" ?>
 <!-- End of Header -->
 
 <body class="g-sidenav-show bg-gray-100">
 
   <!-- Side Panel -->
-  <?php require_once "shared_sections/sidepanel.php" ?>
+  <?php require_once "shared_view/sidepanel.php" ?>
   <!-- End Side Panel -->
 
   <main class="main-content position-relative max-height-vh-100 h-100 mt-1 border-radius-lg ">
 
     <!-- Navbar -->
-    <?php require_once "shared_sections/navbar.php" ?>
+    <?php require_once "shared_view/navbar.php" ?>
     <!-- End Navbar -->
 
     <div class="container-fluid py-4">
@@ -63,7 +63,7 @@
       </div>
 
       <!-- Footer -->
-      <?php require_once "shared_sections/footer.php" ?>
+      <?php require_once "shared_view/footer.php" ?>
       <!-- End Footer -->
 
     </div>

@@ -4,19 +4,19 @@
 <?php $page="Create Challenge"; ?>
 
 <!-- Header -->
-<?php require_once "shared_sections/head.php" ?>
+<?php require_once "shared_view/head.php" ?>
 <!-- End of Header -->
 
 <body class="g-sidenav-show bg-gray-100" onload="start()">
 
   <!-- Side Panel -->
-  <?php require_once "shared_sections/sidepanel.php" ?>
+  <?php require_once "shared_view/sidepanel.php" ?>
   <!-- End Side Panel -->
 
   <main class="main-content position-relative max-height-vh-100 h-100 mt-1 border-radius-lg ">
 
     <!-- Navbar -->
-    <?php require_once "shared_sections/navbar.php" ?>
+    <?php require_once "shared_view/navbar.php" ?>
     <!-- End Navbar -->
 
     <div class="container-fluid py-4">
@@ -37,16 +37,18 @@
             <div class="card-body pt-2">
               <div class="row">
 
+              <form method="POST" action="logic/create_challenge_form.php" enctype="multipart/form-data" id="create_form">
                 <!-- Challenge name -->
                 <label class="form-control-label" for="basic-url">Challenge Name</label>
-                <input type="text" class="form-control" placeholder="Pick an exciting name!" >
+                <input type="text" class="form-control" placeholder="Pick an exciting name!" name="challengeName">
 
                 <p></p>
 
                 <!-- Challenge file upload -->
                 <label class="form-control-label" for="challengeImage">Challenge Design Image</label>
-                <input type="file" class="form-control" id="challengeImage" />
+                <input type="file" class="form-control" name="fileToUpload" id="fileToUpload"/>
 
+              </form>
               </div>
             </div>
         </div>
@@ -59,7 +61,7 @@
             </div>
             <div class="card-body p-3">
               <div id="blocklyDiv" style="height: 480px; width: 690px;"></div>
-              
+
               <!-- Blockly xml asset -->
               <?php require_once "blockly.php"; ?>
               <!-- End Blockly xml asset -->
@@ -69,12 +71,10 @@
         </div>
       </div>
 
-      <!-- <button type="button" class="btn btn-outline-primary" onclick="showCode()">Show JavaScript</button> -->
-      <!-- Button trigger modal -->
+      <!-- Create challenge submit button -->
+      <button type="submit" name="submit" class="btn btn-outline-danger" form="create_form">Create</button>
 
-      <button type="button" class="btn btn-outline-danger">Create</button>
-
-      <!-- Modal -->
+      <!-- Show javacsript modal -->
       <div class="modal fade" id="showCodeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
@@ -87,14 +87,13 @@
             <div class="modal-body" id="showCode">If you see this message, it means you have nothing in the workspace!</div>
             <div class="modal-footer">
               <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
-              <!-- <button type="button" class="btn bg-gradient-primary">Save changes</button> -->
             </div>
           </div>
         </div>
       </div>
 
       <!-- Footer -->
-      <?php require_once "shared_sections/footer.php" ?>
+      <?php require_once "shared_view/footer.php" ?>
       <!-- End Footer -->
 
     </div>

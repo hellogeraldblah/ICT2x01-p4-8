@@ -9,20 +9,6 @@ define("__DATABASE_DIR__", __ROOT__ . "databases" . "/");
 
 define("__REL_CHALLENGES_IMG_DIR__",  "/assets/img/challenges" . "/");
 
-function get_db(){
-
-  $db_filepath = __DATABASE_DIR__ . "codar-db.sqlite";
-
-  if (!file_exists($db_filepath)) {
-    return false;
-  }
-
-  $db = new SQLite3($db_filepath);
-
-  return $db;
-
-}
-
 class Challenge {
   // Challenge entity, stores individual challenge
   public $id;
@@ -65,12 +51,12 @@ class Challenge {
 
 class Challenges_List {
   // Challenge_List entity, stores array of Challenge objects
-  public $challenges = array();
+  private $challenges = array();
+  private $conn;
 
-  function populate_challenges() {
-    //
-    $db = get_db();
-    $res = $db->query("SELECT * FROM challenges");
+  function __construct($conn) {
+    $this->conn = $conn;
+    $res = $this->conn->query("SELECT * FROM challenges");
 
     while ($row = $res->fetchArray()) {
       array_push($this->challenges, new Challenge($row['id'], $row['name'], __REL_CHALLENGES_IMG_DIR__ . $row['filepath'], $row['solution']));
@@ -78,9 +64,20 @@ class Challenges_List {
   }
 
   function get_challenges_list(){
-    // Returns the entire array of challenges
+    // Returns a list of challenges
     return $this->challenges;
   }
+
+  // function create_challenge($id, $name, $filepath, $solution) {
+  //   $latest_challenge = new Challenge($row['id'], $row['name'], __REL_CHALLENGES_IMG_DIR__ . $row['filepath'], $row['solution']);
+  //
+  //   $sql_stmt = "INSERT INTO challenges(id, name, filepath, solution)" . "VALUES(:id, :name, :filepath, :solution)";
+  //
+  //   $prepared_stmt = $this->db->prepare($sql_stmt);
+  //   $prepared_stmt->execute([":id" => $id, ":name" , ":filepath" , ":solution"])
+  //
+  // }
+
 
   function search_challenge($target_id){
     // Locates the particular challenge with the given $target_id and returns the corresponding challenge object
@@ -93,11 +90,6 @@ class Challenges_List {
   }
 
 }
-
-$challenge_list_obj = new Challenges_List();
-$challenge_list_obj->populate_challenges();
-
-$challenge_list = $challenge_list_obj->get_challenges_list();
 
 
 ?>
