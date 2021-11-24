@@ -1,8 +1,4 @@
 <?php
-    // require_once 'conn.php';
-    // echo $_POST["challengeName"];
-
-    // echo $_POST["challengeImage"];
 
     define("__ROOT__", $_SERVER["DOCUMENT_ROOT"] . "/");
     define("__UPLOADS_DIR__", __ROOT__ . "assets/img/challenges/");
@@ -15,9 +11,10 @@
 
     // Check if image file is a actual image or fake image
     $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+    $message = "";
 
     if($check == false) {
-      echo "File is not an image.";
+      $message = "File is not an image.";
       $uploadOk = 0;
     }
 
@@ -51,9 +48,18 @@
         echo __ROOT__;
       if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
         echo "The file ". htmlspecialchars( basename( $_FILES["fileToUpload"]["name"])). " has been uploaded.";
+        // redirect to challenges
       } else {
         echo "Sorry, there was an error uploading your file.";
+        // redirect back to create _chhalenge
       }
     }
-
 ?>
+
+<script>
+
+  alert("error");
+  window.location.replace("../create_challenge.php");
+
+
+</script>

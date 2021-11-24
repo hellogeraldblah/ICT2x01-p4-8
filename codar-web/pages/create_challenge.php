@@ -38,6 +38,7 @@
               <div class="row">
 
               <form method="POST" action="logic/create_challenge_form.php" enctype="multipart/form-data" id="create_form">
+
                 <!-- Challenge name -->
                 <label class="form-control-label" for="basic-url">Challenge Name</label>
                 <input type="text" class="form-control" placeholder="Pick an exciting name!" name="challengeName">
@@ -49,6 +50,7 @@
                 <input type="file" class="form-control" name="fileToUpload" id="fileToUpload"/>
 
               </form>
+
               </div>
             </div>
         </div>
