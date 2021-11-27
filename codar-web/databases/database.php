@@ -1,5 +1,7 @@
 <?php
 
+define("__DATABASE_DIR__", __ROOT__ . "databases" . "/");
+
 // get database connection
 function connect(){
 

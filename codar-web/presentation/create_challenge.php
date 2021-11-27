@@ -32,11 +32,11 @@
             <div class="card-body pt-2">
               <div class="row">
 
-              <form method="POST" action="logic/create_challenge_form.php" enctype="multipart/form-data" id="create_form">
+              <form method="POST" action="../../logic/create_challenge_form.php" enctype="multipart/form-data" id="create_form">
 
                 <!-- Challenge name -->
                 <label class="form-control-label" for="basic-url">Challenge Name</label>
-                <input type="text" class="form-control" placeholder="Pick an exciting name!" name="challengeName"/>
+                <input type="text" class="form-control" placeholder="Pick an exciting name!" name="challengeName" required/>
 
                 <p></p>
 
@@ -48,7 +48,7 @@
 
                 <!-- Challenge file upload -->
                 <label class="form-control-label" for="challengeImage">Challenge Design Image</label>
-                <input type="file" class="form-control" name="fileToUpload" id="fileToUpload" required/>
+                <input type="file" class="form-control" name="fileToUpload" id="fileToUpload"/>
 
               </form>
 

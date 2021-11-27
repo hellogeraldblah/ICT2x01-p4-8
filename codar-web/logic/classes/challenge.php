@@ -3,10 +3,10 @@
 // Any constants defined with a __REL_ in the front means that the constant is
 // used for any client-side file paths
 
-define("__ROOT__", $_SERVER["DOCUMENT_ROOT"] . "/");
-define("__DATABASE_DIR__", __ROOT__ . "databases" . "/");
+// define("__ROOT__", $_SERVER["DOCUMENT_ROOT"] . "/");
+// define("__DATABASE_DIR__", __ROOT__ . "databases" . "/");
 
-define("__REL_CHALLENGES_IMG_DIR__",  "/assets/img/challenges" . "/");
+// define("__REL_CHALLENGES_IMG_DIR__",  "/assets/img/challenges" . "/");
 
 class Challenge {
   // Challenge entity, stores individual challenge
