@@ -1,17 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<?php $page="Play Challenge"; ?>
-
-<!-- Challenge Class -->
-<?php
-  require_once "../classes/challenges.php";
-  require_once "../classes/database.php";
-
-  $challenge_list_obj = new Challenges_List($conn);
-  $challenge_list = $challenge_list_obj->get_challenges_list();
-
- ?>
+<?php $page="Create Challenge"; ?>
 
 <!-- Header -->
 <?php require_once "shared_view/head.php" ?>
@@ -29,62 +19,47 @@
     <?php require_once "shared_view/navbar.php" ?>
     <!-- End Navbar -->
 
-    <?php $challenge = $challenge_list_obj->search_challenge($_POST["challenge_id"]); ?>
-
     <div class="container-fluid py-4">
-
-      <!-- Button trigger modal -->
-      <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#tutorialModal">
-        Help
-      </button>
-
       <div class="row my-4">
         <!-- Container for map design -->
-        <div class="col-lg-4">
-          <div class="card h-100">
+        <div class="col-lg-12">
+          <div class="card">
             <div class="card-header pb-0">
-              <h4><?php echo $challenge->name; ?></h4>
-              <h6>Map #<?php echo $challenge->id; ?></h6>
-            </div>
-            <div class="card-body px-0 pb-2 text-center">
-              <img src="<?php echo $challenge->filepath; ?>" alt="Challenge Map" class="img-fluid border-radius-lg">
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-2">
-          <div class="card h-100">
-            <div class="card-header pb-0">
-              <div class="row">
                 <div class="col-lg-6 col-7">
-                  <h6>History</h6>
+                  <h6>Map Design</h6>
                 </div>
+            </div>
+            <div class="card-body pt-2">
+              <div class="row">
+
+              <form method="POST" action="logic/create_challenge_form.php" enctype="multipart/form-data" id="create_form">
+
+                <!-- Challenge name -->
+                <label class="form-control-label" for="basic-url">Challenge Name</label>
+                <input type="text" class="form-control" placeholder="Pick an exciting name!" name="challengeName"/>
+
+                <p></p>
+
+                <!-- Number of moves -->
+                <label class="form-control-label" for="challengeImage">Number of Moves</label>
+                <input type="number" class="form-control" placeholder="Number of moves to complete the challenge!" name="numberOfMoves"/>
+
+                <p></p>
+
+                <!-- Challenge file upload -->
+                <label class="form-control-label" for="challengeImage">Challenge Design Image</label>
+                <input type="file" class="form-control" name="fileToUpload" id="fileToUpload" required/>
+
+              </form>
+
               </div>
             </div>
-            <div class="card-body px-0 pb-2 text-center">
-
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-6">
-          <div class="card h-100">
-            <div class="card-header pb-0">
-              <h6>Commands</h6>
-            </div>
-            <div class="card-body p-3">
-              <div id="blocklyDiv" style="height: 480px; width: 690px;"></div>
-
-              <!-- Blockly xml asset -->
-              <?php require_once "blockly.php"; ?>
-              <!-- End Blockly xml asset -->
-
-            </div>
-          </div>
         </div>
       </div>
+      </div>
 
-      <button type="button" class="btn btn-outline-primary" onclick="showCode()" data-bs-toggle="modal" data-bs-target="#showCodeModal">
-        Show Code
-      </button>
+      <!-- Create challenge submit button -->
+      <button type="submit" name="submit" class="btn btn-outline-danger" form="create_form">Create</button>
 
       <!-- Footer -->
       <?php require_once "shared_view/footer.php" ?>
@@ -94,58 +69,19 @@
 
   </main>
 
+  <!-- Blockly javascript -->
+  <script src="https://unpkg.com/blockly/blockly.min.js"></script>
+  <!-- <script src="https://unpkg.com/@blockly/dev-tools@2.0.0/dist/index.js"></script> -->
+  <script src="../assets/js/blockly/index.js"></script>
+  <script src="../assets/js/blockly/javascript_compressed.js"></script>
+  <!-- End of Blockly javascript -->
 
-    <!-- Tutorial Modal -->
-    <div class="modal fade" id="tutorialModal" tabindex="-1" role="dialog" aria-labelledby="tutorialModal" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Tutorial</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body" id="tutorial">Guide here</div>
-          <div class="modal-footer">
-            <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Show Code Modal -->
-    <div class="modal fade" id="showCodeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Generated Javascript</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body" id="showCode">If you see this message, it means you have nothing in the workspace!</div>
-          <div class="modal-footer">
-            <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
-            <!-- <button type="button" class="btn bg-gradient-primary">Save changes</button> -->
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-<!-- Blockly javascript -->
-<script src="https://unpkg.com/blockly/blockly.min.js"></script>
-<!-- <script src="https://unpkg.com/@blockly/dev-tools@2.0.0/dist/index.js"></script> -->
-<script src="../assets/js/blockly/index.js"></script>
-<script src="../assets/js/blockly/javascript_compressed.js"></script>
-<!-- End of Blockly javascript -->
-
-<script src="../assets/js/core/popper.min.js"></script>
-<script src="../assets/js/core/bootstrap.min.js"></script>
-<script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
-<script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
-<script src="../assets/js/plugins/chartjs.min.js"></script>
-<script>
+  <script src="../assets/js/core/popper.min.js"></script>
+  <script src="../assets/js/core/bootstrap.min.js"></script>
+  <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
+  <script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
+  <script src="../assets/js/plugins/chartjs.min.js"></script>
+  <script>
 
     // Move forward block return
     Blockly.JavaScript['forward'] = function(block) {

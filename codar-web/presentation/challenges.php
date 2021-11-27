@@ -6,11 +6,12 @@
 <!-- Challenge Class -->
 <?php
 
-  require_once "../classes/challenges.php";
+  require_once "../classes/challenge.php";
+  require_once "../classes/challengeManagement.php";
   require_once "../classes/database.php";
 
-  $challenge_list_obj = new Challenges_List($conn);
-  $challenge_list = $challenge_list_obj->get_challenges_list();
+  $challenge_list_obj = new ChallengeManagement($conn);
+  $challenge_list = $challenge_list_obj->get_challenges();
 
 ?>
 
