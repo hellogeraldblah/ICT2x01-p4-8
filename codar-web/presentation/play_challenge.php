@@ -5,9 +5,9 @@
 
 <!-- Challenge Class -->
 <?php
-require_once "../classes/challenge.php";
-require_once "../classes/challengeManagement.php";
-require_once "../classes/database.php";
+require_once "../logic/classes/challenge.php";
+require_once "../logic/challengeManagement.php";
+require_once "../databases/database.php";
 
   $challenge_list_obj = new ChallengeManagement($conn);
   $challenge_list = $challenge_list_obj->get_challenges();
@@ -15,19 +15,19 @@ require_once "../classes/database.php";
  ?>
 
 <!-- Header -->
-<?php require_once "shared_view/head.php" ?>
+<?php require_once "shared_presentation/head.php" ?>
 <!-- End of Header -->
 
 <body class="g-sidenav-show bg-gray-100" onload="start()">
 
   <!-- Side Panel -->
-  <?php require_once "shared_view/sidepanel.php" ?>
+  <?php require_once "shared_presentation/sidepanel.php" ?>
   <!-- End Side Panel -->
 
   <main class="main-content position-relative max-height-vh-100 h-100 mt-1 border-radius-lg ">
 
     <!-- Navbar -->
-    <?php require_once "shared_view/navbar.php" ?>
+    <?php require_once "shared_presentation/navbar.php" ?>
     <!-- End Navbar -->
 
     <?php $challenge = $challenge_list_obj->search_challenge($_POST["challenge_id"]); ?>
@@ -88,7 +88,7 @@ require_once "../classes/database.php";
       </button>
 
       <!-- Footer -->
-      <?php require_once "shared_view/footer.php" ?>
+      <?php require_once "shared_presentation/footer.php" ?>
       <!-- End Footer -->
 
     </div>

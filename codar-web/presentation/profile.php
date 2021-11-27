@@ -19,19 +19,19 @@
 <?php $page="Profile"; ?>
 
 <!-- Header -->
-<?php require_once "shared_sections/head.php" ?>
+<?php require_once "shared_presentation/head.php" ?>
 <!-- End of Header -->
 
 <body class="g-sidenav-show bg-gray-100">
 
   <!-- Side Panel -->
-  <?php require_once "shared_sections/sidepanel.php" ?>
+  <?php require_once "shared_presentation/sidepanel.php" ?>
   <!-- End Side Panel -->
 
   <div class="main-content position-relative bg-gray-100 max-height-vh-100 h-100">
 
     <!-- Navbar -->
-    <?php require_once "shared_sections/navbar.php" ?>
+    <?php require_once "shared_presentation/navbar.php" ?>
     <!-- End Navbar -->
 
     <div class="container-fluid">
@@ -412,7 +412,7 @@
         </div>
       </div>
       <!-- Footer -->
-      <?php require_once "shared_sections/footer.php" ?>
+      <?php require_once "shared_presentation/footer.php" ?>
       <!-- End Footer -->
     </div>
   </div>

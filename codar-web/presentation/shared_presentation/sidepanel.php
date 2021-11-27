@@ -12,7 +12,7 @@
     <ul class="navbar-nav">
       <li class="nav-item">
 
-        <a <?php if($page=="Dashboard"){ ?> class= "nav-link active" <?php } else { ?> class="nav-link" <?php } ?> href="../pages/dashboard.php">
+        <a <?php if($page=="Dashboard"){ ?> class= "nav-link active" <?php } else { ?> class="nav-link" <?php } ?> href="../presentation/dashboard.php">
 
           <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
             <svg width="12px" height="12px" viewBox="0 0 45 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -34,7 +34,7 @@
       </li>
 
       <li class="nav-item">
-        <a <?php if($page=="Challenges" or $page=="Play Challenge" or $page=="Edit Challenge"){ ?> class= "nav-link active" <?php } else { ?> class="nav-link" <?php } ?>  href="../pages/challenges.php">
+        <a <?php if($page=="Challenges" or $page=="Play Challenge" or $page=="Edit Challenge"){ ?> class= "nav-link active" <?php } else { ?> class="nav-link" <?php } ?>  href="../presentation/challenges.php">
           <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list-ul" viewBox="0 0 16 16">
               <title>challenges</title>
@@ -45,7 +45,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a <?php if($page=="Create Challenge"){ ?> class= "nav-link active" <?php } else { ?> class="nav-link" <?php } ?>  href="../pages/create_challenge.php">
+        <a <?php if($page=="Create Challenge"){ ?> class= "nav-link active" <?php } else { ?> class="nav-link" <?php } ?>  href="../presentation/create_challenge.php">
           <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lightbulb" viewBox="0 0 16 16">
                 <title>create challenge</title>
@@ -56,7 +56,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a <?php if($page=="Achievements"){ ?> class= "nav-link active" <?php } else { ?> class="nav-link" <?php } ?> href="../pages/achievements.php">
+        <a <?php if($page=="Achievements"){ ?> class= "nav-link active" <?php } else { ?> class="nav-link" <?php } ?> href="../presentation/achievements.php">
           <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-award" viewBox="0 0 16 16">
               <title>view achievements</title>
@@ -71,7 +71,7 @@
         <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Account pages</h6>
       </li>
       <li class="nav-item">
-        <a <?php if($page=="Profile"){ ?> class= "nav-link active" <?php } else { ?> class="nav-link" <?php } ?>  href="../pages/profile.php">
+        <a <?php if($page=="Profile"){ ?> class= "nav-link active" <?php } else { ?> class="nav-link" <?php } ?>  href="../presentation/profile.php">
           <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
                 <title>profile</title>
