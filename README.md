@@ -100,10 +100,9 @@ For example (bugfix/x):
 #### 1. Determine Meaningful Branch Name
 Ensure that the name of the branch correctly identifies the feature that you are planning to develop/fix.
 
-#### 2. Create The Branch Off The development/main Branch
+#### 2. Create The Branch Off The Development Branch
 Development Branch -
-Main Branch -
-If you are planning to add a new feature/fix, create the feature based off the development branch.  
+If you are planning to add a new feature/fix, create the feature based off the development branch. Unless the development of the new feature requires features of in-development branches. *please seek team approval before doing so.
 
 Example:  
 `git branch -b features/x development`
