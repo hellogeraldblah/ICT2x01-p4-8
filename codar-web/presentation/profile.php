@@ -18,16 +18,20 @@
 
 <?php $page="Profile"; ?>
 
+<!-- Header -->
+<?php require_once "shared_presentation/head.php" ?>
+<!-- End of Header -->
+
 <body class="g-sidenav-show bg-gray-100">
 
   <!-- Side Panel -->
-  <?php include "shared_sections/sidepanel.php" ?>
+  <?php require_once "shared_presentation/sidepanel.php" ?>
   <!-- End Side Panel -->
 
   <div class="main-content position-relative bg-gray-100 max-height-vh-100 h-100">
 
     <!-- Navbar -->
-    <?php include "shared_sections/navbar.php" ?>
+    <?php require_once "shared_presentation/navbar.php" ?>
     <!-- End Navbar -->
 
     <div class="container-fluid">
@@ -397,7 +401,7 @@
                     <div class="card-body d-flex flex-column justify-content-center text-center">
                       <a href="javascript:;">
                         <i class="fa fa-plus text-secondary mb-3"></i>
-                        <h5 class=" text-secondary"> New project </h5>
+                        <h5 class="text-secondary"> New project </h5>
                       </a>
                     </div>
                   </div>
@@ -408,7 +412,7 @@
         </div>
       </div>
       <!-- Footer -->
-      <?php include "shared_sections/footer.php" ?>
+      <?php require_once "shared_presentation/footer.php" ?>
       <!-- End Footer -->
     </div>
   </div>

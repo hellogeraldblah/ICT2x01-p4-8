@@ -3,117 +3,66 @@
 
 <?php $page="Create Challenge"; ?>
 
+<!-- Header -->
+<?php require_once "shared_presentation/head.php" ?>
+<!-- End of Header -->
+
 <body class="g-sidenav-show bg-gray-100" onload="start()">
 
   <!-- Side Panel -->
-  <?php include "shared_sections/sidepanel.php" ?>
+  <?php require_once "shared_presentation/sidepanel.php" ?>
   <!-- End Side Panel -->
 
   <main class="main-content position-relative max-height-vh-100 h-100 mt-1 border-radius-lg ">
 
     <!-- Navbar -->
-    <?php include "shared_sections/navbar.php" ?>
+    <?php require_once "shared_presentation/navbar.php" ?>
     <!-- End Navbar -->
 
     <div class="container-fluid py-4">
-
       <div class="row my-4">
         <!-- Container for map design -->
-        <div class="col-lg-6">
+        <div class="col-lg-12">
           <div class="card">
             <div class="card-header pb-0">
-              <div class="row">
                 <div class="col-lg-6 col-7">
                   <h6>Map Design</h6>
                 </div>
+            </div>
+            <div class="card-body pt-2">
+              <div class="row">
+
+              <form method="POST" action="../../logic/create_challenge_form.php" enctype="multipart/form-data" id="create_form">
+
+                <!-- Challenge name -->
+                <label class="form-control-label" for="basic-url">Challenge Name</label>
+                <input type="text" class="form-control" placeholder="Pick an exciting name!" name="challengeName" required/>
+
+                <p></p>
+
+                <!-- Number of moves -->
+                <label class="form-control-label" for="challengeImage">Number of Moves</label>
+                <input type="number" class="form-control" placeholder="Number of moves to complete the challenge!" name="numberOfMoves"/>
+
+                <p></p>
+
+                <!-- Challenge file upload -->
+                <label class="form-control-label" for="challengeImage">Challenge Design Image</label>
+                <input type="file" class="form-control" name="fileToUpload" id="fileToUpload"/>
+
+              </form>
+
               </div>
             </div>
-            <div class="card-body px-0 pb-2">
-              <p></p>
-            </div>
-          </div>
         </div>
-        <div class="col-lg-6">
-          <div class="card h-100">
-            <div class="card-header pb-0">
-              <h6>Solution</h6>
-            </div>
-            <div class="card-body p-3">
-              <div id="blocklyDiv" style="height: 480px; width: 690px;"></div>
-              <xml id="toolbox-categories" style="display: none">
-
-                <!-- Control Category -->
-                <category name="Movement" categorystyle="list_category">
-                  <block type="forward"></block>
-                  <block type="left"></block>
-                  <block type="right"></block>
-                  <block type="backward"></block>
-                </category>
-
-                <!-- Logic Category -->
-                <category name="Logic" categorystyle="logic_category">
-                  <block type="controls_if"></block>
-                  <!-- <block type="logic_compare"></block> -->
-                  <!-- <block type="logic_operation"></block> -->
-                  <block type="logic_negate"></block>
-                  <block type="logic_boolean"></block>
-                  <!-- <block type="logic_null"></block> -->
-                  <!-- <block type="logic_ternary"></block> -->
-                </category>
-
-                <!-- Loop Category -->
-                <category name="Loops" categorystyle="loop_category">
-                  <block type="controls_repeat_ext">
-                    <value name="TIMES">
-                      <shadow type="math_number">
-                        <field name="NUM">5</field>
-                      </shadow>
-                    </value>
-                  </block>
-                  <block type="controls_whileUntil"></block>
-                  <block type="controls_for">
-                    <value name="FROM">
-                      <shadow type="math_number">
-                        <field name="NUM">1</field>
-                      </shadow>
-                    </value>
-                    <value name="TO">
-                      <shadow type="math_number">
-                        <field name="NUM">10</field>
-                      </shadow>
-                    </value>
-                    <value name="BY">
-                      <shadow type="math_number">
-                        <field name="NUM">1</field>
-                      </shadow>
-                    </value>
-                  </block>
-                  <!-- <block type="controls_forEach"></block> -->
-                  <block type="controls_flow_statements"></block>
-                </category>
-              </xml>
-
-
-            </div>
-          </div>
-        </div>
-        <!-- <div class="col-lg-3">
-          <div class="card h-100">
-            <div class="card-header pb-0">
-              <h6>Commands</h6>
-            </div>
-            <div class="card-body p-3">
-
-            </div>
-          </div>
-        </div> -->
       </div>
-      
-      <button type="button" class="btn btn-outline-primary" onclick="showCode()">Show JavaScript</button>
+      </div>
 
+      <!-- Create challenge submit button -->
+      <button type="submit" name="submit" class="btn btn-outline-danger" form="create_form">Create</button>
 
       <!-- Footer -->
-      <?php include "shared_sections/footer.php" ?>
+      <?php require_once "shared_presentation/footer.php" ?>
       <!-- End Footer -->
 
     </div>

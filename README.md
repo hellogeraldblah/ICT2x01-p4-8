@@ -11,22 +11,46 @@
 
 ## Repository Structure
 ```
-├── README.md : README of codar project
-└── codar-web : Main directory
-    ├── Demo\ Pages : Folder containing the theme's web pages that are not in use
-    ├── assets : Folder containing all assets of codar project
-    │   ├── css : -
-    │   ├── fonts : -
-    │   ├── img : -
-    │   ├── js : Folder containing all javascript files of codar project
-    │   │   ├── blockly : Folder containing all blockly-related javascript files
-    │   │   ├── core : -
-    │   │   ├── plugins : -
-    │   └── scss : -
-    ├── databases : Folder containing the SQLite database
-    ├── docs : Folder containing documentation of UI kit
-    ├── media : -
-    └── pages : Folder containing .php/.html web pages of codar project
+.
+├── README.md
+└── codar-web
+    ├── assets
+    │   ├── css
+    │   ├── fonts
+    │   ├── img
+    │   │   ├── challenges
+    │   │   │   ├── challengemap_1.png
+    │   │   │   ├── challengemap_2.png
+    │   │   │   ├── challengemap_3.png
+    │   │   │   └── challengemap_4.png
+    │   ├── js
+    │   │   ├── blockly
+    │   │   ├── core
+    │   │   ├── plugins
+    ├── databases
+    │   ├── codar-db.sqlite
+    │   └── database.php
+    ├── logic
+    │   ├── classes
+    │   │   └── challenge.php
+    │   ├── challengeManagement.php
+    │   └── create_challenge_form.php
+    └── presentation
+        ├── achievements.php
+        ├── blockly.php
+        ├── challenges.php
+        ├── create_challenge.php
+        ├── dashboard.php
+        ├── edit_challenge.php
+        ├── play_challenge.php
+        ├── profile.php
+        ├── shared_presentation
+        │   ├── footer.php
+        │   ├── head.php
+        │   ├── navbar.php
+        │   └── sidepanel.php
+        ├── sign-in.php
+        └── sign-up.php
 ```
 
 ## Software Versions
@@ -76,10 +100,9 @@ For example (bugfix/x):
 #### 1. Determine Meaningful Branch Name
 Ensure that the name of the branch correctly identifies the feature that you are planning to develop/fix.
 
-#### 2. Create The Branch Off The development/main Branch
+#### 2. Create The Branch Off The Development Branch
 Development Branch -
-Main Branch -
-If you are planning to add a new feature/fix, create the feature based off the development branch.  
+If you are planning to add a new feature/fix, create the feature based off the development branch. Unless the development of the new feature requires features of in-development branches. *please seek team approval before doing so.
 
 Example:  
 `git branch -b features/x development`
