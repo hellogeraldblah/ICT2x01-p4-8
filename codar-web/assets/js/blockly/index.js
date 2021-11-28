@@ -14,20 +14,53 @@ function showCode() {
     // Generate JavaScript code and display it.
     Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
     var code = Blockly.JavaScript.workspaceToCode(workspace);
-    
+
     if (code){
       document.getElementById("showCode").innerHTML = code;
-      // alert(code);
     }
   }
 
-Blockly.Blocks['forward'] = {
+function runCode() {
+  // Generate JavaScript code and run it.
+  window.LoopTrap = 1000;
+  Blockly.JavaScript.INFINITE_LOOP_TRAP =
+      'if (--window.LoopTrap == 0) throw "Infinite loop.";\n';
+  var code = Blockly.JavaScript.workspaceToCode(workspace);
+  Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
+  try {
+    eval(code);
+  } catch (e) {
+    alert(e);
+  }
+}
+
+function moveUp(){
+  move_car_up();
+  update_moves(1);
+}
+
+function moveLeft(){
+  move_car_left();
+  update_moves(1);
+}
+
+function moveRight(){
+  move_car_right();
+  update_moves(1);
+}
+
+function moveDown(){
+  move_car_down();
+  update_moves(1);
+}
+
+Blockly.Blocks['up'] = {
   init: function() {
-    this.appendValueInput("VALUE").setCheck("String").appendField("Move Forward");
+    this.appendValueInput("VALUE").setCheck("String").appendField("Move Up");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(255);
- this.setTooltip("Moves the car forward");
+ this.setTooltip("Moves the car up");
  this.setHelpUrl("");
   }
 };
@@ -54,13 +87,13 @@ Blockly.Blocks['right'] = {
   }
 };
 
-Blockly.Blocks['backward'] = {
+Blockly.Blocks['down'] = {
   init: function() {
-    this.appendValueInput("VALUE").setCheck("String").appendField("Move Backward");
+    this.appendValueInput("VALUE").setCheck("String").appendField("Move Down");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(255);
- this.setTooltip("Moves the car backward");
+ this.setTooltip("Moves the car down");
  this.setHelpUrl("");
   }
 };

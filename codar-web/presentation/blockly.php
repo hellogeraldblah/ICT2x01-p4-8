@@ -2,10 +2,10 @@
 
   <!-- Control Category -->
   <category name="Movement" categorystyle="list_category">
-    <block type="forward"></block>
+    <block type="up"></block>
     <block type="left"></block>
     <block type="right"></block>
-    <block type="backward"></block>
+    <block type="down"></block>
   </category>
 
   <!-- Logic Category -->

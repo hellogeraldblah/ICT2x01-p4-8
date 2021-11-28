@@ -20,7 +20,7 @@ class ChallengeManagement {
     $res = $this->conn->query("SELECT * FROM challenges");
 
     while ($row = $res->fetchArray()) {
-      array_push($this->challenges, new Challenge($row['id'], $row['name'], __REL_CHALLENGES_IMG_DIR__ . $row['filepath'], $row['solution']));
+      array_push($this->challenges, new Challenge($row['id'], $row['name'], __REL_CHALLENGES_IMG_DIR__ . $row['filepath'], $row['numberOfMoves']));
     }
   }
 
