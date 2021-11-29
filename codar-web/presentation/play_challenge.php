@@ -9,10 +9,9 @@ require_once "../logic/classes/challenge.php";
 require_once "../logic/challengeManagement.php";
 require_once "../databases/database.php";
 
-  $challenge_list_obj = new ChallengeManagement($conn);
-  $challenge_list = $challenge_list_obj->get_challenges();
-
- ?>
+$challenge_list_obj = new ChallengeManagement($conn);
+$challenge_list = $challenge_list_obj->get_challenges();
+?>
 
 <!-- Header -->
 <?php require_once "shared_presentation/head.php" ?>
@@ -49,7 +48,15 @@ require_once "../databases/database.php";
             Number of moves:
             <span class="text-danger font-weight-bolder" id="current_moves">0</span>
             <span class="text-danger font-weight-bolder">/ <?php echo $challenge->numberOfMoves ?></span>
+            &nbsp;
+            <span data-bs-toggle="tooltip" data-bs-placement="right" title="Going over the max moves only decreases your stars!">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+              </svg>
+            </span>
           </h5>
+
         </div>
       </div>
 
@@ -111,7 +118,6 @@ require_once "../databases/database.php";
     </div>
   </main>
 
-
     <!-- Tutorial Modal -->
     <div class="modal fade" id="tutorialModal" tabindex="-1" role="dialog" aria-labelledby="tutorialModal" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
@@ -148,24 +154,12 @@ require_once "../databases/database.php";
       </div>
     </div>
 
-    <!-- Game Over Modal -->
-    <div class="modal fade" id="showCodeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Generated Javascript</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body" id="showCode">If you see this message, it means you have nothing in the workspace!</div>
-          <div class="modal-footer">
-            <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
+    <!-- Hidden form for game_over.php -->
+    <form name="myform" method="POST" action="game_over.php">
+      <input type="hidden" id="moves_input" name="moves" value=""><br>
+      <input type="hidden" id="challenge_id_input" name="challenge_id" value="<?php echo $challenge->id; ?>"><br>
+      <button type="submit"></button>
+    </form>
 
 <!-- Blockly javascript -->
 <script src="https://unpkg.com/blockly/blockly.min.js"></script>
@@ -204,6 +198,7 @@ require_once "../databases/database.php";
       start();
       draw_img();
       // Indicates the color of path which the "car" can go
+      // under the assumption that it will spawn on a path block
       path_color = circle_context.getImageData(start_x, start_y, 1, 1);
       draw_car(start_x, start_y);
     }
@@ -218,8 +213,16 @@ require_once "../databases/database.php";
        return true;
     }
 
-    function update_moves(number_to_add) {
-      moves += number_to_add;
+    function detect_collision(x, y) {
+      // Collision detection on map
+      if (compareImages(circle_context.getImageData(x, y, 1, 1), path_color)) {
+        return true;
+      }
+      return false;
+    }
+
+    function update_moves() {
+      moves += 1;
       document.getElementById("current_moves").innerHTML = moves;
     }
 
@@ -227,28 +230,27 @@ require_once "../databases/database.php";
       context.drawImage(map_img, 0, 0);
     }
 
-    function draw_car(old_x, old_y, new_x=start_x, new_y=start_y){
-      // Collision detection on map
-      if (compareImages(circle_context.getImageData(new_x, new_y, 1, 1), path_color)) {
-        console.log("You can move safely!");
-        circle_context.beginPath();
-        circle_context.arc(new_x, new_y, circle_radius, 0, Math.PI * 2);
-        circle_context.fillStyle = "red";
-        circle_context.fill();
+    function draw_car(old_x, old_y, new_x=start_x, new_y=start_y) {
+      if (detect_collision(new_x, new_y) == true) {
         current_x = new_x;
         current_y = new_y;
       } else {
-        console.log("Cannot move!");
-        circle_context.beginPath();
-        circle_context.arc(old_x, old_y, circle_radius, 0, Math.PI * 2);
-        circle_context.fillStyle = "red";
-        circle_context.fill();
+        console.log("Movement not allowed!" + new_x + new_y + " is not a path/starting block!" );
       }
+
+      circle_context.beginPath();
+      circle_context.arc(current_x, current_y, circle_radius, 0, Math.PI * 2);
+      circle_context.fillStyle = "red";
+      circle_context.fill();
 
       if (new_x == end_x && new_y == end_y) {
-        alert("Game over!");
+        game_over();
       }
+    }
 
+    function game_over() {
+      document.getElementById("moves_input").value = moves;
+      document.myform.submit();
     }
 
     function move_car_up() {

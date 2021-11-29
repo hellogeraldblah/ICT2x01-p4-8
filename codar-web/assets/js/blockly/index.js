@@ -35,23 +35,23 @@ function runCode() {
 }
 
 function moveUp(){
+  update_moves();
   move_car_up();
-  update_moves(1);
 }
 
 function moveLeft(){
+  update_moves();
   move_car_left();
-  update_moves(1);
 }
 
 function moveRight(){
+  update_moves();
   move_car_right();
-  update_moves(1);
 }
 
 function moveDown(){
+  update_moves();
   move_car_down();
-  update_moves(1);
 }
 
 Blockly.Blocks['up'] = {
