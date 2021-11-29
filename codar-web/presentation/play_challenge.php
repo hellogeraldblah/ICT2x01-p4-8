@@ -74,17 +74,31 @@ $challenge_list = $challenge_list_obj->get_challenges();
             </div>
           </div>
         </div>
+
         <div class="col-lg-2">
           <div class="card h-100">
             <div class="card-header pb-0">
               <div class="row">
-                <div class="col-lg-6 col-7">
-                  <h6>History</h6>
-                </div>
+                  <h6> History
+                    <span data-bs-toggle="tooltip" data-bs-placement="right" title="Shows only your last 10 moves!">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+                      <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                      <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                    </svg>
+                  </span></h6>
               </div>
             </div>
-            <div class="card-body px-0 pb-2 text-center">
-
+            <div class="card-body px-0 pb-2 text-center" id="history_body">
+              <p> 1: <span hidden class="badge badge-pill badge-lg bg-gradient-dark" id="history_0">Empty action</span></p>
+              <p> 2: <span hidden class="badge badge-pill badge-lg bg-gradient-dark" id="history_1">Empty action</span></p>
+              <p> 3: <span hidden class="badge badge-pill badge-lg bg-gradient-dark" id="history_2">Empty action</span></p>
+              <p> 4: <span hidden class="badge badge-pill badge-lg bg-gradient-dark" id="history_3">Empty action</span></p>
+              <p> 5: <span hidden class="badge badge-pill badge-lg bg-gradient-dark" id="history_4">Empty action</span></p>
+              <p> 6: <span hidden class="badge badge-pill badge-lg bg-gradient-dark" id="history_5">Empty action</span></p>
+              <p> 7: <span hidden class="badge badge-pill badge-lg bg-gradient-dark" id="history_6">Empty action</span></p>
+              <p> 8: <span hidden class="badge badge-pill badge-lg bg-gradient-dark" id="history_7">Empty action</span></p>
+              <p> 9: <span hidden class="badge badge-pill badge-lg bg-gradient-dark" id="history_8">Empty action</span></p>
+              <p> 10: <span hidden class="badge badge-pill badge-lg bg-gradient-dark" id="history_9">Empty action</span></p>
             </div>
           </div>
         </div>
@@ -94,7 +108,7 @@ $challenge_list = $challenge_list_obj->get_challenges();
               <h6>Commands</h6>
             </div>
             <div class="card-body p-3">
-              <div id="blocklyDiv" style="height: 480px; width: 690px;"></div>
+              <div id="blocklyDiv" style="height: 480px; width: auto;"></div>
 
               <!-- Blockly xml asset -->
               <?php require_once "blockly.php"; ?>
@@ -245,7 +259,32 @@ $challenge_list = $challenge_list_obj->get_challenges();
 
       if (new_x == end_x && new_y == end_y) {
         game_over();
+      } else {
+        update_history();
       }
+    }
+
+    var history_array = new Array();
+
+    function add_history(data){
+      history_array.push(data);
+    }
+
+    function update_history() {
+      var tag = null;
+      var element = null;
+      //
+      // for (let i = moves; i > 0; i--) {
+      //   hist_tag = "history_" + i % 10;
+      //   console.log(hist_tag);
+      //   element = document.getElementById(hist_tag);
+      //   element.innerHTML = history_array[i];
+      //   element.removeAttribute("hidden");
+      //   // if (moves == i) {
+      //   //   element.className = "badge badge-pill badge-lg bg-gradient-dark";
+      //   // }
+      // }
+
     }
 
     function game_over() {
@@ -256,6 +295,7 @@ $challenge_list = $challenge_list_obj->get_challenges();
     function move_car_up() {
       circle_context.clearRect(0, 0, canvas.width, canvas.height);
       draw_img();
+      add_history("Move Up");
       new_y = current_y - grid_size;
       draw_car(current_x, current_y, current_x, new_y);
     }
@@ -263,6 +303,7 @@ $challenge_list = $challenge_list_obj->get_challenges();
     function move_car_left() {
       circle_context.clearRect(0, 0, canvas.width, canvas.height);
       draw_img();
+      add_history("Move Left");
       new_x = current_x - grid_size;
       draw_car(current_x, current_y, new_x, current_y);
     }
@@ -270,6 +311,7 @@ $challenge_list = $challenge_list_obj->get_challenges();
     function move_car_right() {
       circle_context.clearRect(0, 0, canvas.width, canvas.height);
       draw_img();
+      add_history("Move Right");
       new_x = current_x + grid_size;
       draw_car(current_x, current_y, new_x, current_y);
     }
@@ -277,6 +319,7 @@ $challenge_list = $challenge_list_obj->get_challenges();
     function move_car_down() {
       circle_context.clearRect(0, 0, canvas.width, canvas.height);
       draw_img();
+      add_history("Move Down");
       new_y = current_y + grid_size;
       draw_car(current_x, current_y, current_x, new_y);
     }
