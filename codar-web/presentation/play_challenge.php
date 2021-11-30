@@ -214,9 +214,11 @@ $challenge_list = $challenge_list_obj->get_challenges();
 
     var path_color = null;
     var max_history_count = 10;
+
     window.onload = function() {
       start();
       draw_img();
+
       // Indicates the color of path which the "car" can go
       // under the assumption that it will spawn on a path block
       path_color = circle_context.getImageData(start_x, start_y, 1, 1);
@@ -224,11 +226,13 @@ $challenge_list = $challenge_list_obj->get_challenges();
     }
 
     function compareImages(img1, img2) {
-       if (img1.data.length != img2.data.length)
+       if (img1.data.length != img2.data.length) {
            return false;
+       }
        for (var i = 0; i < img1.data.length; ++i) {
-           if (img1.data[i] != img2.data[i])
+           if (img1.data[i] != img2.data[i]) {
                return false;
+           }
        }
        return true;
     }

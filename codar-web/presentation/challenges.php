@@ -37,7 +37,7 @@ $challenge_list = $challenge_list_obj->get_challenges();
           <div class="col-lg-3">
             <div class="card">
               <div class="card-body p-3">
-                <div class="card-header p-0 mx-3 mt-3 position-relative z-index-1">
+                <div class="card-header p-0 mx-3 mt-3 position-relative z-index-1 text-center">
                   <img src="<?php echo $challenge->filepath; ?>" class="img-fluid border-radius-lg">
                 </div>
                 </br>
