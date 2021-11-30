@@ -9,7 +9,7 @@
     $challenge_name = filter_var($_POST["challengeName"], FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_HIGH);
     $challenge_moves = $_POST["number_of_moves"];
     $challenge_file = __UPLOADS_DIR__ . basename($_FILES["fileToUpload"]["name"]);
-    
+
     $error_message = $challenge_list_obj->validate_challenge($challenge_name, $challenge_moves, $challenge_file);
 
     if (empty($error_message)) {

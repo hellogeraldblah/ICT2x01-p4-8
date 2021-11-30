@@ -92,12 +92,6 @@ $challenge = $challenge_list_obj->search_challenge($_POST["challenge_id"]);
       var p = document.getElementById(button_id);
       p.removeAttribute("disabled");
     }
-    // function remove_disabled() {
-    //   console.log(documentObject.name);
-    //   button_id = "submit_" + documentObject.name + "_button";
-    //   var p = document.getElementById(button_id);
-    //   p.removeAttribute("disabled");
-    // }
   </script>
   <script>
     var win = navigator.platform.indexOf('Win') > -1;
