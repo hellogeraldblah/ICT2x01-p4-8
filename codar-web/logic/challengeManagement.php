@@ -8,6 +8,7 @@ define("__REL_CHALLENGES_IMG_DIR__",  "/assets/img/challenges" . "/");
 define("__MAX_CHALLENGE_MOVES__", 100); # Maximum moves a challenge can have
 define("__MAX_FILE_SIZE__", 5000000); # Maximum challenge file size: 5mb
 
+require_once "../databases/database.php";
 require_once "../logic/classes/challenge.php";
 
 class ChallengeManagement {
@@ -20,11 +21,11 @@ class ChallengeManagement {
     $res = $this->conn->query("SELECT * FROM challenges");
 
     while ($row = $res->fetchArray()) {
-      array_push($this->challenges, new Challenge($row['id'], $row['name'], __REL_CHALLENGES_IMG_DIR__ . $row['filepath'], $row['solution']));
+      array_push($this->challenges, new Challenge($row['id'], $row['name'], __REL_CHALLENGES_IMG_DIR__ . $row['filepath'], $row['numberOfMoves']));
     }
   }
 
-  function get_last_id() {
+  private function get_last_id() {
     $number_of_rows = $this->conn->querySingle("SELECT COUNT(*) as COUNT FROM challenges");
     return $number_of_rows;
   }
@@ -74,11 +75,11 @@ class ChallengeManagement {
     if($imageFileExt != "jpg" && $imageFileExt != "png" && $imageFileExt != "jpeg") {
       $error_message .= "Challenge File only accepts JPG, JPEG, PNG extensions. \\n";
     }
-
     return $error_message;
   }
 
-  function validate_challenge($challenge_name, $challenge_moves, $challenge_file){
+  public function validate_challenge($challenge_name, $challenge_moves, $challenge_file){
+    // Validates the new challenge data
     $error_message .= $this->validate_name($challenge_name);
     $error_message .= $this->validate_moves($challenge_moves);
     $error_message .= $this->validate_map($challenge_file);
@@ -86,8 +87,8 @@ class ChallengeManagement {
     return $error_message;
   }
 
-  function create_challenge($challenge_name, $challenge_moves, $challenge_file) {
-
+  public function create_challenge($challenge_name, $challenge_moves, $challenge_file) {
+    // Creates a new challenge
     $challenge_file = "challengemap_" . strval($this->get_last_id() + 1) . ".png";
 
     $target_file = __UPLOADS_DIR__ . $challenge_file;
@@ -104,29 +105,51 @@ class ChallengeManagement {
     return $this->conn->lastInsertRowID();
   }
 
-  function get_challenges(){
-    // Returns a list of challenges
-    return $this->challenges;
-  }
-
-  function edit_challenge(){
-
-  }
-
-  function search_challenge($target_id){
-    // Locates the particular challenge with the given $target_id and returns the corresponding challenge object
+  public function search_challenge($challenge_id){
+    // Returns a particular challenge
     foreach ($this->challenges as $challenge) {
-      if ($challenge->id == $target_id) {
+      if ($challenge->id == $challenge_id) {
         return $challenge;
       }
     }
     return false;
   }
 
-  function determineNumberOfStars(){
+  public function get_challenges(){
+    // Returns a list of challenges
+    return $this->challenges;
+  }
+
+  function edit_challenge($challenge_name, $challenge_moves, $challenge_file){
+    
+  }
+
+  public function determineNumberOfStars($challenge_id, $number_of_moves){
+    $challenge = $this->search_challenge($challenge_id);
+    $challenge_moves = $challenge->numberOfMoves;
+
+    // 3 stars
+    if ($number_of_moves <= $challenge_moves) {
+      return 3;
+    }
+    // 2 stars
+    elseif ($number_of_moves > $challenge_moves && $number_of_moves <= $challenge_moves * 1.5) {
+      return 2;
+    }
+    // 1 star
+    elseif ($number_of_moves > $challenge_moves * 1.5 && $number_of_moves <= $challenge_moves * 2) {
+      return 1;
+    }
+    // no star
+     else {
+       return 0;
+    }
 
   }
 
 }
+
+$conn = connect();
+$challenge_list_obj = new ChallengeManagement($conn);
 
 ?>
