@@ -89,16 +89,26 @@ $challenge_list = $challenge_list_obj->get_challenges();
               </div>
             </div>
             <div class="card-body px-0 pb-2 text-center" id="history_body">
-              <p> 1: <span hidden class="badge badge-pill badge-lg bg-gradient-dark" id="history_0">Empty action</span></p>
-              <p> 2: <span hidden class="badge badge-pill badge-lg bg-gradient-dark" id="history_1">Empty action</span></p>
-              <p> 3: <span hidden class="badge badge-pill badge-lg bg-gradient-dark" id="history_2">Empty action</span></p>
-              <p> 4: <span hidden class="badge badge-pill badge-lg bg-gradient-dark" id="history_3">Empty action</span></p>
-              <p> 5: <span hidden class="badge badge-pill badge-lg bg-gradient-dark" id="history_4">Empty action</span></p>
-              <p> 6: <span hidden class="badge badge-pill badge-lg bg-gradient-dark" id="history_5">Empty action</span></p>
-              <p> 7: <span hidden class="badge badge-pill badge-lg bg-gradient-dark" id="history_6">Empty action</span></p>
-              <p> 8: <span hidden class="badge badge-pill badge-lg bg-gradient-dark" id="history_7">Empty action</span></p>
-              <p> 9: <span hidden class="badge badge-pill badge-lg bg-gradient-dark" id="history_8">Empty action</span></p>
-              <p> 10: <span hidden class="badge badge-pill badge-lg bg-gradient-dark" id="history_9">Empty action</span></p>
+              <p><span hidden class=" " id="history_1">Empty action</span></p>
+              <p><span hidden class="badge badge-pill badge-lg " id="history_2">Empty action</span></p>
+              <p><span hidden class="badge badge-pill badge-lg " id="history_3">Empty action</span></p>
+              <p><span hidden class="badge badge-pill badge-lg " id="history_4">Empty action</span></p>
+              <p><span hidden class="badge badge-pill badge-lg " id="history_5">Empty action</span></p>
+              <p><span hidden class="badge badge-pill badge-lg " id="history_6">Empty action</span></p>
+              <p><span hidden class="badge badge-pill badge-lg " id="history_7">Empty action</span></p>
+              <p><span hidden class="badge badge-pill badge-lg " id="history_8">Empty action</span></p>
+              <p><span hidden class="badge badge-pill badge-lg " id="history_9">Empty action</span></p>
+              <p><span hidden class="badge badge-pill badge-lg " id="history_10">Empty action</span></p>
+              <!-- <p><span hidden class="badge badge-pill badge-lg bg-success" id="history_1">Empty action</span></p>
+              <p><span hidden class="badge badge-pill badge-lg bg-success" id="history_2">Empty action</span></p>
+              <p><span hidden class="badge badge-pill badge-lg bg-success" id="history_3">Empty action</span></p>
+              <p><span hidden class="badge badge-pill badge-lg bg-success" id="history_4">Empty action</span></p>
+              <p><span hidden class="badge badge-pill badge-lg bg-success" id="history_5">Empty action</span></p>
+              <p><span hidden class="badge badge-pill badge-lg bg-success" id="history_6">Empty action</span></p>
+              <p><span hidden class="badge badge-pill badge-lg bg-success" id="history_7">Empty action</span></p>
+              <p><span hidden class="badge badge-pill badge-lg bg-success" id="history_8">Empty action</span></p>
+              <p><span hidden class="badge badge-pill badge-lg bg-success" id="history_9">Empty action</span></p>
+              <p><span hidden class="badge badge-pill badge-lg bg-success" id="history_10">Empty action</span></p> -->
             </div>
           </div>
         </div>
@@ -207,7 +217,7 @@ $challenge_list = $challenge_list_obj->get_challenges();
     var grid_size = 32;
 
     var path_color = null;
-
+    var max_history_count = 10;
     window.onload = function() {
       start();
       draw_img();
@@ -265,26 +275,44 @@ $challenge_list = $challenge_list_obj->get_challenges();
     }
 
     var history_array = new Array();
+    var count = 0;
+    var hist_tag = null;
+    var element = null;
+    var up_class = "badge badge-pill badge-lg bg-success";
+    var left_class = "badge badge-pill badge-lg bg-info";
+    var right_class = "badge badge-pill badge-lg bg-primary";
+    var down_class = "badge badge-pill badge-lg bg-danger";
 
     function add_history(data){
       history_array.push(data);
     }
 
     function update_history() {
-      var tag = null;
-      var element = null;
-      //
-      // for (let i = moves; i > 0; i--) {
-      //   hist_tag = "history_" + i % 10;
-      //   console.log(hist_tag);
-      //   element = document.getElementById(hist_tag);
-      //   element.innerHTML = history_array[i];
-      //   element.removeAttribute("hidden");
-      //   // if (moves == i) {
-      //   //   element.className = "badge badge-pill badge-lg bg-gradient-dark";
-      //   // }
-      // }
+      count = 0;
+      console.log(history_array.length);
 
+      for (i = history_array.length - 1; i >= 0; i--) {
+        count+=1;
+
+        hist_tag = "history_" + count;
+
+        element = document.getElementById(hist_tag);
+        element.innerHTML = history_array[i];
+
+        if (history_array[i].includes("Up")) {
+          element.className = up_class;
+        } else if (history_array[i].includes("Left")) {
+          element.className = left_class;
+        } else if (history_array[i].includes("Right")) {
+          element.className = right_class;
+        } else {
+          element.className = down_class;
+        }
+        element.removeAttribute("hidden");
+        if (count == max_history_count) {
+          break;
+        }
+      }
     }
 
     function game_over() {
