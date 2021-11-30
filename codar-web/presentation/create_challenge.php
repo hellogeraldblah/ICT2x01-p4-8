@@ -42,7 +42,7 @@
 
                 <!-- Number of moves -->
                 <label class="form-control-label" for="challengeImage">Number of Moves</label>
-                <input type="number" class="form-control" placeholder="Number of moves to complete the challenge!" name="numberOfMoves"/>
+                <input type="number" class="form-control" placeholder="Number of moves to complete the challenge!" name="number_of_moves"/>
 
                 <p></p>
 
