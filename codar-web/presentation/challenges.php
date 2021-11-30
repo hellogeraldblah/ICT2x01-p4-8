@@ -5,11 +5,9 @@
 
 <!-- Challenge Class -->
 <?php
-  require_once "../logic/challengeManagement.php";
-  require_once "../databases/database.php";
+require_once "../logic/challengeManagement.php";
 
-  $challengeManagementObj = new ChallengeManagement($conn);
-  $challenge_list = $challengeManagementObj->get_challenges();
+$challenge_list = $challenge_list_obj->get_challenges();
 
 ?>
 

@@ -8,6 +8,7 @@ define("__REL_CHALLENGES_IMG_DIR__",  "/assets/img/challenges" . "/");
 define("__MAX_CHALLENGE_MOVES__", 100); # Maximum moves a challenge can have
 define("__MAX_FILE_SIZE__", 5000000); # Maximum challenge file size: 5mb
 
+require_once "../databases/database.php";
 require_once "../logic/classes/challenge.php";
 
 class ChallengeManagement {
@@ -74,11 +75,10 @@ class ChallengeManagement {
     if($imageFileExt != "jpg" && $imageFileExt != "png" && $imageFileExt != "jpeg") {
       $error_message .= "Challenge File only accepts JPG, JPEG, PNG extensions. \\n";
     }
-
     return $error_message;
   }
 
-  private function validate_challenge($challenge_name, $challenge_moves, $challenge_file){
+  public function validate_challenge($challenge_name, $challenge_moves, $challenge_file){
     // Validates the new challenge data
     $error_message .= $this->validate_name($challenge_name);
     $error_message .= $this->validate_moves($challenge_moves);
@@ -120,8 +120,8 @@ class ChallengeManagement {
     return $this->challenges;
   }
 
-  function edit_challenge(){
-
+  function edit_challenge($challenge_name, $challenge_moves, $challenge_file){
+    
   }
 
   public function determineNumberOfStars($challenge_id, $number_of_moves){
@@ -148,5 +148,8 @@ class ChallengeManagement {
   }
 
 }
+
+$conn = connect();
+$challenge_list_obj = new ChallengeManagement($conn);
 
 ?>

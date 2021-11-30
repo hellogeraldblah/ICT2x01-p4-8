@@ -1,7 +1,6 @@
 <?php
 
     require_once "../logic/challengeManagement.php";
-    require_once "../databases/database.php";
 
     define("__ROOT__", $_SERVER["DOCUMENT_ROOT"] . "/");
     define("__UPLOADS_DIR__", __ROOT__ . "assets/img/challenges/");
@@ -11,15 +10,17 @@
     $challenge_moves = $_POST["numberOfMoves"];
     $challenge_file = __UPLOADS_DIR__ . basename($_FILES["fileToUpload"]["name"]);
 
-    $challengeManagementObj = new challengeManagement($conn);
-    $error_message = $challengeManagementObj->validate_challenge($challenge_name, $challenge_moves, $challenge_file);
+    $error_message = $challenge_list_obj->validate_challenge($challenge_name, $challenge_moves, $challenge_file);
 
     if (empty($error_message)) {
-      $challengeManagementObj->create_challenge($challenge_name, $challenge_moves, $challenge_file);
+      $challenge_list_obj->create_challenge($challenge_name, $challenge_moves, $challenge_file);
       header("Location: ../presentation/challenges.php");
     } else {
       echo "<script>alert('" . $error_message . "')</script>";
       echo "<script>window.location.replace('../presentation/create_challenge.php')</script>";
     }
+
+    $conn->close();
+    unset($conn);
 
 ?>
