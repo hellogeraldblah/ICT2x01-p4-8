@@ -90,25 +90,15 @@ $challenge_list = $challenge_list_obj->get_challenges();
             </div>
             <div class="card-body px-0 pb-2 text-center" id="history_body">
               <p><span hidden class=" " id="history_1">Empty action</span></p>
-              <p><span hidden class="badge badge-pill badge-lg " id="history_2">Empty action</span></p>
-              <p><span hidden class="badge badge-pill badge-lg " id="history_3">Empty action</span></p>
-              <p><span hidden class="badge badge-pill badge-lg " id="history_4">Empty action</span></p>
-              <p><span hidden class="badge badge-pill badge-lg " id="history_5">Empty action</span></p>
-              <p><span hidden class="badge badge-pill badge-lg " id="history_6">Empty action</span></p>
-              <p><span hidden class="badge badge-pill badge-lg " id="history_7">Empty action</span></p>
-              <p><span hidden class="badge badge-pill badge-lg " id="history_8">Empty action</span></p>
-              <p><span hidden class="badge badge-pill badge-lg " id="history_9">Empty action</span></p>
-              <p><span hidden class="badge badge-pill badge-lg " id="history_10">Empty action</span></p>
-              <!-- <p><span hidden class="badge badge-pill badge-lg bg-success" id="history_1">Empty action</span></p>
-              <p><span hidden class="badge badge-pill badge-lg bg-success" id="history_2">Empty action</span></p>
-              <p><span hidden class="badge badge-pill badge-lg bg-success" id="history_3">Empty action</span></p>
-              <p><span hidden class="badge badge-pill badge-lg bg-success" id="history_4">Empty action</span></p>
-              <p><span hidden class="badge badge-pill badge-lg bg-success" id="history_5">Empty action</span></p>
-              <p><span hidden class="badge badge-pill badge-lg bg-success" id="history_6">Empty action</span></p>
-              <p><span hidden class="badge badge-pill badge-lg bg-success" id="history_7">Empty action</span></p>
-              <p><span hidden class="badge badge-pill badge-lg bg-success" id="history_8">Empty action</span></p>
-              <p><span hidden class="badge badge-pill badge-lg bg-success" id="history_9">Empty action</span></p>
-              <p><span hidden class="badge badge-pill badge-lg bg-success" id="history_10">Empty action</span></p> -->
+              <p><span hidden id="history_2">Empty action</span></p>
+              <p><span hidden id="history_3">Empty action</span></p>
+              <p><span hidden id="history_4">Empty action</span></p>
+              <p><span hidden id="history_5">Empty action</span></p>
+              <p><span hidden id="history_6">Empty action</span></p>
+              <p><span hidden id="history_7">Empty action</span></p>
+              <p><span hidden id="history_8">Empty action</span></p>
+              <p><span hidden id="history_9">Empty action</span></p>
+              <p><span hidden id="history_10">Empty action</span></p>
             </div>
           </div>
         </div>
@@ -147,12 +137,20 @@ $challenge_list = $challenge_list_obj->get_challenges();
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Tutorial</h5>
+            <h5 class="modal-title" id="exampleModalLabel">How to play?</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body" id="tutorial">Guide here</div>
+          <div class="modal-body" id="tutorial">
+            Hello there! Your objective is the get the car (red circle) to the end of the maze! <br/><br/>
+            How? <br/>
+            You have to use the movement commands [Move Up, Move Down, Move Left, Move Right] to direct the car. <br/><br/>
+            You can also make use of the other commands to learn more about logic! <br/>
+            For example, instead of placing 5 [Move Up], you could use the loop "Repeat 5 times"! <br/><br/>
+            And when you're ready, you can click on "Run Code" and see the car in action! <br/>
+            You can run it multiple times! The game will stop when you reach the end of the maze!
+           </div>
           <div class="modal-footer">
             <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
           </div>
