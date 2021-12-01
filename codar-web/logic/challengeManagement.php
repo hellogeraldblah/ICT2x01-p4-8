@@ -30,51 +30,60 @@ class ChallengeManagement {
     return $number_of_rows;
   }
 
-  private function validate_name($challenge_name) {
+  public function validate_name($challenge_name) {
     $error_message = "";
 
-    if (strlen($challenge_name ) > 100) {
-      $error_message .= "Challenge Name must be within 100 characters. \\n";
+    if (empty($challenge_name)) {
+      $error_message .= "Challenge Name cannot be empty. \\n";
     }
 
     if (preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-]/', $challenge_name)){
       $error_message .= "Challenge Name cannot contain special characters. \\n";
     }
 
-    return $error_message;
-
-  }
-
-  private function validate_moves($challenge_moves) {
-    $error_message = "";
-
-    if ($challenge_moves > __MAX_CHALLENGE_MOVES__) {
-      $error_message .= "Challenge Moves cannot be more than " . __MAX_CHALLENGE_MOVES__;
+    if (strlen($challenge_name ) > 100) {
+      $error_message .= "Challenge Name must be within 100 characters. \\n";
     }
 
     return $error_message;
 
   }
 
-  private function validate_map($challenge_file) {
+  public function validate_moves($challenge_moves) {
+    $error_message = "";
+
+    if (filter_var($challenge_moves, FILTER_VALIDATE_INT) == false) {
+      $error_message .= "Challenge Moves must be an integer. \\n";
+    }
+
+    if ($challenge_moves > __MAX_CHALLENGE_MOVES__) {
+      $error_message .= "Challenge Moves cannot be more than " . __MAX_CHALLENGE_MOVES__ . ". \\n";
+    }
+
+    return $error_message;
+
+  }
+
+  public function validate_file($challenge_file_info) {
     $error_message = "";
 
     // Check file size
-    if ($_FILES["fileToUpload"]["size"] > __MAX_FILE_SIZE__) {
+    if ($challenge_file_info["fileToUpload"]["size"] > __MAX_FILE_SIZE__) {
       $error_message .= "Challenge File is too large. \\n";
     }
 
     // Check if image file is a actual image or fake image
-    $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+    $check = getimagesize($challenge_file_info["fileToUpload"]["tmp_name"]);
     if($check == false) {
       $error_message .= "Challenge File is not an image. \\n";
     }
 
     // Allow only jpg, png and jpeg file formats
-    $imageFileExt = strtolower(pathinfo($challenge_file, PATHINFO_EXTENSION));
+    $imageFileExt = strtolower(pathinfo($challenge_file_info["fileToUpload"]["name"], PATHINFO_EXTENSION));
     if($imageFileExt != "jpg" && $imageFileExt != "png" && $imageFileExt != "jpeg") {
       $error_message .= "Challenge File only accepts JPG, JPEG, PNG extensions. \\n";
     }
+
     return $error_message;
   }
 
@@ -82,24 +91,40 @@ class ChallengeManagement {
     // Validates the new challenge data
     $error_message .= $this->validate_name($challenge_name);
     $error_message .= $this->validate_moves($challenge_moves);
-    $error_message .= $this->validate_map($challenge_file);
+    $error_message .= $this->validate_file($challenge_file);
 
     return $error_message;
   }
 
-  public function create_challenge($challenge_name, $challenge_moves, $challenge_file) {
-    // Creates a new challenge
-    $challenge_file = "challengemap_" . strval($this->get_last_id() + 1) . ".png";
+  private function upload_file($challenge_file_info, $challenge_file_name) {
+    // Generate absolute filename
+    $target_file = __UPLOADS_DIR__ . $challenge_file_name;
 
-    $target_file = __UPLOADS_DIR__ . $challenge_file;
-    move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file);
+    move_uploaded_file($challenge_file_info["fileToUpload"]["tmp_name"], $target_file);
 
-    $sql_stmt = "INSERT INTO challenges(name, numberOfMoves, filepath)" . "VALUES(:name, :numberOfMoves, :filepath)";
+    return $target_file;
+  }
+
+  public function generate_filename() {
+    // Generate filename based on last ID
+    $challenge_filename = "challengemap_" . strval($this->get_last_id() + 1) . ".png";
+
+    return $challenge_filename;
+  }
+
+  public function create_challenge($challenge_name, $challenge_moves, $challenge_file_info) {
+    // Generates filename
+    $challenge_filename = $this->generate_filename();
+
+    // Upload file
+    $this->upload_file($challenge_file_info, $challenge_filename);
+
+    $sql_stmt = "INSERT INTO challenges(name, numberOfMoves, filepath)" . "VALUES(:name, :number_of_moves, :filepath)";
 
     $prepared_stmt = $this->conn->prepare($sql_stmt);
     $prepared_stmt->bindParam(":name", $challenge_name);
-    $prepared_stmt->bindParam(":numberOfMoves", $challenge_moves);
-    $prepared_stmt->bindParam(":filepath", $challenge_file);
+    $prepared_stmt->bindParam(":number_of_moves", $challenge_moves);
+    $prepared_stmt->bindParam(":filepath", $challenge_filename);
     $prepared_stmt->execute();
 
     return $this->conn->lastInsertRowID();
@@ -120,13 +145,43 @@ class ChallengeManagement {
     return $this->challenges;
   }
 
-  function edit_challenge($challenge_name, $challenge_moves, $challenge_file){
-    
+  public function edit_challenge_name($challenge_id, $new_challenge_name) {
+    $sql_stmt = "UPDATE challenges SET NAME = :challenge_name WHERE id = :challenge_id";
+
+    $prepared_stmt = $this->conn->prepare($sql_stmt);
+
+    $prepared_stmt->bindParam(":challenge_name", $new_challenge_name);
+    $prepared_stmt->bindParam(":challenge_id", $challenge_id);
+    $prepared_stmt->execute();
+  }
+
+  public function edit_challenge_moves($challenge_id, $new_challenge_moves) {
+    $sql_stmt = "UPDATE challenges SET NUMBEROFMOVES = :challenge_moves WHERE id = :challenge_id";
+
+    $prepared_stmt = $this->conn->prepare($sql_stmt);
+
+    $prepared_stmt->bindParam(":challenge_moves", $new_challenge_moves);
+    $prepared_stmt->bindParam(":challenge_id", $challenge_id);
+    $prepared_stmt->execute();
+  }
+
+  public function edit_challenge_file($challenge_id, $new_challenge_file) {
+    $new_challenge_file = "challengemap_" . $challenge_id . ".png";
+
+    $this->upload_file($new_challenge_file);
+
+    $sql_stmt = "UPDATE challenges SET filepath = :challenge_file WHERE id = :challenge_id";
+
+    $prepared_stmt = $this->conn->prepare($sql_stmt);
+
+    $prepared_stmt->bindParam(":challenge_file", $new_challenge_file);
+    $prepared_stmt->bindParam(":challenge_id", $challenge_id);
+    $prepared_stmt->execute();
   }
 
   public function determineNumberOfStars($challenge_id, $number_of_moves){
     $challenge = $this->search_challenge($challenge_id);
-    $challenge_moves = $challenge->numberOfMoves;
+    $challenge_moves = $challenge->number_of_moves;
 
     // 3 stars
     if ($number_of_moves <= $challenge_moves) {

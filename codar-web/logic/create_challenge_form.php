@@ -7,20 +7,19 @@
     define("__MAX_FILE_SIZE__", 5000000);
 
     $challenge_name = filter_var($_POST["challengeName"], FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_HIGH);
-    $challenge_moves = $_POST["numberOfMoves"];
-    $challenge_file = __UPLOADS_DIR__ . basename($_FILES["fileToUpload"]["name"]);
+    $challenge_moves = $_POST["number_of_moves"];
+    $challenge_file_info = $_FILES;
 
-    $error_message = $challenge_list_obj->validate_challenge($challenge_name, $challenge_moves, $challenge_file);
+    $error_message = $challenge_list_obj->validate_challenge($challenge_name, $challenge_moves, $challenge_file_info);
 
     if (empty($error_message)) {
-      $challenge_list_obj->create_challenge($challenge_name, $challenge_moves, $challenge_file);
-      header("Location: ../presentation/challenges.php");
+      // $challenge_list_obj->create_challenge($challenge_name, $challenge_moves, $challenge_file);
+      // header("Location: ../presentation/challenges.php");
+      echo "pp";
     } else {
       echo "<script>alert('" . $error_message . "')</script>";
-      echo "<script>window.location.replace('../presentation/create_challenge.php')</script>";
+      // echo "<script>window.history.back();</script>";
     }
 
-    $conn->close();
-    unset($conn);
 
 ?>
