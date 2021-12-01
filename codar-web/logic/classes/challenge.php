@@ -13,13 +13,13 @@ class Challenge {
   public $id;
   public $name;
   public $filepath;
-  public $numberOfMoves;
+  public $number_of_moves;
 
-  function __construct($id, $name, $filepath, $numberOfMoves) {
+  function __construct($id, $name, $filepath, $number_of_moves) {
     $this->id = $id;
     $this->name = $name;
     $this->filepath = $filepath;
-    $this->numberOfMoves = $numberOfMoves;
+    $this->number_of_moves = $number_of_moves;
   }
 
   function get_name() {
@@ -38,12 +38,12 @@ class Challenge {
     $this->filepath = $filepath;
   }
 
-  function get_numberOfMoves() {
+  function get_number_of_moves() {
     return $this->solution;
   }
 
-  function set_numberOfMoves($numberOfMoves) {
-    $this->numberOfMoves = $numberOfMoves;
+  function set_number_of_moves($number_of_moves) {
+    $this->number_of_moves = $number_of_moves;
   }
 
 }
