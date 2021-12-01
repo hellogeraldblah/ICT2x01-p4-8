@@ -121,12 +121,12 @@ class ChallengeManagement {
   }
 
   function edit_challenge($challenge_name, $challenge_moves, $challenge_file){
-    
+
   }
 
   public function determineNumberOfStars($challenge_id, $number_of_moves){
     $challenge = $this->search_challenge($challenge_id);
-    $challenge_moves = $challenge->numberOfMoves;
+    $challenge_moves = $challenge->number_of_moves;
 
     // 3 stars
     if ($number_of_moves <= $challenge_moves) {
