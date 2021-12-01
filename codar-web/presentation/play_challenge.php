@@ -45,7 +45,7 @@ $challenge_list = $challenge_list_obj->get_challenges();
           <h5 class="font-weight-bolder mb-0">
             Number of moves:
             <span class="text-danger font-weight-bolder" id="current_moves">0</span>
-            <span class="text-danger font-weight-bolder">/ <?php echo $challenge->numberOfMoves ?></span>
+            <span class="text-danger font-weight-bolder">/ <?php echo $challenge->number_of_moves ?></span>
             &nbsp;
             <span data-bs-toggle="tooltip" data-bs-placement="right" title="Going over the max moves only decreases your stars!">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
