@@ -33,12 +33,16 @@ class ChallengeManagement {
   public function validate_name($challenge_name) {
     $error_message = "";
 
-    if (strlen($challenge_name ) > 100) {
-      $error_message .= "Challenge Name must be within 100 characters. \\n";
+    if (empty($challenge_name)) {
+      $error_message .= "Challenge Name cannot be empty. \\n";
     }
 
     if (preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-]/', $challenge_name)){
       $error_message .= "Challenge Name cannot contain special characters. \\n";
+    }
+
+    if (strlen($challenge_name ) > 100) {
+      $error_message .= "Challenge Name must be within 100 characters. \\n";
     }
 
     return $error_message;
@@ -48,33 +52,38 @@ class ChallengeManagement {
   public function validate_moves($challenge_moves) {
     $error_message = "";
 
+    if (filter_var($challenge_moves, FILTER_VALIDATE_INT) == false) {
+      $error_message .= "Challenge Moves must be an integer. \\n";
+    }
+
     if ($challenge_moves > __MAX_CHALLENGE_MOVES__) {
-      $error_message .= "Challenge Moves cannot be more than " . __MAX_CHALLENGE_MOVES__;
+      $error_message .= "Challenge Moves cannot be more than " . __MAX_CHALLENGE_MOVES__ . ". \\n";
     }
 
     return $error_message;
 
   }
 
-  public function validate_file($challenge_file) {
+  public function validate_file($challenge_file_info) {
     $error_message = "";
 
     // Check file size
-    if ($_FILES["fileToUpload"]["size"] > __MAX_FILE_SIZE__) {
+    if ($challenge_file_info["fileToUpload"]["size"] > __MAX_FILE_SIZE__) {
       $error_message .= "Challenge File is too large. \\n";
     }
 
     // Check if image file is a actual image or fake image
-    $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+    $check = getimagesize($challenge_file_info["fileToUpload"]["tmp_name"]);
     if($check == false) {
       $error_message .= "Challenge File is not an image. \\n";
     }
 
     // Allow only jpg, png and jpeg file formats
-    $imageFileExt = strtolower(pathinfo($challenge_file, PATHINFO_EXTENSION));
+    $imageFileExt = strtolower(pathinfo($challenge_file_info["fileToUpload"]["name"], PATHINFO_EXTENSION));
     if($imageFileExt != "jpg" && $imageFileExt != "png" && $imageFileExt != "jpeg") {
       $error_message .= "Challenge File only accepts JPG, JPEG, PNG extensions. \\n";
     }
+
     return $error_message;
   }
 
@@ -87,24 +96,35 @@ class ChallengeManagement {
     return $error_message;
   }
 
-  private function upload_file($challenge_file) {
-    $target_file = __UPLOADS_DIR__ . $challenge_file;
-    move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file);
+  private function upload_file($challenge_file_info, $challenge_file_name) {
+    // Generate absolute filename
+    $target_file = __UPLOADS_DIR__ . $challenge_file_name;
+
+    move_uploaded_file($challenge_file_info["fileToUpload"]["tmp_name"], $target_file);
 
     return $target_file;
   }
 
-  public function create_challenge($challenge_name, $challenge_moves, $challenge_file) {
-    $challenge_file = "challengemap_" . strval($this->get_last_id() + 1) . ".png";
-    // Creates a new challenge
-    $this->upload_file($challenge_file);
+  public function generate_filename() {
+    // Generate filename based on last ID
+    $challenge_filename = "challengemap_" . strval($this->get_last_id() + 1) . ".png";
+
+    return $challenge_filename;
+  }
+
+  public function create_challenge($challenge_name, $challenge_moves, $challenge_file_info) {
+    // Generates filename
+    $challenge_filename = $this->generate_filename();
+
+    // Upload file
+    $this->upload_file($challenge_file_info, $challenge_filename);
 
     $sql_stmt = "INSERT INTO challenges(name, numberOfMoves, filepath)" . "VALUES(:name, :number_of_moves, :filepath)";
 
     $prepared_stmt = $this->conn->prepare($sql_stmt);
     $prepared_stmt->bindParam(":name", $challenge_name);
     $prepared_stmt->bindParam(":number_of_moves", $challenge_moves);
-    $prepared_stmt->bindParam(":filepath", $challenge_file);
+    $prepared_stmt->bindParam(":filepath", $challenge_filename);
     $prepared_stmt->execute();
 
     return $this->conn->lastInsertRowID();
