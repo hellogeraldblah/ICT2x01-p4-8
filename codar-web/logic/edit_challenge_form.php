@@ -2,9 +2,9 @@
 
     require_once "../logic/challengeManagement.php";
 
-    define("__ROOT__", $_SERVER["DOCUMENT_ROOT"] . "/");
-    define("__UPLOADS_DIR__", __ROOT__ . "assets/img/challenges/");
-    define("__MAX_FILE_SIZE__", 5000000);
+if(!defined("__ROOT__")) define("__ROOT__", $_SERVER["DOCUMENT_ROOT"] . "/");
+if(!defined("__UPLOADS_DIR__")) define("__UPLOADS_DIR__", __ROOT__ . "assets/img/challenges/");
+if(!defined("__MAX_FILE_SIZE__")) define("__MAX_FILE_SIZE__", 5000000); # Maximum challenge file size: 5mb
 
     $edit_name = false;
     $edit_moves = false;

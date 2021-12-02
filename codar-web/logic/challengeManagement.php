@@ -1,12 +1,11 @@
 <?php
 
-
-define("__ROOT__", $_SERVER["DOCUMENT_ROOT"] . "/");
+if(!defined("__ROOT__")) define("__ROOT__", $_SERVER["DOCUMENT_ROOT"] . "/");
 // define("__UPLOADS_DIR__", __ROOT__ . "assets/img/challenges/");
-define("__REL_CHALLENGES_IMG_DIR__",  "/assets/img/challenges" . "/");
+if(!defined("__REL_CHALLENGES_IMG_DIR__"))define("__REL_CHALLENGES_IMG_DIR__",  "/assets/img/challenges" . "/");
 
-define("__MAX_CHALLENGE_MOVES__", 100); # Maximum moves a challenge can have
-define("__MAX_FILE_SIZE__", 5000000); # Maximum challenge file size: 5mb
+if(!defined("__MAX_CHALLENGE_MOVES__")) define("__MAX_CHALLENGE_MOVES__", 100); # Maximum moves a challenge can have
+if(!defined("__MAX_FILE_SIZE__")) define("__MAX_FILE_SIZE__", 5000000); # Maximum challenge file size: 5mb
 
 require_once "../databases/database.php";
 require_once "../logic/classes/challenge.php";
@@ -89,6 +88,7 @@ class ChallengeManagement {
 
   public function validate_challenge($challenge_name, $challenge_moves, $challenge_file){
     // Validates the new challenge data
+    $error_message = "";
     $error_message .= $this->validate_name($challenge_name);
     $error_message .= $this->validate_moves($challenge_moves);
     $error_message .= $this->validate_file($challenge_file);

@@ -13,15 +13,21 @@ class AchievementManagement
         $this->conn = $conn;
     }
 
-    function displayParticipatedChallenges(){
-
+    function createAchievement($challengeId){
+        $sql = "INSERT INTO achievements (challengeId)" . "VALUES (:challenge_id)";
+        $prepared_stmt = $this->conn->prepare($sql);
+        $prepared_stmt->bindParam(":challenge_id", $challengeId);
+        $prepared_stmt->execute();
     }
 
+    //check already achieved?
     function displayAllAchievements(){
-        $res = $this->conn->query("SELECT * FROM achievements");
-
-        while ($row = $res->fetchArray()) {
+        $res = $this->conn->query("SELECT * FROM achievements WHERE userId = '0' ");
+            while ($row = $res->fetchArray()){
             array_push($this->achievements, new Achievement($row['userId'], $row['challengeId'],  $row['numberOfStars']));
+        }
+        if ($this->achievements == NULL){
+            return 0;
         }
         return $this->achievements;
     }
@@ -31,10 +37,10 @@ class AchievementManagement
     //return all rows
     public function viewAchievement($userId){
         $res = $this->conn->query("SELECT * FROM achievements where userId = '$userId'");
-        $row = $res->fetchArray();
-        if ($row){
+        while($row = $res->fetchArray()){
             array_push($this->achievements, new Achievement($row['userId'], $row['challengeId'],  $row['numberOfStars']));
-        }else {
+        }
+        if ($this->achievements == NULL){
             return 0;
         }
         return $this->achievements;
