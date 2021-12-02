@@ -54,6 +54,7 @@ class ChallengeManagement {
 
     if (filter_var($challenge_moves, FILTER_VALIDATE_INT) == false) {
       $error_message .= "Challenge Moves must be an integer. \\n";
+      return $error_message;
     }
 
     if ($challenge_moves > __MAX_CHALLENGE_MOVES__) {
@@ -68,18 +69,18 @@ class ChallengeManagement {
     $error_message = "";
 
     // Check file size
-    if ($challenge_file_info["fileToUpload"]["size"] > __MAX_FILE_SIZE__) {
+    if ($challenge_file_info["size"] > __MAX_FILE_SIZE__) {
       $error_message .= "Challenge File is too large. \\n";
     }
 
     // Check if image file is a actual image or fake image
-    $check = getimagesize($challenge_file_info["fileToUpload"]["tmp_name"]);
+    $check = getimagesize($challenge_file_info["tmp_name"]);
     if($check == false) {
       $error_message .= "Challenge File is not an image. \\n";
     }
 
     // Allow only jpg, png and jpeg file formats
-    $imageFileExt = strtolower(pathinfo($challenge_file_info["fileToUpload"]["name"], PATHINFO_EXTENSION));
+    $imageFileExt = strtolower(pathinfo($challenge_file_info["name"], PATHINFO_EXTENSION));
     if($imageFileExt != "jpg" && $imageFileExt != "png" && $imageFileExt != "jpeg") {
       $error_message .= "Challenge File only accepts JPG, JPEG, PNG extensions. \\n";
     }
@@ -96,11 +97,11 @@ class ChallengeManagement {
     return $error_message;
   }
 
-  private function upload_file($challenge_file_info, $challenge_file_name) {
+  private function upload_file($challenge_file_info, $challenge_filename) {
     // Generate absolute filename
-    $target_file = __UPLOADS_DIR__ . $challenge_file_name;
+    $target_file = __UPLOADS_DIR__ . $challenge_filename;
 
-    move_uploaded_file($challenge_file_info["fileToUpload"]["tmp_name"], $target_file);
+    move_uploaded_file($challenge_file_info["tmp_name"], $target_file);
 
     return $target_file;
   }
@@ -182,6 +183,10 @@ class ChallengeManagement {
   public function determineNumberOfStars($challenge_id, $number_of_moves){
     $challenge = $this->search_challenge($challenge_id);
     $challenge_moves = $challenge->number_of_moves;
+
+    if ($number_of_moves <= 0) {
+      return false;
+    }
 
     // 3 stars
     if ($number_of_moves <= $challenge_moves) {

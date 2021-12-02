@@ -194,7 +194,6 @@ $challenge_list = $challenge_list_obj->get_challenges();
 <script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
 <script src="../assets/js/plugins/chartjs.min.js"></script>
 <script>
-
     var moves = 0;
     var canvas = document.getElementById("canvas");
     var context = canvas.getContext("2d");
@@ -214,6 +213,15 @@ $challenge_list = $challenge_list_obj->get_challenges();
 
     var path_color = null;
     var max_history_count = 10;
+
+    var history_array = new Array();
+    var count = 0;
+    var hist_tag = null;
+    var element = null;
+    var up_class = "badge badge-pill badge-lg bg-success";
+    var left_class = "badge badge-pill badge-lg bg-info";
+    var right_class = "badge badge-pill badge-lg bg-primary";
+    var down_class = "badge badge-pill badge-lg bg-danger";
 
     window.onload = function() {
       start();
@@ -273,15 +281,6 @@ $challenge_list = $challenge_list_obj->get_challenges();
         update_history();
       }
     }
-
-    var history_array = new Array();
-    var count = 0;
-    var hist_tag = null;
-    var element = null;
-    var up_class = "badge badge-pill badge-lg bg-success";
-    var left_class = "badge badge-pill badge-lg bg-info";
-    var right_class = "badge badge-pill badge-lg bg-primary";
-    var down_class = "badge badge-pill badge-lg bg-danger";
 
     function add_history(data){
       history_array.push(data);

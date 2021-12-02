@@ -8,17 +8,16 @@
 
     $challenge_name = filter_var($_POST["challengeName"], FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_HIGH);
     $challenge_moves = $_POST["number_of_moves"];
-    $challenge_file_info = $_FILES;
+    $challenge_file_info = $_FILES["fileToUpload"];
 
     $error_message = $challenge_list_obj->validate_challenge($challenge_name, $challenge_moves, $challenge_file_info);
 
     if (empty($error_message)) {
-      // $challenge_list_obj->create_challenge($challenge_name, $challenge_moves, $challenge_file);
-      // header("Location: ../presentation/challenges.php");
-      echo "pp";
+      $challenge_list_obj->create_challenge($challenge_name, $challenge_moves, $challenge_file_info);
+      header("Location: ../presentation/challenges.php");
     } else {
       echo "<script>alert('" . $error_message . "')</script>";
-      // echo "<script>window.history.back();</script>";
+      echo "<script>window.history.back();</script>";
     }
 
 
