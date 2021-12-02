@@ -13,16 +13,6 @@ class AchievementManagement
         $this->conn = $conn;
     }
 
-    function createAchievement(){
-
-    }
-    function editAchievement(){
-
-    }
-    function deleteAchivement(){
-
-    }
-
     function displayParticipatedChallenges(){
 
     }
@@ -41,8 +31,11 @@ class AchievementManagement
     //return all rows
     public function viewAchievement($userId){
         $res = $this->conn->query("SELECT * FROM achievements where userId = '$userId'");
-        while ($row = $res->fetchArray()) {
+        $row = $res->fetchArray();
+        if ($row){
             array_push($this->achievements, new Achievement($row['userId'], $row['challengeId'],  $row['numberOfStars']));
+        }else {
+            return 0;
         }
         return $this->achievements;
     }

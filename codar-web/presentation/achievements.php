@@ -28,7 +28,8 @@ $achievements = $achievementsManagement->viewAchievement(1); //need to change to
 
     <div class="container-fluid py-4">
       <div class="row mt-4">
-        <?php foreach ($achievements as $achievement){
+        <?php if($achievements != 0){
+            foreach ($achievements as $achievement){
             $challengeId = $achievement->getChallengeId();
             $res = $conn->query("SELECT name,filepath FROM challenges WHERE id = '$challengeId'");
             while($row = $res-> fetchArray()){
@@ -40,11 +41,11 @@ $achievements = $achievementsManagement->viewAchievement(1); //need to change to
           <div class="card">
 
               <div class="card-body p-3">
-              <div class="card-header p-0 mx-3 mt-3 position-relative z-index-1">
+              <div class="card-header p-0 mx-3 mt-3 position-relative z-index-1 text-center">
                 <img src=<?php echo $filepath?> class="img-fluid border-radius-lg">
               </div>
               </br>
-              <a href="javascript:;" class="card-title h5 d-block text-darker" style="text-align: center">
+              <a href="javascript:" class="card-title h5 d-block text-darker text-center" >
                 <?php echo $name?>
               </a>
               <p class="card-description mb-4 text-center">
@@ -63,7 +64,24 @@ $achievements = $achievementsManagement->viewAchievement(1); //need to change to
             </div>
           </div>
         </div>
+        <?php }} else{
+        ?>
+        <div class="col-lg-3">
+            <div class="card">
+
+              <div class="card-body p-3">
+              <div class="card-header p-0 mx-3 mt-3 position-relative z-index-1 text-center">
+                <img src="../assets/img/error1.png" class="img-fluid border-radius-lg">
+              </div>
+                </br>
+                <a href="javascript:" class="card-title h5 d-block text-darker text-center" >
+                    No Achievements found!
+                </a>
+            </div>
+          </div>
+      </div>
         <?php }?>
+
       </div>
 
       <!-- Footer -->
