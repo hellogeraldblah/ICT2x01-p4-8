@@ -23,6 +23,8 @@ class AchievementManagement
     //check already achieved?
     function displayAllAchievements(){
         $res = $this->conn->query("SELECT * FROM achievements WHERE userId = '0' ");
+//            $res = $this->conn->query("SELECT * FROM achievements AS A1 WHERE numberOfStars=(select MAX(numberOfStars) from achievements AS A2 where A1.challengeId = A2.challengeId) ORDER BY numberOfStars DESC ");
+//            $res = $this->conn->query("SELECT * FROM achievements AS A1 WHERE (userId = '1' or userID = '0') AND numberOfStars=(select MAX(numberOfStars) from achievements AS A2 where A1.challengeId = A2.challengeId AND (A1.userId = A2.userId)) ORDER BY numberOfStars DESC");
             while ($row = $res->fetchArray()){
             array_push($this->achievements, new Achievement($row['userId'], $row['challengeId'],  $row['numberOfStars']));
         }
