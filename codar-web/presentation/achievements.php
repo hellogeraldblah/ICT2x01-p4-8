@@ -3,10 +3,10 @@
 
 <?php $page="Achievements"; ?>
 
-<!-- Challenge Class -->
+<!-- Achievement Class -->
 <?php
 require_once "../logic/achievementManagement.php";
-$achievementsManagement = new AchievementManagement();
+$achievementsManagement = new AchievementManagement($conn);
 $achievements = $achievementsManagement->viewAchievement(1); //need to change to session id
 ?>
 
@@ -28,17 +28,24 @@ $achievements = $achievementsManagement->viewAchievement(1); //need to change to
 
     <div class="container-fluid py-4">
       <div class="row mt-4">
-        <?php foreach ($achievements as $achievement){?>
+        <?php foreach ($achievements as $achievement){
+            $challengeId = $achievement->getChallengeId();
+            $res = $conn->query("SELECT name,filepath FROM challenges WHERE id = '$challengeId'");
+            while($row = $res-> fetchArray()){
+                $name = $row['name'];
+                $filepath = "/assets/img/challenges" . "/" . $row['filepath'];
+            }
+            ?>
         <div class="col-lg-3">
           <div class="card">
 
               <div class="card-body p-3">
               <div class="card-header p-0 mx-3 mt-3 position-relative z-index-1">
-                <img src="../assets/img/challenges/challengemap_1.png" class="img-fluid border-radius-lg"> <!--//need to get image source-->
+                <img src=<?php echo $filepath?> class="img-fluid border-radius-lg">
               </div>
               </br>
-              <a href="javascript:;" class="card-title h5 d-block text-darker">
-                Challenge <?php echo $achievement->getChallengeId();?>
+              <a href="javascript:;" class="card-title h5 d-block text-darker" style="text-align: center">
+                <?php echo $name?>
               </a>
               <p class="card-description mb-4 text-center">
                 <div class="row text-center">

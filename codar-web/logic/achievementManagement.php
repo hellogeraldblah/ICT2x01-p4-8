@@ -8,14 +8,10 @@ class AchievementManagement
     // Achievements entity, stores array of achievements objects
     private $achievements = array();
     private $conn;
-//    function __construct($conn) {
-//        $this->conn = $conn;
-//        $res = $this->conn->query("SELECT * FROM achievements");
-//
-//        while ($row = $res->fetchArray()) {
-//            array_push($this->achievements, new Achievement($row['userId'], $row['challengeId'],  $row['numberOfStars']));
-//        }
-//    }
+
+    function __construct($conn) {
+        $this->conn = $conn;
+    }
 
     function createAchievement(){
 
@@ -32,14 +28,18 @@ class AchievementManagement
     }
 
     function displayAllAchievements(){
+        $res = $this->conn->query("SELECT * FROM achievements");
 
+        while ($row = $res->fetchArray()) {
+            array_push($this->achievements, new Achievement($row['userId'], $row['challengeId'],  $row['numberOfStars']));
+        }
+        return $this->achievements;
     }
 
     //using session id, get from table achievement challengeid and stars
     //get from database, all rows
     //return all rows
     public function viewAchievement($userId){
-        $this->conn = connect(); //need to change
         $res = $this->conn->query("SELECT * FROM achievements where userId = '$userId'");
         while ($row = $res->fetchArray()) {
             array_push($this->achievements, new Achievement($row['userId'], $row['challengeId'],  $row['numberOfStars']));
@@ -53,3 +53,5 @@ class AchievementManagement
 
     }
 }
+
+$conn = connect();
