@@ -9,21 +9,18 @@ if(!defined("__MAX_FILE_SIZE__")) define("__MAX_FILE_SIZE__", 5000000); # Maximu
 
     $challenge_name = filter_var($_POST["challengeName"], FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_HIGH);
     $challenge_moves = $_POST["number_of_moves"];
-    $challenge_file_info = $_FILES;
+    $challenge_file_info = $_FILES["fileToUpload"];
 
     $error_message = $challenge_list_obj->validate_challenge($challenge_name, $challenge_moves, $challenge_file_info);
 
     if (empty($error_message)) {
-       $rowId = $challenge_list_obj->create_challenge($challenge_name, $challenge_moves, $challenge_file_info);
+      $challenge_list_obj->create_challenge($challenge_name, $challenge_moves, $challenge_file_info);
        //create achievement
         $achievementManagement_obj->createAchievement($rowId);
-       header("Location: ../presentation/challenges.php");
-//      echo "pp";
+        header("Location: ../presentation/challenges.php");
     } else {
-      echo "<script>window.alert('" . $error_message . "');
-            window.location ='../presentation/create_challenge.php';
-            </script>";
-      // echo "<script>window.history.back();</script>";
+      echo "<script>alert('" . $error_message . "')</script>";
+      echo "<script>window.history.back();</script>";
     }
 
 
