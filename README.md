@@ -22,7 +22,7 @@
     │   │   │   ├── challengemap_1.png
     │   │   │   ├── challengemap_2.png
     │   │   │   ├── challengemap_3.png
-    │   │   │   └── challengemap_4.png
+    │   │   │   └── challengemap_<..>.png
     │   ├── js
     │   │   ├── blockly
     │   │   ├── core
