@@ -8,8 +8,8 @@
 require_once "../logic/challengeManagement.php";
 require_once "../logic/achievementManagement.php";
 
-$challenge = $challenge_list_obj->search_challenge($_POST["challenge_id"]);
-$earned_stars = $challenge_list_obj->determineNumberOfStars($_POST["challenge_id"], $_POST["moves"]);
+$challenge = $challenge_management_obj->search_challenge($_POST["challenge_id"]);
+$earned_stars = $challenge_management_obj->determineNumberOfStars($_POST["challenge_id"], $_POST["moves"]);
 $achievementManagement_obj->awardAchievement('1',$_POST["challenge_id"],$earned_stars); //need to change to session ID
 
 ?>

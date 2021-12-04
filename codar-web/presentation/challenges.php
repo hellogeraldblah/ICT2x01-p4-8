@@ -7,7 +7,7 @@
 <?php
 require_once "../logic/challengeManagement.php";
 
-$challenge_list = $challenge_list_obj->get_challenges();
+$challenge_list = $challenge_management_obj->get_challenges();
 
 ?>
 
@@ -38,7 +38,7 @@ $challenge_list = $challenge_list_obj->get_challenges();
             <div class="card">
               <div class="card-body p-3">
                 <div class="card-header p-0 mx-3 mt-3 position-relative z-index-1 text-center">
-                  <img src="<?php echo $challenge->filepath; ?>" class="img-fluid border-radius-lg">
+                  <img src="<?php echo __REL_CHALLENGES_IMG_DIR__ . $challenge->filepath; ?>" class="img-fluid border-radius-lg">
                 </div>
                 </br>
                 <a href="javascript:;" class="card-title h5 d-block text-darker text-center">

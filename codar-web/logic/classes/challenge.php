@@ -31,7 +31,7 @@ class Challenge {
   }
 
   function get_number_of_moves() {
-    return $this->solution;
+    return $this->number_of_moves;
   }
 
   function set_number_of_moves($number_of_moves) {

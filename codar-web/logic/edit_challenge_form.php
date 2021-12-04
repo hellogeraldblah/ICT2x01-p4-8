@@ -14,42 +14,42 @@ if(!defined("__MAX_FILE_SIZE__")) define("__MAX_FILE_SIZE__", 5000000); # Maximu
 
     $new_challenge_name =  $_POST["challengeName"];
     $new_challenge_moves = $_POST["number_of_moves"];
-    $new_challenge_file = __UPLOADS_DIR__ . $_FILES["fileToUpload"]["name"];
+    $new_challenge_file = $_FILES["fileToUpload"];
 
-    $challenge = $challenge_list_obj->search_challenge($_POST["challenge_id"]);
+    $challenge = $challenge_management_obj->search_challenge($_POST["challenge_id"]);
 
     if ($challenge->name != $new_challenge_name) {
-      $error_message .= $challenge_list_obj->validate_name($new_challenge_name);
+      $error_message .= $challenge_management_obj->validate_name($new_challenge_name);
       $edit_name = true;
     }
 
     if ($challenge->moves != $new_challenge_moves) {
-      $error_message .= $challenge_list_obj->validate_moves($new_challenge_moves);
+      $error_message .= $challenge_management_obj->validate_moves($new_challenge_moves);
       $edit_moves = true;
     }
 
-    if (__UPLOADS_DIR__ != $new_challenge_file) {
-      // echo "<script>alert('" . $new_challenge_file . "')</script>";
-      $error_message .= $challenge_list_obj->validate_file($new_challenge_file);
+    if ($new_challenge_file["error"] == 0 ) {
+      $error_message .= $challenge_management_obj->validate_file($new_challenge_file);
       $edit_file = true;
     }
 
     if (empty($error_message)) {
       if ($edit_name) {
-        $challenge_list_obj->edit_challenge_name($challenge->id, $new_challenge_name);
+        $challenge_management_obj->edit_challenge_name($challenge->id, $new_challenge_name);
       }
 
       if ($edit_moves) {
-        $challenge_list_obj->edit_challenge_moves($challenge->id, $new_challenge_moves);
+        $challenge_management_obj->edit_challenge_moves($challenge->id, $new_challenge_moves);
       }
 
       if ($edit_file) {
-        $challenge_list_obj->edit_challenge_file($challenge->id, $new_challenge_file);
+        $filename = $challenge->filepath;
+        upload_file($new_challenge_file, $filename);
       }
       header("Location: ../presentation/challenges.php");
     } else {
       echo "<script>alert('" . $error_message . "')</script>";
       echo "<script>window.history.back();</script>";
     }
-    
+
 ?>

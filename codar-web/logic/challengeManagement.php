@@ -1,7 +1,8 @@
 <?php
 
 if(!defined("__ROOT__")) define("__ROOT__", $_SERVER["DOCUMENT_ROOT"] . "/");
-// define("__UPLOADS_DIR__", __ROOT__ . "assets/img/challenges/");
+define("__UPLOADS_DIR__", __ROOT__ . "assets/img/challenges/");
+
 if(!defined("__REL_CHALLENGES_IMG_DIR__"))define("__REL_CHALLENGES_IMG_DIR__",  "/assets/img/challenges" . "/");
 
 if(!defined("__MAX_CHALLENGE_MOVES__")) define("__MAX_CHALLENGE_MOVES__", 100); # Maximum moves a challenge can have
@@ -15,22 +16,36 @@ class ChallengeManagement {
   private $challenges = array();
   private $conn;
 
-  function __construct($conn) {
+  function set_conn($conn){
     $this->conn = $conn;
-    $res = $this->conn->query("SELECT * FROM challenges");
-
-    while ($row = $res->fetchArray()) {
-      array_push($this->challenges, new Challenge($row['id'], $row['name'], __REL_CHALLENGES_IMG_DIR__ . $row['filepath'], $row['numberOfMoves']));
-    }
   }
 
-  private function get_last_id() {
+  function retrieve_challenges_from_db() {
+    $res = $this->conn->query("SELECT * FROM challenges");
+    $temp_array = array();
+
+    while ($row = $res->fetchArray()) {
+      array_push($temp_array, new Challenge($row['id'], $row['name'], $row['filepath'], $row['numberOfMoves']));
+    }
+
+    if (empty($temp_array)) {
+      return false;
+    } else {
+      $this->challenges = $temp_array;
+    }
+
+    return $this->challenges;
+  }
+
+  public function get_last_id() {
     $number_of_rows = $this->conn->querySingle("SELECT COUNT(*) as COUNT FROM challenges");
     return $number_of_rows;
   }
 
   public function validate_name($challenge_name) {
     $error_message = "";
+
+    $challenge_name = trim($challenge_name);
 
     if (empty($challenge_name)) {
       $error_message .= "Challenge Name cannot be empty. \\n";
@@ -90,20 +105,12 @@ class ChallengeManagement {
   public function validate_challenge($challenge_name, $challenge_moves, $challenge_file){
     // Validates the new challenge data
     $error_message = "";
+
     $error_message .= $this->validate_name($challenge_name);
     $error_message .= $this->validate_moves($challenge_moves);
     $error_message .= $this->validate_file($challenge_file);
 
     return $error_message;
-  }
-
-  private function upload_file($challenge_file_info, $challenge_filename) {
-    // Generate absolute filename
-    $target_file = __UPLOADS_DIR__ . $challenge_filename;
-
-    move_uploaded_file($challenge_file_info["tmp_name"], $target_file);
-
-    return $target_file;
   }
 
   public function generate_filename() {
@@ -117,9 +124,6 @@ class ChallengeManagement {
     // Generates filename
     $challenge_filename = $this->generate_filename();
 
-    // Upload file
-    $this->upload_file($challenge_file_info, $challenge_filename);
-
     $sql_stmt = "INSERT INTO challenges(name, numberOfMoves, filepath)" . "VALUES(:name, :number_of_moves, :filepath)";
 
     $prepared_stmt = $this->conn->prepare($sql_stmt);
@@ -131,9 +135,12 @@ class ChallengeManagement {
     return $this->conn->lastInsertRowID();
   }
 
+
   public function search_challenge($challenge_id){
+    $challenges = $this->retrieve_challenges_from_db();
+
     // Returns a particular challenge
-    foreach ($this->challenges as $challenge) {
+    foreach ($challenges as $challenge) {
       if ($challenge->id == $challenge_id) {
         return $challenge;
       }
@@ -141,8 +148,12 @@ class ChallengeManagement {
     return false;
   }
 
+
   public function get_challenges(){
     // Returns a list of challenges
+    if (empty($this->challenges)) {
+      return false;
+    }
     return $this->challenges;
   }
 
@@ -154,6 +165,8 @@ class ChallengeManagement {
     $prepared_stmt->bindParam(":challenge_name", $new_challenge_name);
     $prepared_stmt->bindParam(":challenge_id", $challenge_id);
     $prepared_stmt->execute();
+
+    return true;
   }
 
   public function edit_challenge_moves($challenge_id, $new_challenge_moves) {
@@ -164,12 +177,11 @@ class ChallengeManagement {
     $prepared_stmt->bindParam(":challenge_moves", $new_challenge_moves);
     $prepared_stmt->bindParam(":challenge_id", $challenge_id);
     $prepared_stmt->execute();
+
+    return true;
   }
 
   public function edit_challenge_file($challenge_id, $new_challenge_file) {
-    $new_challenge_file = "challengemap_" . $challenge_id . ".png";
-
-    $this->upload_file($new_challenge_file);
 
     $sql_stmt = "UPDATE challenges SET filepath = :challenge_file WHERE id = :challenge_id";
 
@@ -178,6 +190,8 @@ class ChallengeManagement {
     $prepared_stmt->bindParam(":challenge_file", $new_challenge_file);
     $prepared_stmt->bindParam(":challenge_id", $challenge_id);
     $prepared_stmt->execute();
+
+    return true;
   }
 
   public function determineNumberOfStars($challenge_id, $number_of_moves){
@@ -209,7 +223,22 @@ class ChallengeManagement {
 
 }
 
+
+function upload_file($challenge_file_info, $challenge_filename) {
+  // Generate absolute filename
+  $target_file = __UPLOADS_DIR__ . $challenge_filename;
+
+  if (move_uploaded_file($challenge_file_info["tmp_name"], $target_file)){
+    return true;
+  } else {
+    return false;
+  }
+
+}
+
 $conn = connect();
-$challenge_list_obj = new ChallengeManagement($conn);
+$challenge_management_obj = new ChallengeManagement();
+$challenge_management_obj->set_conn($conn);
+$challenge_management_obj->retrieve_challenges_from_db();
 
 ?>
