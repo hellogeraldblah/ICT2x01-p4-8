@@ -77,8 +77,8 @@
 `localhost:8000`
 
 ## Development Workflow
-_As of **Mon 15 Nov 2021**_
-_Updated: **Sat 4 Dev 2021**_
+_As of **Mon 15 Nov 2021**_  
+_Updated: **Sat 4 Dev 2021**_  
 
 ### Branches
 1. **main** [`protected`] - The master/main branch, merges to this branch will indicate a production-ready application.
