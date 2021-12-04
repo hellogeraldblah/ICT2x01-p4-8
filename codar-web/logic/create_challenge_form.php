@@ -10,10 +10,12 @@
     $challenge_moves = $_POST["number_of_moves"];
     $challenge_file_info = $_FILES["fileToUpload"];
 
-    $error_message = $challenge_list_obj->validate_challenge($challenge_name, $challenge_moves, $challenge_file_info);
+    $error_message = $challenge_management_obj->validate_challenge($challenge_name, $challenge_moves, $challenge_file_info);
 
     if (empty($error_message)) {
-      $challenge_list_obj->create_challenge($challenge_name, $challenge_moves, $challenge_file_info);
+      $filename = $challenge_management_obj->generate_filename();
+      $challenge_management_obj->create_challenge($challenge_name, $challenge_moves, $challenge_file_info);
+      upload_file($challenge_file_info, $filename);
       header("Location: ../presentation/challenges.php");
     } else {
       echo "<script>alert('" . $error_message . "')</script>";

@@ -6,7 +6,7 @@
 <?php
 require_once "../logic/challengeManagement.php";
 
-$challenge = $challenge_list_obj->search_challenge($_POST["challenge_id"]);
+$challenge = $challenge_management_obj->search_challenge($_POST["challenge_id"]);
 ?>
 
 <!-- Header -->
@@ -61,7 +61,7 @@ $challenge = $challenge_list_obj->search_challenge($_POST["challenge_id"]);
                 <input type="file" class="form-control" onchange="remove_disabled()" name="fileToUpload" id="fileToUpload"/>
                 </p>
                 <h6>Current Map:</h6>
-                <img src="<?php echo $challenge->filepath; ?>" alt="Challenge Map" class="img-fluid border-radius-lg">
+                <img src="<?php echo __REL_CHALLENGES_IMG_DIR__ . $challenge->filepath; ?>" alt="Challenge Map" class="img-fluid border-radius-lg">
                 <!-- <button disabled type="submit" id="submit_fileToUpload_button" name="submit" class="btn btn-outline-danger" form="create_form">Save</button> -->
                 </form>
               </div>
