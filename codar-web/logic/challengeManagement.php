@@ -123,11 +123,6 @@ class ChallengeManagement {
     // Generates filename
     $challenge_filename = $this->generate_filename();
 
-    // Upload file
-    // if (!$this->upload_file($challenge_file_info, $challenge_filename)) {
-    //   return false;
-    // }
-
     $sql_stmt = "INSERT INTO challenges(name, numberOfMoves, filepath)" . "VALUES(:name, :number_of_moves, :filepath)";
 
     $prepared_stmt = $this->conn->prepare($sql_stmt);
@@ -138,6 +133,7 @@ class ChallengeManagement {
 
     return $this->conn->lastInsertRowID();
   }
+
 
   public function search_challenge($challenge_id){
     $challenges = $this->retrieve_challenges_from_db();
@@ -185,9 +181,6 @@ class ChallengeManagement {
   }
 
   public function edit_challenge_file($challenge_id, $new_challenge_file) {
-    //$new_challenge_file = "challengemap_" . $challenge_id . ".png";
-
-    // $this->upload_file($new_challenge_file);
 
     $sql_stmt = "UPDATE challenges SET filepath = :challenge_file WHERE id = :challenge_id";
 
@@ -228,6 +221,7 @@ class ChallengeManagement {
   }
 
 }
+
 
 function upload_file($challenge_file_info, $challenge_filename) {
   // Generate absolute filename
