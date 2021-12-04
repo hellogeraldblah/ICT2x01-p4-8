@@ -8,8 +8,8 @@ if(!defined("__REL_CHALLENGES_IMG_DIR__"))define("__REL_CHALLENGES_IMG_DIR__",  
 if(!defined("__MAX_CHALLENGE_MOVES__")) define("__MAX_CHALLENGE_MOVES__", 100); # Maximum moves a challenge can have
 if(!defined("__MAX_FILE_SIZE__")) define("__MAX_FILE_SIZE__", 5000000); # Maximum challenge file size: 5mb
 
-require_once "../databases/database.php";
-require_once "../logic/classes/challenge.php";
+require_once "databases/database.php";
+require_once "logic/classes/challenge.php";
 
 class ChallengeManagement {
   // Challenge_List entity, stores array of Challenge objects
@@ -196,7 +196,7 @@ class ChallengeManagement {
 
   public function determineNumberOfStars($challenge_id, $number_of_moves){
     $challenge = $this->search_challenge($challenge_id);
-    $challenge_moves = $challenge->number_of_moves;
+    $challenge_moves = $challenge->get_number_of_moves();
 
     if ($number_of_moves <= 0) {
       return false;
@@ -224,17 +224,7 @@ class ChallengeManagement {
 }
 
 
-function upload_file($challenge_file_info, $challenge_filename) {
-  // Generate absolute filename
-  $target_file = __UPLOADS_DIR__ . $challenge_filename;
 
-  if (move_uploaded_file($challenge_file_info["tmp_name"], $target_file)){
-    return true;
-  } else {
-    return false;
-  }
-
-}
 
 $conn = connect();
 $challenge_management_obj = new ChallengeManagement();
