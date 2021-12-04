@@ -32,26 +32,26 @@ $challenge = $challenge_management_obj->search_challenge($_POST["challenge_id"])
           <div class="card">
             <div class="card-header pb-0">
                 <div class="col-lg-6 col-7">
-                  <h4><?php echo $challenge->name; ?></h4>
-                  <h6>Map #<?php echo $challenge->id; ?></h6>
+                  <h4><?php echo $challenge->get_name(); ?></h4>
+                  <h6>Map #<?php echo $challenge->get_id(); ?></h6>
                 </div>
             </div>
             <div class="card-body pt-2">
               <div class="row">
 
                 <form method="POST" action="../../logic/edit_challenge_form.php" enctype="multipart/form-data" id="create_form">
-                <input type="hidden" name="challenge_id" value=<?php echo $challenge->id; ?>>
+                <input type="hidden" name="challenge_id" value=<?php echo $challenge->get_id(); ?>>
                 <p>
                 <!-- Challenge name -->
                 <label class="form-control-label" for="basic-url">Challenge Name</label>
-                <input type="text" class="form-control" onchange="remove_disabled()" value="<?php echo $challenge->name; ?>" placeholder="Pick an exciting name!" name="challengeName"/>
+                <input type="text" class="form-control" onchange="remove_disabled()" value="<?php echo $challenge->get_name(); ?>" placeholder="Pick an exciting name!" name="challengeName"/>
                 </p>
                 <!-- <button disabled type="submit" id="submit_challengeName_button" name="submit" class="btn btn-outline-danger">Save</button> -->
 
                 <p>
                 <!-- Number of moves -->
                 <label class="form-control-label" for="challengeImage">Number of Moves</label>
-                <input type="number" class="form-control" onchange="remove_disabled()" value="<?php echo $challenge->number_of_moves; ?>" placeholder="Number of moves to complete the challenge!" name="number_of_moves"/>
+                <input type="number" class="form-control" onchange="remove_disabled()" value="<?php echo $challenge->get_number_of_moves(); ?>" placeholder="Number of moves to complete the challenge!" name="number_of_moves"/>
                 </p>
                 <!-- <button disabled type="submit" id="submit_numberOfMoves_button" name="submit" class="btn btn-outline-danger" form="create_form">Save</button> -->
                 <p>
@@ -61,7 +61,7 @@ $challenge = $challenge_management_obj->search_challenge($_POST["challenge_id"])
                 <input type="file" class="form-control" onchange="remove_disabled()" name="fileToUpload" id="fileToUpload"/>
                 </p>
                 <h6>Current Map:</h6>
-                <img src="<?php echo __REL_CHALLENGES_IMG_DIR__ . $challenge->filepath; ?>" alt="Challenge Map" class="img-fluid border-radius-lg">
+                <img src="<?php echo __REL_CHALLENGES_IMG_DIR__ . $challenge->get_filepath(); ?>" alt="Challenge Map" class="img-fluid border-radius-lg">
                 <!-- <button disabled type="submit" id="submit_fileToUpload_button" name="submit" class="btn btn-outline-danger" form="create_form">Save</button> -->
                 </form>
               </div>

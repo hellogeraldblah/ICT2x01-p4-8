@@ -141,7 +141,7 @@ class ChallengeManagement {
 
     // Returns a particular challenge
     foreach ($challenges as $challenge) {
-      if ($challenge->id == $challenge_id) {
+      if ($challenge->get_id() == $challenge_id) {
         return $challenge;
       }
     }

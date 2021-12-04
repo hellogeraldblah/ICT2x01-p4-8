@@ -2,16 +2,20 @@
 
 class Challenge {
   // Challenge entity, stores individual challenge
-  public $id;
-  public $name;
-  public $filepath;
-  public $number_of_moves;
+  private $id;
+  private $name;
+  private $filepath;
+  private $number_of_moves;
 
   function __construct($id, $name, $filepath, $number_of_moves) {
     $this->id = $id;
     $this->name = $name;
     $this->filepath = $filepath;
     $this->number_of_moves = $number_of_moves;
+  }
+
+  function get_id() {
+    return $this->id;
   }
 
   function get_name() {

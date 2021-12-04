@@ -7,7 +7,7 @@
 <?php
 require_once "../logic/challengeManagement.php";
 
-$challenge_list = $challenge_list_obj->get_challenges();
+$challenge_list = $challenge_management_obj->get_challenges();
 
 ?>
 
@@ -28,7 +28,7 @@ $challenge_list = $challenge_list_obj->get_challenges();
     <?php require_once "shared_presentation/navbar.php" ?>
     <!-- End Navbar -->
 
-    <?php $challenge = $challenge_list_obj->search_challenge($_POST["challenge_id"]); ?>
+    <?php $challenge = $challenge_management_obj->search_challenge($_POST["challenge_id"]); ?>
 
     <div class="container-fluid py-4">
       <div class="row">
@@ -45,7 +45,7 @@ $challenge_list = $challenge_list_obj->get_challenges();
           <h5 class="font-weight-bolder mb-0">
             Number of moves:
             <span class="text-danger font-weight-bolder" id="current_moves">0</span>
-            <span class="text-danger font-weight-bolder">/ <?php echo $challenge->number_of_moves ?></span>
+            <span class="text-danger font-weight-bolder">/ <?php echo $challenge->get_number_of_moves() ?></span>
             &nbsp;
             <span data-bs-toggle="tooltip" data-bs-placement="right" title="Going over the max moves only decreases your stars!">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
@@ -63,11 +63,11 @@ $challenge_list = $challenge_list_obj->get_challenges();
         <div class="col-lg-4">
           <div class="card h-100">
             <div class="card-header pb-0">
-              <h4><?php echo $challenge->name; ?></h4>
-              <h6>Map #<?php echo $challenge->id; ?></h6>
+              <h4><?php echo $challenge->get_name(); ?></h4>
+              <h6>Map #<?php echo $challenge->get_id(); ?></h6>
             </div>
             <div class="card-body px-0 pb-2 text-center">
-              <!-- <img src="<?php echo $challenge->filepath; ?>" alt="Challenge Map" class="img-fluid border-radius-lg"> -->
+              <!-- <img src="<?php echo $challenge->get_filepath(); ?>" alt="Challenge Map" class="img-fluid border-radius-lg"> -->
               <canvas class="img-fluid border-radius-lg" id="canvas" width="320" height="320"></canvas>
             </div>
           </div>
@@ -177,7 +177,7 @@ $challenge_list = $challenge_list_obj->get_challenges();
     <!-- Hidden form for game_over.php -->
     <form name="myform" method="POST" action="game_over.php">
       <input type="hidden" id="moves_input" name="moves" value=""><br>
-      <input type="hidden" id="challenge_id_input" name="challenge_id" value="<?php echo $challenge->id; ?>"><br>
+      <input type="hidden" id="challenge_id_input" name="challenge_id" value="<?php echo $challenge->get_id(); ?>"><br>
       <button type="submit"></button>
     </form>
 
@@ -200,7 +200,7 @@ $challenge_list = $challenge_list_obj->get_challenges();
     var circle_context = canvas.getContext("2d");
 
     var map_img = new Image();
-    map_img.src = "<?php echo $challenge->filepath; ?>";
+    map_img.src = "<?php echo __REL_CHALLENGES_IMG_DIR__ . $challenge->get_filepath(); ?>";
 
     var start_x = 48;
     var start_y = 304;
