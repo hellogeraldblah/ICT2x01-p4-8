@@ -7,7 +7,7 @@
 <?php
 require_once "../logic/achievementManagement.php";
 $achievementsManagement = new AchievementManagement($conn);
-$achievements = $achievementsManagement->viewAchievement(1); //need to change to session id
+$achievements = $achievementsManagement->displayAllAchievements();
 ?>
 
 <!-- Header -->
@@ -27,7 +27,7 @@ $achievements = $achievementsManagement->viewAchievement(1); //need to change to
     <!-- End Navbar -->
 
     <div class="container-fluid py-4">
-        <a href="allAchievements.php"><button type="button" class="btn btn-warning">All achievements</button></a>
+        <a href="achievements.php"><button type="button" class="btn btn-warning">Back</button></a>
       <div class="row mt-4">
         <?php if($achievements != 0){
             foreach ($achievements as $achievement){
