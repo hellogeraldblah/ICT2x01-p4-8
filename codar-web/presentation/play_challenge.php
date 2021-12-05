@@ -1,37 +1,45 @@
+<?php
+session_start();
 
+if (!isset($_SESSION["user_id"]))
+{
+  header("location: __INDEX_PAGE__");
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
-<link rel="stylesheet" href="../node_modules/shepherd.js/dist/css/shepherd.css"/>
-
-<?php $page="Play Challenge"; ?>
+<?php
+  $page="Play Challenge";
+  require_once "../constants.php";
+?>
 
 <!-- Challenge Class -->
 <?php
-require_once "../logic/challengeManagement.php";
+require_once __LOGIC_DIR__ . "challengeManagement.php";
 
-$challenge_list = $challenge_management_obj->get_challenges();
+$challenge_list = $challenge_management_obj->get_challenges($conn);
 
 ?>
 
 <!-- Header -->
-<?php require_once "shared_presentation/head.php" ?>
+<?php require_once __SHARED_PRESENTATION_DIR__ . "head.php" ?>
 <!-- End of Header -->
 
 <!-- <body class="g-sidenav-show bg-gray-100" onload="start()"> -->
   <body class="g-sidenav-show bg-gray-100">
 
   <!-- Side Panel -->
-  <?php require_once "shared_presentation/sidepanel.php" ?>
+  <?php require_once __SHARED_PRESENTATION_DIR__ . "sidepanel.php" ?>
   <!-- End Side Panel -->
 
   <main class="main-content position-relative max-height-vh-100 h-100 mt-1 border-radius-lg ">
 
     <!-- Navbar -->
-    <?php require_once "shared_presentation/navbar.php" ?>
+    <?php require_once __SHARED_PRESENTATION_DIR__ . "navbar.php" ?>
     <!-- End Navbar -->
 
-    <?php $challenge = $challenge_management_obj->search_challenge($_GET["challenge_id"]); ?>
+    <?php $challenge = $challenge_management_obj->search_challenge($conn, $_GET["challenge_id"]); ?>
 
     <div class="container-fluid py-4 class-1">
       <div class="row">
@@ -70,7 +78,6 @@ $challenge_list = $challenge_management_obj->get_challenges();
               <h6>Map #<?php echo $challenge->get_id(); ?></h6>
             </div>
             <div class="card-body px-0 pb-2 text-center">
-              <!-- <img src="<?php echo $challenge->get_filepath(); ?>" alt="Challenge Map" class="img-fluid border-radius-lg"> -->
               <canvas class="img-fluid border-radius-lg" id="canvas" width="320" height="320"></canvas>
             </div>
           </div>
@@ -112,7 +119,7 @@ $challenge_list = $challenge_management_obj->get_challenges();
               <div id="blocklyDiv" style="height: 480px; width: auto;"></div>
 
               <!-- Blockly xml asset -->
-              <?php require_once "blockly.php"; ?>
+              <?php require_once __SHARED_PRESENTATION_DIR__ . "blockly.php"; ?>
               <!-- End Blockly xml asset -->
 
             </div>
@@ -160,13 +167,14 @@ $challenge_list = $challenge_management_obj->get_challenges();
 
 <!-- Blockly javascript -->
 <script src="https://unpkg.com/blockly/blockly.min.js"></script>
-<!-- <script src="https://unpkg.com/@blockly/dev-tools@2.0.0/dist/index.js"></script> -->
 <script src="../assets/js/blockly/index.js"></script>
 <script src="../assets/js/blockly/javascript_compressed.js"></script>
 <!-- End of Blockly javascript -->
 
 <!-- Tutorial javascript -->
-<script src="../node_modules/shepherd.js/dist/js/shepherd.min.js"></script>
+<script src="../assets/node_modules/popperjs/core/dist/umd/shepherd.min.js"></script>
+<script src="../assets/node_modules/shepherd.js/dist/js/shepherd.min.js"></script> -->
+<link rel="stylesheet" href="../assets/node_modules/shepherd.js/dist/css/shepherd.css"/>
 <!-- End of Tutorial javascript -->
 
 <script src="../assets/js/core/popper.min.js"></script>
@@ -174,6 +182,9 @@ $challenge_list = $challenge_management_obj->get_challenges();
 <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
 <script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
 <script src="../assets/js/plugins/chartjs.min.js"></script>
+
+<!-- <script src="https://cdn.jsdelivr.net/npm/shepherd.js@5.0.1/dist/js/shepherd.js"></script> -->
+
 <script>
     var moves = 0;
     var canvas = document.getElementById("canvas");
@@ -181,7 +192,7 @@ $challenge_list = $challenge_management_obj->get_challenges();
     var circle_context = canvas.getContext("2d");
 
     var map_img = new Image();
-    map_img.src = "<?php echo __REL_CHALLENGES_IMG_DIR__ . $challenge->get_filepath(); ?>";
+    map_img.src = "<?php echo __CHALLENGES_MAP_DIR__ . $challenge->get_filepath(); ?>";
 
     var start_x = 48;
     var start_y = 304;
@@ -366,7 +377,6 @@ $challenge_list = $challenge_management_obj->get_challenges();
       Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
     }
   </script>
-
   <script>
 
   const tour = new Shepherd.Tour({
@@ -374,7 +384,6 @@ $challenge_list = $challenge_management_obj->get_challenges();
       cancelIcon: {
         enabled: true
       },
-      classes: 'shepherd',
       scrollTo: { behavior: 'smooth', block: 'center' }
     }
   });
@@ -386,12 +395,13 @@ $challenge_list = $challenge_management_obj->get_challenges();
       element: '#map_container',
       on: 'top'
     },
+    classes: 'shepherd shepherd-open shepherd-theme-arrows shepherd-transparent-text',
     buttons: [
       {
         action() {
           return this.back();
         },
-        classes: 'shepherd-theme-dark',
+        classes: 'shepherd shepherd-open shepherd-theme-arrows shepherd-transparent-text',
         text: 'Back'
       },
       {

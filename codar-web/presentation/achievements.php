@@ -3,36 +3,39 @@ session_start();
 
 if (!isset($_SESSION["user_id"]))
 {
-  header("location: ../index.php");
+  header("location: __INDEX_PAGE__");
 }
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 
-<?php $page="Achievements"; ?>
+<?php
+  $page="Achievements";
+  require_once "../constants.php";
+?>
 
 <!-- Achievement Class -->
 <?php
-require_once "../logic/achievementManagement.php";
+require_once __LOGIC_DIR__ . "achievementManagement.php";
 $achievementsManagement = new AchievementManagement($conn);
 $achievements = $achievementsManagement->viewAchievement($_SESSION["user_id"]);
 ?>
 
 <!-- Header -->
-<?php require_once "shared_presentation/head.php" ?>
+<?php require_once __SHARED_PRESENTATION_DIR__ . "head.php" ?>
 <!-- End of Header -->
 
 <body class="g-sidenav-show bg-gray-100">
 
   <!-- Side Panel -->
-  <?php require_once "shared_presentation/sidepanel.php" ?>
+  <?php require_once __SHARED_PRESENTATION_DIR__ . "sidepanel.php" ?>
   <!-- End Side Panel -->
 
   <main class="main-content position-relative max-height-vh-100 h-100 mt-1 border-radius-lg ">
 
     <!-- Navbar -->
-    <?php require_once "shared_presentation/navbar.php" ?>
+    <?php require_once __SHARED_PRESENTATION_DIR__ . "navbar.php" ?>
     <!-- End Navbar -->
 
     <div class="container-fluid py-4">
@@ -95,7 +98,7 @@ $achievements = $achievementsManagement->viewAchievement($_SESSION["user_id"]);
       </div>
 
       <!-- Footer -->
-      <?php require_once "shared_presentation/footer.php" ?>
+      <?php require_once __SHARED_PRESENTATION_DIR__ . "footer.php" ?>
       <!-- End Footer -->
 
     </div>

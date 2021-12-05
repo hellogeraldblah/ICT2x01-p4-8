@@ -4,7 +4,10 @@
 <?php $page="Sign-up" ?>
 
 <!-- Header -->
-<?php require_once "shared_presentation/head.php" ?>
+<?php
+  require_once "../constants.php";
+  require_once __SHARED_PRESENTATION_DIR__ . "head.php"
+?>
 <!-- End of Header -->
 
 <body class="g-sidenav-show  bg-gray-100">
@@ -23,8 +26,6 @@
              <form method="POST" action="../../logic/create_user_form.php" enctype="multipart/form-data" id="create_form">
               <form role="form text-left">
                 <div class="mb-3">
-
-
                   <input type="text" class="form-control" placeholder="Name" aria-label="Name" aria-describedby="email-addon" name="signup_name" required/>
                 </div>
                 <div class="mb-3">
