@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<?php $page="Sign-in"; ?>
+
+<!-- Header -->
+<?php require_once "presentation/shared_presentation/head.php" ?>
+<!-- End of Header -->
+
+<body class="">
+
+  <main class="main-content  mt-0">
+    <section>
+      <div class="page-header min-vh-75">
+        <div class="container">
+          <div class="row">
+            <div class="col-xl-4 col-lg-5 col-md-6 d-flex flex-column mx-auto">
+              <div class="card card-plain mt-8">
+                <div class="card-header pb-0 text-left bg-transparent">
+                  <h3 class="font-weight-bolder text-info text-gradient">Codar</h3>
+                  <p class="mb-0">Team P4-8</p>
+                </div>
+                <div class="card-body">
+                  <form method="POST" action="logic/login_user_form.php">
+                    <label>Username</label>
+                    <div class="mb-3">
+                      <input type="text" name="username" class="form-control" placeholder="Username" aria-label="Username" required>
+                    </div>
+                    <label>Password</label>
+                    <div class="mb-3">
+                      <input type="password" name="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="password-addon" required>
+                    </div>
+                    <div class="text-center">
+                      <button type="submit" class="btn bg-gradient-info w-100 mt-4 mb-0">Sign in</button>
+                    </div>
+                  </form>
+                </div>
+                <div class="card-footer text-center pt-0 px-lg-2 px-1">
+                  <p class="mb-4 text-sm mx-auto">
+                    Don't have an account?
+                    <a href="presentation/sign-up.php" class="text-info text-gradient font-weight-bold">Sign up</a>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+
+  <!-- <?php require_once "presentation/shared_presentation/footer.php" ?> -->
+
+  <!--   Core JS Files   -->
+  <script src="../assets/js/core/popper.min.js"></script>
+  <script src="../assets/js/core/bootstrap.min.js"></script>
+  <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
+  <script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
+  <script>
+    var win = navigator.platform.indexOf('Win') > -1;
+    if (win && document.querySelector('#sidenav-scrollbar')) {
+      var options = {
+        damping: '0.5'
+      }
+      Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+    }
+  </script>
+  <!-- Github buttons -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+  <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
+  <script src="../assets/js/soft-ui-dashboard.min.js?v=1.0.3"></script>
+</body>
+
+</html>

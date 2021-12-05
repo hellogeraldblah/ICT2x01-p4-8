@@ -1,5 +1,6 @@
 <?php
 
+if(!defined("__ROOT__")) define("__ROOT__", $_SERVER["DOCUMENT_ROOT"] . "/");
 define("__DATABASE_DIR__", __ROOT__ . "databases" . "/");
 
 // get database connection

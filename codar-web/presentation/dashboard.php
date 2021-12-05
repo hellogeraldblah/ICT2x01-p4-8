@@ -1,18 +1,12 @@
-<!--
-=========================================================
-* Soft UI Dashboard - v1.0.3
-=========================================================
+<?php
+session_start();
 
-* Product Page: https://www.creative-tim.com/product/soft-ui-dashboard
-* Copyright 2021 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://www.creative-tim.com/license)
+if (!isset($_SESSION["user_id"]))
+{
+  header("location: ../index.php");
+}
+?>
 
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
--->
 <!DOCTYPE html>
 <html lang="en">
 

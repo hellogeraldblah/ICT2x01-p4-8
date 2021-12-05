@@ -1,3 +1,12 @@
+<?php
+session_start();
+
+if (!isset($_SESSION["user_id"]))
+{
+  header("location: ../index.php");
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,7 +19,7 @@ require_once "../logic/achievementManagement.php";
 
 $challenge = $challenge_management_obj->search_challenge($_POST["challenge_id"]);
 $earned_stars = $challenge_management_obj->determineNumberOfStars($_POST["challenge_id"], $_POST["moves"]);
-$achievementManagement_obj->awardAchievement('1',$_POST["challenge_id"],$earned_stars); //need to change to session ID
+$achievementManagement_obj->awardAchievement($_SESSION["user_id"],$_POST["challenge_id"],$earned_stars); //need to change to session ID
 
 ?>
 
@@ -52,10 +61,10 @@ $achievementManagement_obj->awardAchievement('1',$_POST["challenge_id"],$earned_
                 <p class="card-description mb-4 text-center">
                     <h4 class="text-gradient text-danger mt-4 text-center">Congratulations!</h4>
                     <p class="text-center">
-                      <?php echo "You have completed " . $challenge->name ." in " . $_POST["moves"] . " moves!"; ?>
+                      <?php echo "You have completed " . $challenge->get_name() ." in " . $_POST["moves"] . " moves!"; ?>
                     </p>
                     <form method="POST">
-                      <input type="hidden" name="challenge_id" value=<?php echo $challenge->id; ?>>
+                      <input type="hidden" name="challenge_id" value=<?php echo $challenge->get_id(); ?>>
                     <div class="row text-center">
                       <div class="col-sm">
                           <input type="submit" formaction="play_challenge.php" class="btn btn-outline-dark" value="Restart">

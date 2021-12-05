@@ -1,25 +1,18 @@
-<!--
-=========================================================
-* Soft UI Dashboard - v1.0.3
-=========================================================
+<?php
+session_start();
 
-* Product Page: https://www.creative-tim.com/product/soft-ui-dashboard
-* Copyright 2021 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://www.creative-tim.com/license)
+if (!isset($_SESSION["user_id"]))
+{
+  header("location: ../index.php");
+}
+?>
 
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
--->
 <!DOCTYPE html>
 <html lang="en">
 
 <?php $page="Profile"; ?>
 <?php
-$display_name = "Moe Lester";
-$display_username = "mLester";
+  require_once "../logic/classes/user.php";
 ?>
 
 <!-- Header -->
@@ -44,17 +37,33 @@ $display_username = "mLester";
         <div class="col-6 mt-4 mx-auto">
           <div class="card mb-4">
             <div class="card-header pb-0 p-3">
-              <h6 class="mb-1"><?php echo $display_name; ?>'s' Profile</h6>
-              <p class="text-sm">@<?php echo $display_username; ?></p>
+              <h6 class="mb-1"><?php echo $_SESSION["user_name"] ?>'s Profile</h6>
+              <p class="text-sm">@<?php echo $_SESSION["user_username"]; ?></p>
             </div>
             <div class="card-body p-3">
               <div class="row">
+                <form method="POST" action="../logic/edit_user_form.php" enctype="multipart/form-data" id="edit_user">
+                <input type="hidden" name="challenge_id" value=<?php echo $_SESSION["user_id"]; ?>>
+                <p>
+                <!-- Challenge name -->
+                <label class="form-control-label" for="name">Name</label>
+                <input type="text" class="form-control" value="<?php echo $_SESSION["user_name"]; ?>" name="name"/>
+                </p>
 
+                <p>
+                <label class="form-control-label" for="username">Username</label>
+                <input type="text" class="form-control" value="<?php echo $_SESSION["user_username"]; ?>" name="username"/>
+                </p>
+                </form>
               </div>
+              <button disabled type="submit" id="submit_button" name="submit" class="btn btn-outline-danger" form="edit_user">Save</button>
             </div>
           </div>
         </div>
       </div>
+
+
+
       <!-- Footer -->
       <?php require_once "shared_presentation/footer.php" ?>
       <!-- End Footer -->
@@ -66,6 +75,13 @@ $display_username = "mLester";
   <script src="../assets/js/core/bootstrap.min.js"></script>
   <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
   <script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
+  <script>
+    function remove_disabled() {
+      button_id = "submit_button";
+      var p = document.getElementById(button_id);
+      p.removeAttribute("disabled");
+    }
+  </script>
   <script>
     var win = navigator.platform.indexOf('Win') > -1;
     if (win && document.querySelector('#sidenav-scrollbar')) {
