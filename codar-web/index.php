@@ -4,7 +4,10 @@
 <?php $page="Sign-in"; ?>
 
 <!-- Header -->
-<?php require_once "presentation/shared_presentation/head.php" ?>
+<?php
+  require_once "constants.php";
+  require_once __SHARED_PRESENTATION_DIR__ . "head.php";
+?>
 <!-- End of Header -->
 
 <body class="">
@@ -48,9 +51,6 @@
       </div>
     </section>
   </main>
-
-
-  <!-- <?php require_once "presentation/shared_presentation/footer.php" ?> -->
 
   <!--   Core JS Files   -->
   <script src="../assets/js/core/popper.min.js"></script>

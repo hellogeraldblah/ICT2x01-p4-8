@@ -1,13 +1,9 @@
 <?php
 
-require_once "classes/user.php";
+require_once "../constants.php";
+require_once __CLASSES_DIR__ . "user.php";
 
 class UserManagement {
-  private $conn;
-
-  function __construct($conn) {
-    $this->conn = $conn;
-  }
 
   public function validate_name($signup_name) {
     $error_message = "";
@@ -74,23 +70,23 @@ class UserManagement {
     return $error_message;
   }
 
-  public function create_user($signup_name, $signup_username, $signup_password) {
+  public function create_user($conn, $signup_name, $signup_username, $signup_password) {
 
     $sql_stmt = "INSERT INTO users(name, username, password)" . "VALUES(:name, :username, :password)";
 
     $hashed_password = password_hash($signup_password, PASSWORD_DEFAULT);
 
-    $prepared_stmt = $this->conn->prepare($sql_stmt);
+    $prepared_stmt = $conn->prepare($sql_stmt);
     $prepared_stmt->bindParam(":name", $signup_name);
     $prepared_stmt->bindParam(":username", $signup_username);
     $prepared_stmt->bindParam(":password", $hashed_password);
     $prepared_stmt->execute();
 
-    return $this->conn->lastInsertRowID();
+    return $conn->lastInsertRowID();
   }
 
-  public function verify_user($username, $password) {
-    $res = $this->conn->query("SELECT * FROM users");
+  public function verify_user($conn, $username, $password) {
+    $res = $conn->query("SELECT * FROM users");
 
     while ($row = $res->fetchArray()) {
       if ($row["username"] == $username) {
@@ -103,8 +99,8 @@ class UserManagement {
     return false;
   }
 
-  public function get_user($user_id){
-    $res = $this->conn->query("SELECT * FROM users");
+  public function get_user($conn, $user_id){
+    $res = $conn->query("SELECT * FROM users");
 
     while ($row = $res->fetchArray()) {
       if ($row["id"] == $user_id) {
