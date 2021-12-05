@@ -18,7 +18,7 @@ if (!isset($_SESSION["user_id"]))
 <?php
 require_once __LOGIC_DIR__ . "challengeManagement.php";
 
-$challenge = $challenge_management_obj->search_challenge($_GET["challenge_id"]);
+$challenge = $challenge_management_obj->search_challenge($conn, $_GET["challenge_id"]);
 
 ?>
 

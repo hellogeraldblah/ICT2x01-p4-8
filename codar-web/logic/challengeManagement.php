@@ -10,32 +10,8 @@ require_once __CLASSES_DIR__ . "challenge.php";
 
 class ChallengeManagement {
 
-  private $challenges = array();
-  private $conn;
-
-  public function set_conn($conn){
-    $this->conn = $conn;
-  }
-
-  public function retrieve_challenges_from_db() {
-    $res = $this->conn->query("SELECT * FROM challenges");
-    $temp_array = array();
-
-    while ($row = $res->fetchArray()) {
-      array_push($temp_array, new Challenge($row['id'], $row['name'], $row['filepath'], $row['numberOfMoves']));
-    }
-
-    if (empty($temp_array)) {
-      return false;
-    } else {
-      $this->challenges = $temp_array;
-    }
-
-    return $this->challenges;
-  }
-
-  private function get_last_id() {
-    $number_of_rows = $this->conn->querySingle("SELECT COUNT(*) as COUNT FROM challenges");
+  private function get_last_id($conn) {
+    $number_of_rows = $conn->querySingle("SELECT COUNT(*) as COUNT FROM challenges");
     return $number_of_rows;
   }
 
@@ -110,31 +86,31 @@ class ChallengeManagement {
     return $error_message;
   }
 
-  public function generate_filename() {
+  public function generate_filename($conn) {
     // Generate filename based on last ID
-    $challenge_filename = "challengemap_" . strval($this->get_last_id() + 1) . ".png";
+    $challenge_filename = "challengemap_" . strval($this->get_last_id($conn) + 1) . ".png";
 
     return $challenge_filename;
   }
 
-  public function create_challenge($challenge_name, $challenge_moves, $challenge_file_info) {
+  public function create_challenge($conn, $challenge_name, $challenge_moves, $challenge_file_info) {
     // Generates filename
-    $challenge_filename = $this->generate_filename();
+    $challenge_filename = $this->generate_filename($conn);
 
     $sql_stmt = "INSERT INTO challenges(name, numberOfMoves, filepath)" . "VALUES(:name, :number_of_moves, :filepath)";
 
-    $prepared_stmt = $this->conn->prepare($sql_stmt);
+    $prepared_stmt = $conn->prepare($sql_stmt);
     $prepared_stmt->bindParam(":name", $challenge_name);
     $prepared_stmt->bindParam(":number_of_moves", $challenge_moves);
     $prepared_stmt->bindParam(":filepath", $challenge_filename);
     $prepared_stmt->execute();
 
-    return $this->conn->lastInsertRowID();
+    return $conn->lastInsertRowID();
   }
 
 
-  public function search_challenge($challenge_id){
-    $challenges = $this->retrieve_challenges_from_db();
+  public function search_challenge($conn, $challenge_id){
+    $challenges = $this->get_challenges($conn);
 
     // Returns a particular challenge
     foreach ($challenges as $challenge) {
@@ -145,19 +121,25 @@ class ChallengeManagement {
     return false;
   }
 
+  public function get_challenges($conn){
+    $res = $conn->query("SELECT * FROM challenges");
+    $temp_array = array();
 
-  public function get_challenges(){
-    // Returns a list of challenges
-    if (empty($this->challenges)) {
+    while ($row = $res->fetchArray()) {
+      array_push($temp_array, new Challenge($row['id'], $row['name'], $row['filepath'], $row['numberOfMoves']));
+    }
+
+    if (empty($temp_array)) {
       return false;
     }
-    return $this->challenges;
+
+    return $temp_array;
   }
 
-  public function edit_challenge_name($challenge_id, $new_challenge_name) {
+  public function edit_challenge_name($conn, $challenge_id, $new_challenge_name) {
     $sql_stmt = "UPDATE challenges SET NAME = :challenge_name WHERE id = :challenge_id";
 
-    $prepared_stmt = $this->conn->prepare($sql_stmt);
+    $prepared_stmt = $conn->prepare($sql_stmt);
 
     $prepared_stmt->bindParam(":challenge_name", $new_challenge_name);
     $prepared_stmt->bindParam(":challenge_id", $challenge_id);
@@ -166,10 +148,10 @@ class ChallengeManagement {
     return true;
   }
 
-  public function edit_challenge_moves($challenge_id, $new_challenge_moves) {
+  public function edit_challenge_moves($conn, $challenge_id, $new_challenge_moves) {
     $sql_stmt = "UPDATE challenges SET NUMBEROFMOVES = :challenge_moves WHERE id = :challenge_id";
 
-    $prepared_stmt = $this->conn->prepare($sql_stmt);
+    $prepared_stmt = $conn->prepare($sql_stmt);
 
     $prepared_stmt->bindParam(":challenge_moves", $new_challenge_moves);
     $prepared_stmt->bindParam(":challenge_id", $challenge_id);
@@ -178,11 +160,11 @@ class ChallengeManagement {
     return true;
   }
 
-  public function edit_challenge_file($challenge_id, $new_challenge_file) {
+  public function edit_challenge_file($conn, $challenge_id, $new_challenge_file) {
 
     $sql_stmt = "UPDATE challenges SET filepath = :challenge_file WHERE id = :challenge_id";
 
-    $prepared_stmt = $this->conn->prepare($sql_stmt);
+    $prepared_stmt = $conn->prepare($sql_stmt);
 
     $prepared_stmt->bindParam(":challenge_file", $new_challenge_file);
     $prepared_stmt->bindParam(":challenge_id", $challenge_id);
@@ -191,8 +173,8 @@ class ChallengeManagement {
     return true;
   }
 
-  public function determineNumberOfStars($challenge_id, $number_of_moves){
-    $challenge = $this->search_challenge($challenge_id);
+  public function determineNumberOfStars($conn, $challenge_id, $number_of_moves){
+    $challenge = $this->search_challenge($conn, $challenge_id);
     $challenge_moves = $challenge->get_number_of_moves();
 
     if ($number_of_moves <= 0) {
@@ -220,12 +202,7 @@ class ChallengeManagement {
 
 }
 
-
-
-
 $conn = connect();
 $challenge_management_obj = new ChallengeManagement();
-$challenge_management_obj->set_conn($conn);
-$challenge_management_obj->retrieve_challenges_from_db();
 
 ?>

@@ -19,7 +19,7 @@ if (!isset($_SESSION["user_id"]))
 <?php
 require_once __LOGIC_DIR__ . "challengeManagement.php";
 
-$challenge_list = $challenge_management_obj->get_challenges();
+$challenge_list = $challenge_management_obj->get_challenges($conn);
 
 ?>
 

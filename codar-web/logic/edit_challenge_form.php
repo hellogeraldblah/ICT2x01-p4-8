@@ -15,7 +15,7 @@
     $new_challenge_moves = $_POST["number_of_moves"];
     $new_challenge_file = $_FILES["fileToUpload"];
 
-    $challenge = $challenge_management_obj->search_challenge($_POST["challenge_id"]);
+    $challenge = $challenge_management_obj->search_challenge($conn, $_POST["challenge_id"]);
 
     if ($challenge->get_name() != $new_challenge_name) {
       $error_message .= $challenge_management_obj->validate_name($new_challenge_name);
@@ -34,11 +34,11 @@
 
     if (empty($error_message)) {
       if ($edit_name) {
-        $challenge_management_obj->edit_challenge_name($challenge->get_id(), $new_challenge_name);
+        $challenge_management_obj->edit_challenge_name($conn, $challenge->get_id(), $new_challenge_name);
       }
 
       if ($edit_moves) {
-        $challenge_management_obj->edit_challenge_moves($challenge->get_id(), $new_challenge_moves);
+        $challenge_management_obj->edit_challenge_moves($conn, $challenge->get_id(), $new_challenge_moves);
       }
 
       if ($edit_file) {

@@ -18,7 +18,7 @@ if (!isset($_SESSION["user_id"]))
 <?php
 require_once __LOGIC_DIR__ . "challengeManagement.php";
 
-$challenge_list = $challenge_management_obj->get_challenges();
+$challenge_list = $challenge_management_obj->get_challenges($conn);
 
 ?>
 
@@ -39,7 +39,7 @@ $challenge_list = $challenge_management_obj->get_challenges();
     <?php require_once __SHARED_PRESENTATION_DIR__ . "navbar.php" ?>
     <!-- End Navbar -->
 
-    <?php $challenge = $challenge_management_obj->search_challenge($_GET["challenge_id"]); ?>
+    <?php $challenge = $challenge_management_obj->search_challenge($conn, $_GET["challenge_id"]); ?>
 
     <div class="container-fluid py-4 class-1">
       <div class="row">
