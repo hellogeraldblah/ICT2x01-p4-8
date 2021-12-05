@@ -186,7 +186,21 @@ The framework we have chosen is the [Codeception Framework](https://codeception.
 
 
 #### Test Cases
-
+The challengeManagementTest file can be located at `codar-web/tests/unit/challengeManagementTest.php`. The test cases are as follows:
+- `testRetrieveChallenge()`
+- `testGetLastId()`
+- `testValidateName()`
+- `testValidateMoves()`
+- `testValidateFile()`
+- `testValidateChallenge()`
+- `testGenerateFile()`
+- `testCreateChallenge()`
+- `testSearchChallenge()`
+- `testGetChallenge()`
+- `testEditChallengeName()`
+- `testEditChallengeMoves()`
+- `testEditChallengeFile()`
+- `testDetermineNumberOfStars()`
 
 
 #### Test Suite Coverage
