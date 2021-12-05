@@ -1,28 +1,41 @@
+<?php
+session_start();
+
+if (!isset($_SESSION["user_id"]))
+{
+  header("location: __INDEX_PAGE__");
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
-<?php $page="Edit Challenge"; ?>
+<?php
+  $page="Edit Challenge";
+  require_once "../constants.php";
+?>
 
 <?php
-require_once "../logic/challengeManagement.php";
+require_once __LOGIC_DIR__ . "challengeManagement.php";
 
-$challenge = $challenge_management_obj->search_challenge($_POST["challenge_id"]);
+$challenge = $challenge_management_obj->search_challenge($conn, $_GET["challenge_id"]);
+
 ?>
 
 <!-- Header -->
-<?php require_once "shared_presentation/head.php" ?>
+<?php require_once __SHARED_PRESENTATION_DIR__ . "head.php" ?>
 <!-- End of Header -->
 
 <body class="g-sidenav-show bg-gray-100">
 
   <!-- Side Panel -->
-  <?php require_once "shared_presentation/sidepanel.php" ?>
+  <?php require_once __SHARED_PRESENTATION_DIR__ . "sidepanel.php" ?>
   <!-- End Side Panel -->
 
   <main class="main-content position-relative max-height-vh-100 h-100 mt-1 border-radius-lg ">
 
     <!-- Navbar -->
-    <?php require_once "shared_presentation/navbar.php" ?>
+    <?php require_once __SHARED_PRESENTATION_DIR__ . "navbar.php" ?>
     <!-- End Navbar -->
 
     <div class="container-fluid py-4">
@@ -46,14 +59,12 @@ $challenge = $challenge_management_obj->search_challenge($_POST["challenge_id"])
                 <label class="form-control-label" for="basic-url">Challenge Name</label>
                 <input type="text" class="form-control" onchange="remove_disabled()" value="<?php echo $challenge->get_name(); ?>" placeholder="Pick an exciting name!" name="challengeName"/>
                 </p>
-                <!-- <button disabled type="submit" id="submit_challengeName_button" name="submit" class="btn btn-outline-danger">Save</button> -->
 
                 <p>
                 <!-- Number of moves -->
                 <label class="form-control-label" for="challengeImage">Number of Moves</label>
                 <input type="number" class="form-control" onchange="remove_disabled()" value="<?php echo $challenge->get_number_of_moves(); ?>" placeholder="Number of moves to complete the challenge!" name="number_of_moves"/>
                 </p>
-                <!-- <button disabled type="submit" id="submit_numberOfMoves_button" name="submit" class="btn btn-outline-danger" form="create_form">Save</button> -->
                 <p>
                 <!-- Challenge file upload -->
                 <label class="form-control-label" for="challengeImage">Challenge Design Image</label>
@@ -61,7 +72,7 @@ $challenge = $challenge_management_obj->search_challenge($_POST["challenge_id"])
                 <input type="file" class="form-control" onchange="remove_disabled()" name="fileToUpload" id="fileToUpload"/>
                 </p>
                 <h6>Current Map:</h6>
-                <img src="<?php echo __REL_CHALLENGES_IMG_DIR__ . $challenge->get_filepath(); ?>" alt="Challenge Map" class="img-fluid border-radius-lg">
+                <img src="<?php echo __CHALLENGES_MAP_DIR__ . $challenge->get_filepath(); ?>" alt="Challenge Map" class="img-fluid border-radius-lg">
                 <!-- <button disabled type="submit" id="submit_fileToUpload_button" name="submit" class="btn btn-outline-danger" form="create_form">Save</button> -->
                 </form>
               </div>
@@ -73,7 +84,7 @@ $challenge = $challenge_management_obj->search_challenge($_POST["challenge_id"])
       <button disabled type="submit" id="submit_button" name="submit" class="btn btn-outline-danger" form="create_form">Save</button>
 
       <!-- Footer -->
-      <?php require_once "shared_presentation/footer.php" ?>
+      <?php require_once __SHARED_PRESENTATION_DIR__ . "footer.php" ?>
       <!-- End Footer -->
 
     </div>

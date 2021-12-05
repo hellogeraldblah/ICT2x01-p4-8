@@ -1,22 +1,34 @@
+<?php
+session_start();
+
+if (!isset($_SESSION["user_id"]))
+{
+  header("location: __INDEX_PAGE__");
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
-<?php $page="Create Challenge"; ?>
+<?php
+  $page="Create Challenge";
+  require_once "../constants.php";
+?>
 
 <!-- Header -->
-<?php require_once "shared_presentation/head.php" ?>
+<?php require_once __SHARED_PRESENTATION_DIR__ . "head.php" ?>
 <!-- End of Header -->
 
 <body class="g-sidenav-show bg-gray-100" onload="start()">
 
   <!-- Side Panel -->
-  <?php require_once "shared_presentation/sidepanel.php" ?>
+  <?php require_once __SHARED_PRESENTATION_DIR__ . "sidepanel.php" ?>
   <!-- End Side Panel -->
 
   <main class="main-content position-relative max-height-vh-100 h-100 mt-1 border-radius-lg ">
 
     <!-- Navbar -->
-    <?php require_once "shared_presentation/navbar.php" ?>
+    <?php require_once __SHARED_PRESENTATION_DIR__ . "navbar.php" ?>
     <!-- End Navbar -->
 
     <div class="container-fluid py-4">
@@ -62,7 +74,7 @@
       <button type="submit" name="submit" class="btn btn-outline-danger" form="create_form">Create</button>
 
       <!-- Footer -->
-      <?php require_once "shared_presentation/footer.php" ?>
+      <?php require_once __SHARED_PRESENTATION_DIR__ . "footer.php" ?>
       <!-- End Footer -->
 
     </div>

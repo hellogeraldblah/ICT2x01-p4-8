@@ -1,39 +1,18 @@
-<!--
-=========================================================
-* Soft UI Dashboard - v1.0.3
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/soft-ui-dashboard
-* Copyright 2021 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://www.creative-tim.com/license)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
--->
 <!DOCTYPE html>
 <html lang="en">
 
 <?php $page="Sign-up" ?>
 
 <!-- Header -->
-<?php require_once "shared_presentation/head.php" ?>
+<?php
+  require_once "../constants.php";
+  require_once __SHARED_PRESENTATION_DIR__ . "head.php"
+?>
 <!-- End of Header -->
 
 <body class="g-sidenav-show  bg-gray-100">
   <section class="min-vh-100 mb-8">
     <div class="page-header align-items-start min-vh-50 pt-5 pb-11 m-3 border-radius-lg" style="background-image: url('../assets/img/curved-images/curved14.jpg');">
-      <!-- <span class="mask bg-gradient-dark opacity-6"></span>
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-lg-5 text-center mx-auto">
-            <h1 class="text-white mb-2 mt-5">Welcome!</h1>
-            <p class="text-lead text-white">Use these awesome forms to login or create new account in your project for free.</p>
-          </div>
-        </div>
-      </div> -->
     </div>
     <div class="container">
       <div class="row mt-lg-n10 mt-md-n11 mt-n10">
@@ -44,21 +23,19 @@
             </div>
 
             <div class="card-body">
+             <form method="POST" action="../../logic/create_user_form.php" enctype="multipart/form-data" id="create_form">
               <form role="form text-left">
                 <div class="mb-3">
-                  <input type="text" class="form-control" placeholder="Name" aria-label="Name" aria-describedby="email-addon">
+                  <input type="text" class="form-control" placeholder="Name" aria-label="Name" aria-describedby="email-addon" name="signup_name" required/>
                 </div>
                 <div class="mb-3">
-                  <input type="email" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="email-addon">
+                  <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="email-addon" name="signup_username" required/>
                 </div>
                 <div class="mb-3">
-                  <input type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="password-addon">
-                </div>
-                <div class="mb-3">
-                  <input type="password" class="form-control" placeholder="Retype-Password" aria-label="Password" aria-describedby="password-addon">
+                  <input type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="password-addon" name="signup_password" required/>
                 </div>
                 <div class="text-center">
-                  <button type="button" class="btn bg-gradient-dark w-100 my-4 mb-2">Sign up</button>
+                  <button type="submit" class="btn bg-gradient-dark w-100 my-4 mb-2" form="create_form">Sign up</button>
                 </div>
                 <p class="text-sm mt-3 mb-0">Already have an account? <a href="sign-in.php" class="text-dark font-weight-bolder">Sign in</a></p>
               </form>

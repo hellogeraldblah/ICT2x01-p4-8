@@ -1,47 +1,58 @@
+<?php
+session_start();
+
+if (!isset($_SESSION["user_id"]))
+{
+  header("location: __INDEX_PAGE__");
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
-
-<?php $page="Play Challenge"; ?>
+<?php
+  $page="Play Challenge";
+  require_once "../constants.php";
+?>
 
 <!-- Challenge Class -->
 <?php
-require_once "../logic/challengeManagement.php";
+require_once __LOGIC_DIR__ . "challengeManagement.php";
 
-$challenge_list = $challenge_management_obj->get_challenges();
+$challenge_list = $challenge_management_obj->get_challenges($conn);
 
 ?>
 
 <!-- Header -->
-<?php require_once "shared_presentation/head.php" ?>
+<?php require_once __SHARED_PRESENTATION_DIR__ . "head.php" ?>
 <!-- End of Header -->
 
 <!-- <body class="g-sidenav-show bg-gray-100" onload="start()"> -->
   <body class="g-sidenav-show bg-gray-100">
 
   <!-- Side Panel -->
-  <?php require_once "shared_presentation/sidepanel.php" ?>
+  <?php require_once __SHARED_PRESENTATION_DIR__ . "sidepanel.php" ?>
   <!-- End Side Panel -->
 
   <main class="main-content position-relative max-height-vh-100 h-100 mt-1 border-radius-lg ">
 
     <!-- Navbar -->
-    <?php require_once "shared_presentation/navbar.php" ?>
+    <?php require_once __SHARED_PRESENTATION_DIR__ . "navbar.php" ?>
     <!-- End Navbar -->
 
-    <?php $challenge = $challenge_management_obj->search_challenge($_POST["challenge_id"]); ?>
+    <?php $challenge = $challenge_management_obj->search_challenge($conn, $_GET["challenge_id"]); ?>
 
-    <div class="container-fluid py-4">
+    <div class="container-fluid py-4 class-1">
       <div class="row">
         <div class="col-sm">
           <!-- Button trigger modal -->
-          <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#tutorialModal">
+          <button type="button" class="btn btn-outline-dark" onclick="start_tour()">
             Help
           </button>
         </div>
       </div>
 
       <div class="row">
-        <div class="col-sm">
+        <div class="col-sm class-2">
           <h5 class="font-weight-bolder mb-0">
             Number of moves:
             <span class="text-danger font-weight-bolder" id="current_moves">0</span>
@@ -60,20 +71,19 @@ $challenge_list = $challenge_management_obj->get_challenges();
 
       <div class="row my-4">
         <!-- Container for map design -->
-        <div class="col-lg-4">
+        <div class="col-lg-4" id="map_container">
           <div class="card h-100">
             <div class="card-header pb-0">
               <h4><?php echo $challenge->get_name(); ?></h4>
               <h6>Map #<?php echo $challenge->get_id(); ?></h6>
             </div>
             <div class="card-body px-0 pb-2 text-center">
-              <!-- <img src="<?php echo $challenge->get_filepath(); ?>" alt="Challenge Map" class="img-fluid border-radius-lg"> -->
               <canvas class="img-fluid border-radius-lg" id="canvas" width="320" height="320"></canvas>
             </div>
           </div>
         </div>
 
-        <div class="col-lg-2">
+        <div class="col-lg-2" id="history_container">
           <div class="card h-100">
             <div class="card-header pb-0">
               <div class="row">
@@ -100,7 +110,7 @@ $challenge_list = $challenge_management_obj->get_challenges();
             </div>
           </div>
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-6" id="command_container">
           <div class="card h-100">
             <div class="card-header pb-0">
               <h6>Commands</h6>
@@ -109,7 +119,7 @@ $challenge_list = $challenge_management_obj->get_challenges();
               <div id="blocklyDiv" style="height: 480px; width: auto;"></div>
 
               <!-- Blockly xml asset -->
-              <?php require_once "blockly.php"; ?>
+              <?php require_once __SHARED_PRESENTATION_DIR__ . "blockly.php"; ?>
               <!-- End Blockly xml asset -->
 
             </div>
@@ -117,11 +127,11 @@ $challenge_list = $challenge_management_obj->get_challenges();
         </div>
       </div>
 
-      <button type="button" class="btn btn-outline-primary" onclick="showCode()" data-bs-toggle="modal" data-bs-target="#showCodeModal">
+      <button type="button" class="btn btn-outline-primary" onclick="showCode()" id="show_container" data-bs-toggle="modal" data-bs-target="#showCodeModal">
         Show Code
       </button>
 
-      <button type="button" class="btn btn-outline-primary" onclick="runCode()">
+      <button type="button" class="btn btn-outline-primary" onclick="runCode()" id="run_container">
         Run Code
       </button>
       <!-- Footer -->
@@ -129,32 +139,6 @@ $challenge_list = $challenge_management_obj->get_challenges();
       <!-- End Footer -->
     </div>
   </main>
-
-    <!-- Tutorial Modal -->
-    <div class="modal fade" id="tutorialModal" tabindex="-1" role="dialog" aria-labelledby="tutorialModal" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">How to play?</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body" id="tutorial">
-            Hello there! Your objective is the get the car (red circle) to the end of the maze! <br/><br/>
-            How? <br/>
-            You have to use the movement commands [Move Up, Move Down, Move Left, Move Right] to direct the car. <br/><br/>
-            You can also make use of the other commands to learn more about logic! <br/>
-            For example, instead of placing 5 [Move Up], you could use the loop "Repeat 5 times"! <br/><br/>
-            And when you're ready, you can click on "Run Code" and see the car in action! <br/>
-            You can run it multiple times! The game will stop when you reach the end of the maze!
-           </div>
-          <div class="modal-footer">
-            <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
-          </div>
-        </div>
-      </div>
-    </div>
 
     <!-- Show Code Modal -->
     <div class="modal fade" id="showCodeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -183,16 +167,24 @@ $challenge_list = $challenge_management_obj->get_challenges();
 
 <!-- Blockly javascript -->
 <script src="https://unpkg.com/blockly/blockly.min.js"></script>
-<!-- <script src="https://unpkg.com/@blockly/dev-tools@2.0.0/dist/index.js"></script> -->
 <script src="../assets/js/blockly/index.js"></script>
 <script src="../assets/js/blockly/javascript_compressed.js"></script>
 <!-- End of Blockly javascript -->
+
+<!-- Tutorial javascript -->
+<script src="../assets/node_modules/popperjs/core/dist/umd/shepherd.min.js"></script>
+<script src="../assets/node_modules/shepherd.js/dist/js/shepherd.min.js"></script> -->
+<link rel="stylesheet" href="../assets/node_modules/shepherd.js/dist/css/shepherd.css"/>
+<!-- End of Tutorial javascript -->
 
 <script src="../assets/js/core/popper.min.js"></script>
 <script src="../assets/js/core/bootstrap.min.js"></script>
 <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
 <script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
 <script src="../assets/js/plugins/chartjs.min.js"></script>
+
+<!-- <script src="https://cdn.jsdelivr.net/npm/shepherd.js@5.0.1/dist/js/shepherd.js"></script> -->
+
 <script>
     var moves = 0;
     var canvas = document.getElementById("canvas");
@@ -200,7 +192,7 @@ $challenge_list = $challenge_management_obj->get_challenges();
     var circle_context = canvas.getContext("2d");
 
     var map_img = new Image();
-    map_img.src = "<?php echo __REL_CHALLENGES_IMG_DIR__ . $challenge->get_filepath(); ?>";
+    map_img.src = "<?php echo __CHALLENGES_MAP_DIR__ . $challenge->get_filepath(); ?>";
 
     var start_x = 48;
     var start_y = 304;
@@ -384,6 +376,124 @@ $challenge_list = $challenge_management_obj->get_challenges();
       }
       Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
     }
+  </script>
+  <script>
+
+  const tour = new Shepherd.Tour({
+    defaultStepOptions: {
+      cancelIcon: {
+        enabled: true
+      },
+      scrollTo: { behavior: 'smooth', block: 'center' }
+    }
+  });
+
+  tour.addStep({
+    title: 'Playing a challenge (1/4)',
+    text: `This is the map and the red circle represents your car! When you send a command, your car and the red circle moves together!`,
+    attachTo: {
+      element: '#map_container',
+      on: 'top'
+    },
+    classes: 'shepherd shepherd-open shepherd-theme-arrows shepherd-transparent-text',
+    buttons: [
+      {
+        action() {
+          return this.back();
+        },
+        classes: 'shepherd shepherd-open shepherd-theme-arrows shepherd-transparent-text',
+        text: 'Back'
+      },
+      {
+        action() {
+          return this.next();
+        },
+        text: 'Next'
+      }
+    ],
+    id: 'creating'
+  });
+
+  tour.addStep({
+    title: 'Playing a challenge (2/4)',
+    text: `This is the movement history, any command you send will be shown here!`,
+    attachTo: {
+      element: '#history_container',
+      on: 'top'
+    },
+    buttons: [
+      {
+        action() {
+          return this.back();
+        },
+        classes: 'shepherd-theme-dark shepherd-button-secondary',
+        text: 'Back'
+      },
+      {
+        action() {
+          return this.next();
+        },
+        text: 'Next'
+      }
+    ],
+    id: 'creating'
+  });
+
+  tour.addStep({
+    title: 'Playing a challenge (3/4)',
+    text: `This is the command panel, you can cook up a mix of commands using the blocks to move the car to your destination!`,
+    attachTo: {
+      element: '#command_container',
+      on: 'top'
+    },
+    buttons: [
+      {
+        action() {
+          return this.back();
+        },
+        classes: 'shepherd-theme-dark shepherd-button-secondary',
+        text: 'Back'
+      },
+      {
+        action() {
+          return this.next();
+        },
+        text: 'Next'
+      }
+    ],
+    id: 'creating'
+  });
+
+  tour.addStep({
+    title: 'Playing a challenge (4/4)',
+    text: `This is the map and the red circle represents your car! When you send a command, your car and the red circle moves together!`,
+    attachTo: {
+      element: '#run_container',
+      on: 'top'
+    },
+    buttons: [
+      {
+        action() {
+          return this.back();
+        },
+        classes: 'shepherd-theme-dark shepherd-button-secondary',
+        text: 'Back'
+      },
+      {
+        action() {
+          return this.complete();
+        },
+        text: 'Done'
+      }
+    ],
+    id: 'creating'
+  });
+
+  function start_tour() {
+    tour.start();
+  }
+
+
   </script>
   <!-- Github buttons -->
   <script async defer src="https://buttons.github.io/buttons.js"></script>

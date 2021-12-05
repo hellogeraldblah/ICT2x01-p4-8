@@ -1,29 +1,42 @@
+<?php
+session_start();
+
+if (!isset($_SESSION["user_id"]))
+{
+  header("location: __INDEX_PAGE__");
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
-<?php $page="Achievements"; ?>
+<?php
+  $page="Achievements";
+  require_once "../constants.php";
+?>
 
 <!-- Achievement Class -->
 <?php
-require_once "../logic/achievementManagement.php";
+require_once __LOGIC_DIR__ . "achievementManagement.php";
 $achievementsManagement = new AchievementManagement($conn);
 $achievements = $achievementsManagement->displayAllAchievements();
 ?>
 
 <!-- Header -->
-<?php require_once "shared_presentation/head.php" ?>
+<?php require_once __SHARED_PRESENTATION_DIR__ . "head.php" ?>
 <!-- End of Header -->
 
 <body class="g-sidenav-show bg-gray-100">
 
   <!-- Side Panel -->
-  <?php require_once "shared_presentation/sidepanel.php" ?>
+  <?php require_once __SHARED_PRESENTATION_DIR__ . "sidepanel.php" ?>
   <!-- End Side Panel -->
 
   <main class="main-content position-relative max-height-vh-100 h-100 mt-1 border-radius-lg ">
 
     <!-- Navbar -->
-    <?php require_once "shared_presentation/navbar.php" ?>
+    <?php require_once __SHARED_PRESENTATION_DIR__ . "navbar.php" ?>
     <!-- End Navbar -->
 
     <div class="container-fluid py-4">
@@ -35,19 +48,18 @@ $achievements = $achievementsManagement->displayAllAchievements();
             $res = $conn->query("SELECT name,filepath FROM challenges WHERE id = '$challengeId'");
             while($row = $res-> fetchArray()){
                 $name = $row['name'];
-                $filepath = "/assets/img/challenges" . "/" . $row['filepath'];
-            }
+                $filepath = "../assets/img/challenges" . "/" . $row['filepath'];
             ?>
         <div class="col-lg-3">
           <div class="card">
 
               <div class="card-body p-3">
               <div class="card-header p-0 mx-3 mt-3 position-relative z-index-1 text-center">
-                <img src=<?php echo $filepath?> class="img-fluid border-radius-lg">
+                <img src=<?php echo $filepath; ?> class="img-fluid border-radius-lg">
               </div>
               </br>
               <a href="javascript:" class="card-title h5 d-block text-darker text-center" >
-                <?php echo $name?>
+                <?php echo $name; ?>
               </a>
               <p class="card-description mb-4 text-center">
                 <div class="row text-center">
@@ -65,7 +77,7 @@ $achievements = $achievementsManagement->displayAllAchievements();
             </div>
           </div><br />
         </div>
-        <?php }} else{
+      <?php }}} else{
         ?>
         <div class="col-lg-3">
             <div class="card">
@@ -86,7 +98,7 @@ $achievements = $achievementsManagement->displayAllAchievements();
       </div>
 
       <!-- Footer -->
-      <?php require_once "shared_presentation/footer.php" ?>
+      <?php require_once __SHARED_PRESENTATION_DIR__ . "footer.php" ?>
       <!-- End Footer -->
 
     </div>

@@ -1,13 +1,11 @@
 <?php
 
-define("__DATABASE_DIR__", "databases" . "/");
+require_once "../constants.php";
 
 // get database connection
 function connect($db_filepath=""){
 
-  if (empty($db_filepath)){
-      $db_filepath = __DATABASE_DIR__ .  "codar-db.sqlite";
-  }
+  $db_filepath = __CODAR_DATABASE_FILE__;
 
   if (!file_exists($db_filepath)) {
     echo "Cannot find database file!" . $db_filepath;
