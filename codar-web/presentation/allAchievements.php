@@ -16,8 +16,9 @@ if (!isset($_SESSION["user_id"]))
 <!-- Achievement Class -->
 <?php
 require_once "../logic/achievementManagement.php";
-$achievementsManagement = new AchievementManagement($conn);
-$achievements = $achievementsManagement->displayAllAchievements();
+$achievementsArr = array();
+$achievementsManagement = new AchievementManagement();
+$achievements = $achievementsManagement->displayAllAchievements($conn,$achievementsArr);
 ?>
 
 <!-- Header -->

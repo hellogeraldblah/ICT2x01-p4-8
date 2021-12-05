@@ -19,7 +19,7 @@ require_once "../logic/achievementManagement.php";
 
 $challenge = $challenge_management_obj->search_challenge($_POST["challenge_id"]);
 $earned_stars = $challenge_management_obj->determineNumberOfStars($_POST["challenge_id"], $_POST["moves"]);
-$achievementManagement_obj->awardAchievement($_SESSION["user_id"],$_POST["challenge_id"],$earned_stars); //need to change to session ID
+$achievementManagement_obj->awardAchievement($conn, $_SESSION["user_id"],$_POST["challenge_id"],$earned_stars); //need to change to session ID
 
 ?>
 
