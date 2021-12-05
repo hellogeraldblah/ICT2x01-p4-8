@@ -182,7 +182,8 @@ The framework we have chosen is the [Codeception Framework](https://codeception.
 3. Execute the following command  
 `./codecept.phar run unit --coverage --coverage-html`  
 \* if you encounter an error specifying insufficient permissions, you might consider using `sudo`.
-4. Visit the following directory `codar-web/tests/_output/coverage/challengeManagement.php.html` to view the HTML report of the test suite.
+
+\* Visit the following directory `codar-web/tests/_output/coverage/challengeManagement.php.html` to view the HTML report of the test suite.
 
 
 #### Test Cases
@@ -203,8 +204,8 @@ The challengeManagementTest file can be located at `codar-web/tests/unit/challen
 - `testDetermineNumberOfStars()`
 
 
-#### Test Suite Coverage
-The full HTML report coverage can be found in `codar-web/tests/_output/coverage/challengeManagement.php.html`. Additionally, the report showcases the number of test cases that the line was used in.
+#### Test Suite Code Coverage Statistics
+The code coverage statistic was generated using [Codeception](https://codeception.com/) and the [PCOV](https://github.com/krakjoe/pcov) extension. The full HTML report coverage can be found in `codar-web/tests/_output/coverage/challengeManagement.php.html`. Additionally, the report showcases the number of test cases that the line was used in.
 
 ![HTML Coverage](readme_assets/html-coverage.png)  
 
