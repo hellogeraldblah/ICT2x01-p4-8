@@ -1,7 +1,9 @@
 <?php
-if(!defined("__ROOT__")) define("__ROOT__", $_SERVER["DOCUMENT_ROOT"] . "/");
-require_once "../databases/database.php";
-require_once "../logic/classes/achievement.php";
+
+require_once "../constants.php";
+
+require_once __DATABASE_DIR__ . "database.php";
+require_once __CLASSES_DIR__ . "achievement.php";
 
 class AchievementManagement
 {

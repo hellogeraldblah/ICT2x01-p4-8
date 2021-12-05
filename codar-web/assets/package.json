@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "shepherd.js": "^8.3.1"
+  }
+}

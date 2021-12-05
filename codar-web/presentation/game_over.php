@@ -3,41 +3,44 @@ session_start();
 
 if (!isset($_SESSION["user_id"]))
 {
-  header("location: ../index.php");
+  header("location: __INDEX_PAGE__");
 }
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 
-<?php $page="Game Over"; ?>
+<?php
+  $page="Game Over";
+  require_once "../constants.php";
+?>
 
 <!-- Challenge Class -->
 <?php
-require_once "../logic/challengeManagement.php";
-require_once "../logic/achievementManagement.php";
+require_once __LOGIC_DIR__ . "challengeManagement.php";
+require_once __LOGIC_DIR__ . "achievementManagement.php";
 
-$challenge = $challenge_management_obj->search_challenge($_POST["challenge_id"]);
-$earned_stars = $challenge_management_obj->determineNumberOfStars($_POST["challenge_id"], $_POST["moves"]);
+$challenge = $challenge_management_obj->search_challenge($conn, $_POST["challenge_id"]);
+$earned_stars = $challenge_management_obj->determineNumberOfStars($conn, $_POST["challenge_id"], $_POST["moves"]);
 $achievementManagement_obj->awardAchievement($_SESSION["user_id"],$_POST["challenge_id"],$earned_stars); //need to change to session ID
 
 ?>
 
 <!-- Header -->
-<?php require_once "shared_presentation/head.php" ?>
+<?php require_once __SHARED_PRESENTATION_DIR__ . "head.php" ?>
 <!-- End of Header -->
 
 <!-- <body class="g-sidenav-show bg-gray-100" onload="start()"> -->
   <body class="g-sidenav-show bg-gray-100">
 
   <!-- Side Panel -->
-  <?php require_once "shared_presentation/sidepanel.php" ?>
+  <?php require_once __SHARED_PRESENTATION_DIR__ . "sidepanel.php" ?>
   <!-- End Side Panel -->
 
   <main class="main-content position-relative max-height-vh-100 h-100 mt-1 border-radius-lg ">
 
     <!-- Navbar -->
-    <?php require_once "shared_presentation/navbar.php" ?>
+    <?php require_once __SHARED_PRESENTATION_DIR__ . "navbar.php" ?>
     <!-- End Navbar -->
 
     <div class="container-fluid py-4">
@@ -63,7 +66,7 @@ $achievementManagement_obj->awardAchievement($_SESSION["user_id"],$_POST["challe
                     <p class="text-center">
                       <?php echo "You have completed " . $challenge->get_name() ." in " . $_POST["moves"] . " moves!"; ?>
                     </p>
-                    <form method="POST">
+                    <form method="GET">
                       <input type="hidden" name="challenge_id" value=<?php echo $challenge->get_id(); ?>>
                     <div class="row text-center">
                       <div class="col-sm">
@@ -79,7 +82,7 @@ $achievementManagement_obj->awardAchievement($_SESSION["user_id"],$_POST["challe
             </div>
           </div>
 
-      <?php require_once "shared_presentation/footer.php" ?> <!-- Footer -->
+      <?php require_once __SHARED_PRESENTATION_DIR__ . "footer.php" ?> <!-- Footer -->
     </div>
 
 

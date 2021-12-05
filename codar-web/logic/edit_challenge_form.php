@@ -1,10 +1,9 @@
 <?php
 
-    require_once "../logic/challengeManagement.php";
+    require_once "../constants.php";
+    require_once __LOGIC_DIR__ . "utility.php";
+    require_once __LOGIC_DIR__ . "challengeManagement.php";
 
-if(!defined("__ROOT__")) define("__ROOT__", $_SERVER["DOCUMENT_ROOT"] . "/");
-if(!defined("__UPLOADS_DIR__")) define("__UPLOADS_DIR__", __ROOT__ . "assets/img/challenges/");
-if(!defined("__MAX_FILE_SIZE__")) define("__MAX_FILE_SIZE__", 5000000); # Maximum challenge file size: 5mb
 
     $edit_name = false;
     $edit_moves = false;
@@ -16,7 +15,7 @@ if(!defined("__MAX_FILE_SIZE__")) define("__MAX_FILE_SIZE__", 5000000); # Maximu
     $new_challenge_moves = $_POST["number_of_moves"];
     $new_challenge_file = $_FILES["fileToUpload"];
 
-    $challenge = $challenge_management_obj->search_challenge($_POST["challenge_id"]);
+    $challenge = $challenge_management_obj->search_challenge($conn, $_POST["challenge_id"]);
 
     if ($challenge->get_name() != $new_challenge_name) {
       $error_message .= $challenge_management_obj->validate_name($new_challenge_name);
@@ -35,11 +34,11 @@ if(!defined("__MAX_FILE_SIZE__")) define("__MAX_FILE_SIZE__", 5000000); # Maximu
 
     if (empty($error_message)) {
       if ($edit_name) {
-        $challenge_management_obj->edit_challenge_name($challenge->get_id(), $new_challenge_name);
+        $challenge_management_obj->edit_challenge_name($conn, $challenge->get_id(), $new_challenge_name);
       }
 
       if ($edit_moves) {
-        $challenge_management_obj->edit_challenge_moves($challenge->get_id(), $new_challenge_moves);
+        $challenge_management_obj->edit_challenge_moves($conn, $challenge->get_id(), $new_challenge_moves);
       }
 
       if ($edit_file) {
@@ -49,6 +48,7 @@ if(!defined("__MAX_FILE_SIZE__")) define("__MAX_FILE_SIZE__", 5000000); # Maximu
       header("Location: ../presentation/challenges.php");
     } else {
       echo "<script>alert('" . $error_message . "')</script>";
+      // header("Location ../presentation/edit_challenge.php");
       echo "<script>window.history.back();</script>";
     }
 
