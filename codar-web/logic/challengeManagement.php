@@ -16,11 +16,11 @@ class ChallengeManagement {
   private $challenges = array();
   private $conn;
 
-  function set_conn($conn){
+  public function set_conn($conn){
     $this->conn = $conn;
   }
 
-  function retrieve_challenges_from_db() {
+  public function retrieve_challenges_from_db() {
     $res = $this->conn->query("SELECT * FROM challenges");
     $temp_array = array();
 
@@ -37,7 +37,7 @@ class ChallengeManagement {
     return $this->challenges;
   }
 
-  public function get_last_id() {
+  private function get_last_id() {
     $number_of_rows = $this->conn->querySingle("SELECT COUNT(*) as COUNT FROM challenges");
     return $number_of_rows;
   }

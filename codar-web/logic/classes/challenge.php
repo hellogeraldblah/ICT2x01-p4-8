@@ -14,31 +14,31 @@ class Challenge {
     $this->number_of_moves = $number_of_moves;
   }
 
-  function get_id() {
+  public function get_id() {
     return $this->id;
   }
 
-  function get_name() {
+  public function get_name() {
     return $this->name;
   }
 
-  function set_name($name) {
+  public function set_name($name) {
     $this->name = $name;
   }
 
-  function get_filepath() {
+  public function get_filepath() {
     return $this->filepath;
   }
 
-  function set_filepath($filepath) {
+  public function set_filepath($filepath) {
     $this->filepath = $filepath;
   }
 
-  function get_number_of_moves() {
+  public function get_number_of_moves() {
     return $this->number_of_moves;
   }
 
-  function set_number_of_moves($number_of_moves) {
+  public function set_number_of_moves($number_of_moves) {
     $this->number_of_moves = $number_of_moves;
   }
 
