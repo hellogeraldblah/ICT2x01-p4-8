@@ -4,7 +4,7 @@
   require_once __DATABASE_DIR__ . "database.php";
 
   $conn = connect();
-  $user_registration = new UserManagement($conn);
+  $user_registration = new UserManagement();
 
   $signup_name = $_POST["signup_name"];
   $signup_username = $_POST["signup_username"];
@@ -13,11 +13,11 @@
   $error_message = $user_registration->validate_signup($signup_name, $signup_username, $signup_password);
 
   if (empty($error_message)) {
-    $user_registration->create_user($signup_name, $signup_username, $signup_password);
+    $user_registration->create_user($conn, $signup_name, $signup_username, $signup_password);
     header("Location: ../index.php");
   } else {
     echo "<script>alert('" . $error_message . "')</script>";
-    echo "<script>window.history.back();</script>";
+    // echo "<script>window.history.back();</script>";
   }
 
 ?>
