@@ -6,7 +6,7 @@
   $conn = connect();
   $user_registration = new UserManagement($conn);
 
-if(!defined("__ROOT__")) define("__ROOT__", $_SERVER["DOCUMENT_ROOT"] . "/");
+  if(!defined("__ROOT__")) define("__ROOT__", $_SERVER["DOCUMENT_ROOT"] . "/");
 
 
     $signup_name = $_POST["signup_name"];
