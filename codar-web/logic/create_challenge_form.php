@@ -1,5 +1,5 @@
 <?php
-
+    require_once "../logic/utility.php";
     require_once "../logic/challengeManagement.php";
     require_once "../logic/achievementManagement.php";
 
@@ -16,7 +16,7 @@ if(!defined("__MAX_FILE_SIZE__")) define("__MAX_FILE_SIZE__", 5000000); # Maximu
     if (empty($error_message)) {
 
       $filename = $challenge_management_obj->generate_filename();
-      $challenge_management_obj->create_challenge($challenge_name, $challenge_moves, $challenge_file_info);
+      $rowId = $challenge_management_obj->create_challenge($challenge_name, $challenge_moves, $challenge_file_info);
       upload_file($challenge_file_info, $filename);
       //create achievement
       $achievementManagement_obj->createAchievement($rowId);
