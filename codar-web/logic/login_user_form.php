@@ -1,7 +1,8 @@
 <?php
 
-  require_once "../logic/userManagement.php";
-  require_once "../databases/database.php";
+  require_once "../constants.php";
+  require_once __LOGIC_DIR__ . "userManagement.php";
+  require_once __DATABASE_DIR__ . "database.php";
 
   $conn = connect();
   $user_login = new UserManagement($conn);

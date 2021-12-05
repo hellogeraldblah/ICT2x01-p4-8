@@ -1,18 +1,15 @@
 <?php
 
-if(!defined("__ROOT__")) define("__ROOT__", $_SERVER["DOCUMENT_ROOT"] . "/");
-define("__UPLOADS_DIR__", __ROOT__ . "assets/img/challenges/");
-
-if(!defined("__REL_CHALLENGES_IMG_DIR__"))define("__REL_CHALLENGES_IMG_DIR__",  "/assets/img/challenges" . "/");
+require_once "../constants.php";
 
 if(!defined("__MAX_CHALLENGE_MOVES__")) define("__MAX_CHALLENGE_MOVES__", 100); # Maximum moves a challenge can have
 if(!defined("__MAX_FILE_SIZE__")) define("__MAX_FILE_SIZE__", 5000000); # Maximum challenge file size: 5mb
 
-require_once "../databases/database.php";
-require_once "classes/challenge.php";
+require_once __DATABASE_DIR__ . "database.php";
+require_once __CLASSES_DIR__ . "challenge.php";
 
 class ChallengeManagement {
-  // Challenge_List entity, stores array of Challenge objects
+
   private $challenges = array();
   private $conn;
 

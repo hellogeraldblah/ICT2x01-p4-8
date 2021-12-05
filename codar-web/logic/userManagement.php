@@ -1,6 +1,7 @@
 <?php
 
-require_once "classes/user.php";
+require_once "../constants.php";
+require_once __CLASSES_DIR__ . "user.php";
 
 class UserManagement {
   private $conn;
