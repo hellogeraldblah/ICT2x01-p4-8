@@ -16,6 +16,7 @@
 
       $filename = $challenge_management_obj->generate_filename($conn);
       $challenge_management_obj->create_challenge($conn, $challenge_name, $challenge_moves, $challenge_file_info);
+
       upload_file($challenge_file_info, $filename);
       //create achievement
       $achievementManagement_obj->createAchievement($rowId);
