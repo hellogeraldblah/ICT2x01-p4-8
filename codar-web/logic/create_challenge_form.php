@@ -1,5 +1,6 @@
 <?php
 
+    require_once "../logic/utility.php";
     require_once "../logic/challengeManagement.php";
     require_once "../logic/achievementManagement.php";
 
