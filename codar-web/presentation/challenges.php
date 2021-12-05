@@ -55,7 +55,7 @@ $challenge_list = $challenge_management_obj->get_challenges();
                 </a>
                 <p class="card-description mb-4 text-center">
                   <!-- [!] Suggestion to use session instead of form -->
-                  <form method="POST">
+                  <form method="GET">
                     <div class="row text-center">
                       <input type="hidden" name="challenge_id" value=<?php echo $challenge->get_id(); ?>>
                       <div class="col-sm">

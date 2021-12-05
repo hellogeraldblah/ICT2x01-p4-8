@@ -15,7 +15,9 @@ if (!isset($_SESSION["user_id"]))
 <?php
 require_once "../logic/challengeManagement.php";
 
-$challenge = $challenge_management_obj->search_challenge($_POST["challenge_id"]);
+$challenge = $challenge_management_obj->search_challenge($_GET["challenge_id"]);
+
+
 ?>
 
 <!-- Header -->

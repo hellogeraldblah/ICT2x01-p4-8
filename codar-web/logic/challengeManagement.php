@@ -9,7 +9,7 @@ if(!defined("__MAX_CHALLENGE_MOVES__")) define("__MAX_CHALLENGE_MOVES__", 100); 
 if(!defined("__MAX_FILE_SIZE__")) define("__MAX_FILE_SIZE__", 5000000); # Maximum challenge file size: 5mb
 
 require_once "../databases/database.php";
-require_once "../logic/classes/challenge.php";
+require_once "classes/challenge.php";
 
 class ChallengeManagement {
   // Challenge_List entity, stores array of Challenge objects

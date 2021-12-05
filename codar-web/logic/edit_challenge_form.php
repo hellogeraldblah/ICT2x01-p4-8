@@ -49,6 +49,7 @@ if(!defined("__MAX_FILE_SIZE__")) define("__MAX_FILE_SIZE__", 5000000); # Maximu
       header("Location: ../presentation/challenges.php");
     } else {
       echo "<script>alert('" . $error_message . "')</script>";
+      // header("Location ../presentation/edit_challenge.php");
       echo "<script>window.history.back();</script>";
     }
 
