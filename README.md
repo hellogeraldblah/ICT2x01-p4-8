@@ -149,8 +149,8 @@ Here is an embedded video that runs through all the test cases that we have crea
 | Test Case Name | Open |
 | Precondition | Browser is already opened |
 | Test Steps | 1. Type Type “http://localhost:8000/index.php” into browsers’ URL bar
-               2. Press enter on the keyboard
-               3. Observe Screen |
+2. Press enter on the keyboard
+3. 3. Observe Screen |
 | Test Data | - |
 | Expected Results | Open |
 | Actual Results | Open |
