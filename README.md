@@ -96,10 +96,7 @@ The team has organised the working directory to mirror the chosen layered softwa
 3. Codeception PHP Testing Framework v4.1.22 (For whitebox testing)
 
 ## Prerequisites
-Between Windows or Mac/Linux OS, PHP is required to run Codar along with the SQLite3 extension. The following are guides on the installation of software for the respective OS.
-
 ### Mac/Linux OS
-1. Install PHP v7.3/7.4  
 [Linux guide to install php v7.3](https://askubuntu.com/questions/1231381/unable-to-install-php-7-3-on-ubuntu-20-04)  
 `sudo apt install php7.4`
 2. Install SQLite3 extension for PHP  
@@ -107,11 +104,8 @@ Between Windows or Mac/Linux OS, PHP is required to run Codar along with the SQL
 `sudo apt install php7-sqlite`
 
 ### Windows OS
-1. Install PHP  
 [Install PHP from official PHP downloads page](https://www.php.net/downloads)  
-2. For convenience, configure php.exe as system environment variable   
-[Configure php.exe as part of OS environment variable](https://stackoverflow.com/questions/2736528/how-to-set-the-env-variable-for-php)
-3. Enable SQLite3 for php.exe   
+[Set php.exe as part of OS environment variable](https://stackoverflow.com/questions/2736528/how-to-set-the-env-variable-for-php)  
 [Windows guide to enable sqlite3 extension](https://roytuts.com/configure-php-7-and-sqlite3-in-windows/)  
 
 ### How To Run Codar
@@ -140,10 +134,6 @@ For example (features/x):
 For example (bugfix/x):  
 [bugfixes/login_system] - Branch containing the fix for a bug in login system
 [bugfixes/view_profile] - Branch containing the fix for a visual bug in profile page
-
-5. **whiteboxtest/x** -- Branch containing code for whitebox testing
-For example (whiteboxtest/x):
-[whiteboxtest/codeception] - Branch containing codes and resources for the usage of codeception test framework
 
 ### Workflow Commandments
 1. Nobody shall commit to `main` except the owner and can only be merged from `development`
@@ -264,6 +254,4 @@ You can also view the report online with the following links:
 
 ![HTML Coverage Line Gif](readme_assets/html-testcase-coverage.gif)
 
-
-#### Codeception Unit Test Demonstration
-![Codeception demonstration gif](readme_assets/codeception_demo.gif)
+The framework we have chosen is the [Codeception Framework](https://codeception.com/) v4.1.22 which uses PHPUnit v8.5.20. Additionally, we have also enabled the [codecoverage](https://codeception.com/docs/11-Codecoverage) feature for test statistics. A custom test suite has been written to perform unit testing on the ChallengeManagement class.
