@@ -204,11 +204,14 @@ The challengeManagementTest file can be located at `codar-web/tests/unit/challen
 #### Test Suite Code Coverage Statistics
 The code coverage statistic was generated using [Codeception](https://codeception.com/) and the [PCOV](https://github.com/krakjoe/pcov) extension. The full HTML report coverage can be found in `codar-web/tests/_output/coverage/challengeManagement.php.html` or [here](https://htmlpreview.github.io/?https://github.com/hellogeraldblah/ICT2x01-p4-8/blob/whiteboxtest/codeception/codar-web/tests/_output/coverage/challengeManagement.php.html). Additionally, the report dashboard contains information such as the overall and function-specific cyclomatic complexity, line coverage of each function and the classes, and showcases which tests cover the corresponding lines.
 
+You can also view the report online with the following links: 
+- [ChallengeManagement Test Report](https://htmlpreview.github.io/?https://github.com/hellogeraldblah/ICT2x01-p4-8/blob/whiteboxtest/codeception/codar-web/tests/_output/coverage/challengeManagement.php.html)
+- [Report Dashboard](https://htmlpreview.github.io/?https://raw.githubusercontent.com/hellogeraldblah/ICT2x01-p4-8/whiteboxtest/codeception/codar-web/tests/_output/coverage/dashboard.html).
+
+
 ![HTML Coverage](readme_assets/html-coverage.png)  
 
 ![HTML Coverage Lines](readme_assets/html-coverage-lines.png)
-
-You can view the full report online [ChallengeManagement Test Report](https://htmlpreview.github.io/?https://github.com/hellogeraldblah/ICT2x01-p4-8/blob/whiteboxtest/codeception/codar-web/tests/_output/coverage/challengeManagement.php.html) or [Report Dashboard](https://htmlpreview.github.io/?https://raw.githubusercontent.com/hellogeraldblah/ICT2x01-p4-8/whiteboxtest/codeception/codar-web/tests/_output/coverage/dashboard.html).
 
 ![HTML Coverage Line Gif](readme_assets/html-testcase-coverage.gif)
 
