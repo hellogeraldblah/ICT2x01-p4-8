@@ -99,7 +99,7 @@ _Updated: **Sat 4 Dev 2021**_
 For example (features/x):  
 [features/login_system] - Branch containing development for login system  
 [features/create_challenges] - Branch containing development for creating challenges
-[features/view_achievements] - Branch containing development for the achievements page
+[features/view_achievements] - Branch containing development for the achievements page 
 
 4. **bugfixes/x** - Branches that are created for housing the fixing of bugs  
 For example (bugfix/x):  
@@ -111,9 +111,9 @@ For example (whiteboxtest/x):
 [whiteboxtest/codeception] - Branch containing codes and resources for the usage of codeception test framework
 
 ### Workflow Commandments
-1. Nobody shall commit to `main` and `development` branch  
-\* Exceptions to the development branch can be made under the following conditions:
-    - the changes you are planning to make do not require another branch (minor updates, perfective maintenance)
+1. Nobody shall commit to `main` and `development` branch
+1.1. Exceptions to the development branch can be made under the following conditions:
+    - the changes you are planning to make do not require another branch (minor updates, perfective maintenance) 
     - you are absolutely certain that your changes does not disrupt any member's development progress
     - you agree to hold all responsibility in the event of a disruption
 3. Any branch that are ready for merging with development must have a working application with the feature fully developed  
@@ -124,6 +124,7 @@ For example (whiteboxtest/x):
 ### Creating A New Feature/Fix Branch
 #### 1. Determine Meaningful Branch Name
 Ensure that the name of the branch correctly identifies the feature that you are planning to develop/fix.
+
 
 #### 2. Create The Branch
 If you are planning to add a new feature/fix, create the branch off the **development** branch. Unless the development of the new feature requires certain aspects of in-development branches. *please seek team approval before doing so.
