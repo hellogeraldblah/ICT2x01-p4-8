@@ -101,8 +101,10 @@ Between Windows or Mac/Linux OS, PHP is required to run Codar along with the SQL
 ### Mac/Linux OS
 1. Install PHP v7.3/7.4  
 [Linux guide to install php v7.3](https://askubuntu.com/questions/1231381/unable-to-install-php-7-3-on-ubuntu-20-04)  
+`sudo apt install php7.4`
 2. Install SQLite3 extension for PHP  
 [Linux guide to install and enable sqlite3 extension](https://stackoverflow.com/questions/948899/how-to-enable-sqlite3-for-php)  
+`sudo apt install php7-sqlite`
 
 ### Windows OS
 1. Install PHP  
@@ -114,15 +116,16 @@ Between Windows or Mac/Linux OS, PHP is required to run Codar along with the SQL
 
 ### How To Run Codar
 1. Change your working directory to ICT2x01-p4-8/codar-web/  
-`cd ../codar-web`
+`cd ../ICT2x01/codar-web`
 2. Execute command to host application on localhost, in this case port 8000 is used  
 `php -S localhost:8000`
 3. Open any browser and enter the url:  
-`localhost:8000/sign-in.php`
+`localhost:8000/index.php`
 
 ## Development Workflow
 _As of **Mon 15 Nov 2021**_  
 _Updated: **Sat 4 Dev 2021**_  
+_Updated: **Mon 6 Dev 2021**_  
 
 ### Branches
 1. **main** [`protected`] - The master/main branch, merges to this branch will indicate a production-ready application.
@@ -131,7 +134,7 @@ _Updated: **Sat 4 Dev 2021**_
 For example (features/x):  
 [features/login_system] - Branch containing development for login system  
 [features/create_challenges] - Branch containing development for creating challenges
-[features/view_achievements] - Branch containing development for the achievements page 
+[features/view_achievements] - Branch containing development for the achievements page
 
 4. **bugfixes/x** - Branches that are created for housing the fixing of bugs  
 For example (bugfix/x):  
@@ -143,37 +146,38 @@ For example (whiteboxtest/x):
 [whiteboxtest/codeception] - Branch containing codes and resources for the usage of codeception test framework
 
 ### Workflow Commandments
-1. Nobody shall commit to `main` and `development` branch  
-\* Exceptions to the `development` branch can be made under the following conditions:
+1. Nobody shall commit to `main` except the owner and can only be merged from `development`
+2. Direct updates to `development` branch can be made under the following conditions:
     - the changes you are planning to make do not require another branch (minor updates, perfective maintenance)
     - you are absolutely certain that your changes does not disrupt any member's development progress
     - you agree to hold all responsibility in the event of a disruption
-3. Any branch that are ready for merging with development must have a working application with the feature fully developed  
-3. Pull requests shall be approved by any collaborator, and only to the development branch for staging
+3. Any branch that is ready for merging with `development` must have a working application with the feature fully developed  
+3. Pull requests shall be approved by any collaborator, and only to the `development` branch for staging
 4. Commits shall be named meaningfully to provide clear understanding including a comprehensive description
 
 ### Creating A New Feature/Fix Branch
 #### 1. Determine Meaningful Branch Name
-Ensure that the name of the branch correctly identifies the feature that you are planning to develop/fix.
+Ensure that the name of the branch correctly identifies the feature that you are planning to develop/bugfix.
 
 #### 2. Create The Branch
-If you are planning to add a new feature/fix, create the branch off the **development** branch. Unless the development of the new feature requires certain aspects of in-development branches. *please seek team approval before doing so.
+If you are planning to add a new feature/bugfix, create the branch off the **development** branch. Unless the development of the new feature requires certain aspects of in-development branches.   
+*please seek team approval before doing so.
 
 Example for branching off development branch:  
 `git branch -b features/x development` or create a new branch through the Github website.
 
 #### 3. Merging Of Feature/Fix Branch
-When you have finalised your code and are ready to merge the branch (feature/fix) into the development branch, create a new "Pull Request" and select the merging from new branch to **development** branch. Any collaborator is able to review and approve.
+When you have finalised your code and are ready to merge the branch (feature/bugfix) into the `development` branch, create a new "Pull Request" and select the merging from new branch to `development` branch. Any collaborator is able to review and approve.
 
 #### 4. Deletion Of Branch
-Once the pull request is approved, you would usually delete the branch to avoid cluttering of branches in the repository. However, in this case, we will keep them for logging purposes.
-
-* Any lost of data or progress by deletion of branch will not be held liable by the owner or collaborators of the repository. The sole user who deleted the branch will be held responsibly.   
+Once the pull request is approved, you would usually delete the branch to avoid cluttering of branches in the repository. However, in this case, we will keep them for logging purposes.  
+\*any lost of data or progress by deletion of branch will not be held liable by the owner or collaborators of the repository. The sole user who deleted the branch will be held responsibly.   
 
 
 ### UAT
 #### 1. Embedded Youtube Video
-Here is an embedded video that runs through all the test cases the team has created and refined from the Milestone 2 submission.
+Here is an embedded video that runs through all the test cases the team has created and refined from the Milestone 2 submission.  
+
 [![IMAGE ALT TEXT HERE](https://user-images.githubusercontent.com/48905199/144790851-7afc3d09-359c-4bfe-99e0-928c2bf3d358.png)](https://youtu.be/F2rMhGwOggw)
 
 #### 2. Detailed Information of System Test Cases
@@ -195,7 +199,7 @@ The classes it interacts with are as follows:
 - AchievementManagement Class `[codar-web/logic/achievementManagement.php]`
 - Challenge Class `[codar-web/logic/classes/achievement.php]`
 
-The framework we have chosen is the [Codeception Framework](https://codeception.com/) v4.1.22 which uses [PHPUnit](https://phpunit.de/) v8.5.20. Additionally, we have also enabled the [code coverage](https://codeception.com/docs/11-Codecoverage) feature for test statistics. A custom test suite has been written to perform unit testing on the ChallengeManagement class.
+The framework we have chosen is the [Codeception Framework](https://codeception.com/) v4.1.22 which uses [PHPUnit](https://phpunit.de/) v8.5.20. Additionally, we have also enabled the [code coverage](https://codeception.com/docs/11-Codecoverage) feature for test statistics. The coverage we have chosen is the statement coverage which is performed by [PCOV](https://github.com/krakjoe/pcov). A custom test suite has been written to perform unit testing on the ChallengeManagement class.
 
 #### File/Directory Structure and information
 `codar-web/codeception.yml` contains information on the test configuration.  
@@ -247,7 +251,7 @@ The challengeManagementTest file can be located at `codar-web/tests/unit/challen
 - `testDetermineNumberOfStars()`
 
 #### Test Suite Code Coverage Statistics
-The code coverage statistic was generated using [Codeception](https://codeception.com/) and the [PCOV](https://github.com/krakjoe/pcov) extension. The full HTML report coverage can be found in `codar-web/tests/_output/coverage/challengeManagement.php.html` or view an online version (links below). Additionally, the report dashboard contains information such as the overall and function-specific cyclomatic complexity, line coverage of each function and the classes, and showcases which tests cover the corresponding lines.
+The statement coverage statistic was generated using [Codeception](https://codeception.com/) and the [PCOV](https://github.com/krakjoe/pcov) extension. The full HTML report coverage can be found in `codar-web/tests/_output/coverage/challengeManagement.php.html` or view an online version (links below). Additionally, the report dashboard contains information such as the overall and function-specific cyclomatic complexity, line coverage of each function and the classes, and showcases which tests cover the corresponding lines.
 
 You can also view the report online with the following links:
 - [ChallengeManagement Test Report](https://htmlpreview.github.io/?https://github.com/hellogeraldblah/ICT2x01-p4-8/blob/whiteboxtest/codeception/codar-web/tests/_output/coverage/challengeManagement.php.html)
