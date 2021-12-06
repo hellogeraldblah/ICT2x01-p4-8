@@ -163,7 +163,16 @@ Here is an embedded video that runs through all the test cases that we have crea
 | Expected Results | Picture |
 | Actual Results | Picture |
 | Pass/Fail | Pass |
- 
+
+| Test Case ID | ST3 |
+| ------------ | --- |
+| Test Case Name | View Register Page |
+| Precondition | User is in login page |
+| Test Steps | 1. Click on “Don’t have an account? Sign up” button <br /> 2. Observe screen |
+| Test Data | - |
+| Expected Results | Picture |
+| Actual Results | Picture |
+| Pass/Fail | Pass |
 
 ### Whitebox Testing
 The class that we have chosen to perform our whitebox test suite is the ChallengeManagement class. The team felt that this class would be the most meaningful as the core idea of the project (Gamification) majorly depends on this class.
