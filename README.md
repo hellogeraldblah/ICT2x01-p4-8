@@ -154,8 +154,9 @@ Here is an embedded PDF document detailing all the system test cases the team ha
 ![Use case diagram image](readme_assets/use-case-diagram.jpg)
 
 The Use Case Diagram has been updated.
-    * Removed UC6 Modify Profile
-    * Removed UC11 Enter Programming Commands
+
+* Removed UC6 Modify Profile
+* Removed UC11 Enter Programming Commands
 
 ### Whitebox Testing
 The class that we have chosen to perform our whitebox test suite is the ChallengeManagement class. The team felt that this class would be the most meaningful as the core idea of the project (Gamification) majorly depends on this class.
