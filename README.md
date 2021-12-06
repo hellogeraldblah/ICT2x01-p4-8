@@ -147,7 +147,7 @@ Here is an embedded video that runs through all the test cases that we have crea
 | Test Case ID | ST1 |
 | ------------ | --- |
 | Test Case Name | Open |
-| Precondition | Browser is already opened |
+| Precondition | 1. Browser is already opened |
 | Test Steps | 1. Type Type “http://localhost:8000/index.php” into browsers’ URL bar <br /> 2. Press enter on the keyboard <br /> 3. Observe Screen |
 | Test Data | - |
 | Expected Results | Picture |
@@ -157,7 +157,7 @@ Here is an embedded video that runs through all the test cases that we have crea
 | Test Case ID | ST2 |
 | ------------ | --- |
 | Test Case Name | Attempt Invalid Login |
-| Precondition | User ‘Username’ does not exist |
+| Precondition | 1. User ‘Username’ does not exist |
 | Test Steps | 1. Type username into Username input field <br /> 2. Type password into Password input field <br /> 3. Click on Login button <br /> 4. Observe screen |
 | Test Data | Username: username <br /> Password: password |
 | Expected Results | Picture |
@@ -167,7 +167,7 @@ Here is an embedded video that runs through all the test cases that we have crea
 | Test Case ID | ST3 |
 | ------------ | --- |
 | Test Case Name | View Register Page |
-| Precondition | User is in login page |
+| Precondition | 1. User is in login page |
 | Test Steps | 1. Click on “Don’t have an account? Sign up” button <br /> 2. Observe screen |
 | Test Data | - |
 | Expected Results | Picture |
@@ -177,7 +177,7 @@ Here is an embedded video that runs through all the test cases that we have crea
 | Test Case ID | ST4 |
 | ------------ | --- |
 | Test Case Name | Attempt Successful Registration |
-| Precondition | User is in registration page |
+| Precondition | 1. User is in registration page |
 | Test Steps | 1. Type name into Name input field <br /> 2. Type username into Username input field <br /> 3. Type password into Password input field <br /> 4. Type password into Re-type Password input field <br /> 5. Click on Register button <br /> 6. Observe screen <br /> 7. Click on Proceed to Login button <br /> 8. Observe screen |
 | Test Data | Name: Mike Hunt <br /> Username: mike <br /> Password P@ssw0rd123 |
 | Expected Results | Picture |
@@ -187,7 +187,7 @@ Here is an embedded video that runs through all the test cases that we have crea
 | Test Case ID | ST5 |
 | ------------ | --- |
 | Test Case Name | Attempt Unsuccessful Registration |
-| Precondition | User is in registration page |
+| Precondition | 1. User is in registration page |
 | Test Steps | 1. Type name into Name input field <br /> 2. Type username into Username input field <br /> 3. Type password into Password input field <br /> 4. Type password length < 8 characters <br /> 5. Click on Register button <br /> 6. Observe screen |
 | Test Data | Name: Mike Hunt <br /> Username: mike <br /> Password pass |
 | Expected Results | Picture |
@@ -197,7 +197,7 @@ Here is an embedded video that runs through all the test cases that we have crea
 | Test Case ID | ST6 |
 | ------------ | --- |
 | Test Case Name | Attempt Valid Login |
-| Precondition | User is in login page <br /> User mike exists |
+| Precondition | 1. User is in login page <br /> 2. User mike exists |
 | Test Steps | 1. Type username into username input field <br /> 2. Type password into password input field <br /> 3. Click on Login button <br /> 4. Observe screen |
 | Test Data | Username: mike <br /> Password P@ssw0rd123 |
 | Expected Results | Picture |
@@ -207,8 +207,28 @@ Here is an embedded video that runs through all the test cases that we have crea
 | Test Case ID | ST7 |
 | ------------ | --- |
 | Test Case Name | View Profile Page |
-| Precondition | User is logged in <br /> User is in dashboard page |
+| Precondition | 1. User is logged in <br /> 2. User is in dashboard page |
 | Test Steps | 1. Click on Profile button <br /> 2. Observe screen |
+| Test Data | - |
+| Expected Results | Picture |
+| Actual Results | Picture |
+| Pass/Fail | Pass |
+
+| Test Case ID | ST8 |
+| ------------ | --- |
+| Test Case Name | View Achievement Page |
+| Precondition | 1. User is logged in <br /> 2. User is in dashboard page |
+| Test Steps | 1. Click on View Achievement button <br /> 2. Observe screen |
+| Test Data | - |
+| Expected Results | Picture |
+| Actual Results | Picture |
+| Pass/Fail | Pass |
+
+| Test Case ID | ST9 |
+| ------------ | --- |
+| Test Case Name | View Challenges Page |
+| Precondition | 1. User is logged in <br /> 2. User is in dashboard page <br /> 3. Challenge list contains at least one challenge |
+| Test Steps | 1. Click on Challenges button <br /> 2. Observe screen |
 | Test Data | - |
 | Expected Results | Picture |
 | Actual Results | Picture |
