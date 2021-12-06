@@ -150,13 +150,14 @@ The classes it interacts with are as follows:
 - AchievementManagement Class `[codar-web/logic/achievementManagement.php]`
 - Challenge Class `[codar-web/logic/classes/achievement.php]`
 
-The framework we have chosen is the [Codeception Framework](https://codeception.com/) v4.1.22 which uses PHPUnit v8.5.20. Additionally, we have also enabled the [codecoverage](https://codeception.com/docs/11-Codecoverage) feature for test statistics. A custom test suite has been written to perform unit testing on the ChallengeManagement class.
+The framework we have chosen is the [Codeception Framework](https://codeception.com/) v4.1.22 which uses [PHPUnit](https://phpunit.de/) v8.5.20. Additionally, we have also enabled the [code coverage](https://codeception.com/docs/11-Codecoverage) feature for test statistics. A custom test suite has been written to perform unit testing on the ChallengeManagement class.
 
 #### File/Directory Structure and information
 `codar-web/codeception.yml` contains information on the test configuration.  
 `codar-web/test_assets/` contains resources that are used purely for testing.  
 `codar-web/tests/unit/challengeManagementTest.php` is where the test suite is located.  
 `codar-web/tests/_output/coverage/challengeManagement.php.html` contains a HTML report of the test suite.
+`codar-web/tests/_output/coverage/dashboard.html` contains the information on the test suite.
 
 #### How to install Codeception
 [Codeception Quickstart Guide](https://codeception.com/quickstart)
@@ -183,9 +184,6 @@ The framework we have chosen is the [Codeception Framework](https://codeception.
 `./codecept.phar run unit --coverage --coverage-html`  
 \* if you encounter an error specifying insufficient permissions, you might consider using `sudo`.
 
-\* Visit the following directory `codar-web/tests/_output/coverage/challengeManagement.php.html` to view the HTML report of the test suite or view it online [here](https://htmlpreview.github.io/?https://github.com/hellogeraldblah/ICT2x01-p4-8/blob/whiteboxtest/codeception/codar-web/tests/_output/coverage/challengeManagement.php.html).
-
-
 #### Test Cases
 The challengeManagementTest file can be located at `codar-web/tests/unit/challengeManagementTest.php`. The test cases are as follows:
 - `testRetrieveChallenge()`
@@ -203,15 +201,14 @@ The challengeManagementTest file can be located at `codar-web/tests/unit/challen
 - `testEditChallengeFile()`
 - `testDetermineNumberOfStars()`
 
-
 #### Test Suite Code Coverage Statistics
-The code coverage statistic was generated using [Codeception](https://codeception.com/) and the [PCOV](https://github.com/krakjoe/pcov) extension. The full HTML report coverage can be found in `codar-web/tests/_output/coverage/challengeManagement.php.html` or [here](https://htmlpreview.github.io/?https://github.com/hellogeraldblah/ICT2x01-p4-8/blob/whiteboxtest/codeception/codar-web/tests/_output/coverage/challengeManagement.php.html). Additionally, the report showcases the number of test cases that the line was used in.
-
-You can view the full report online [here](https://htmlpreview.github.io/?https://github.com/hellogeraldblah/ICT2x01-p4-8/blob/whiteboxtest/codeception/codar-web/tests/_output/coverage/challengeManagement.php.html).
+The code coverage statistic was generated using [Codeception](https://codeception.com/) and the [PCOV](https://github.com/krakjoe/pcov) extension. The full HTML report coverage can be found in `codar-web/tests/_output/coverage/challengeManagement.php.html` or [here](https://htmlpreview.github.io/?https://github.com/hellogeraldblah/ICT2x01-p4-8/blob/whiteboxtest/codeception/codar-web/tests/_output/coverage/challengeManagement.php.html). Additionally, the report dashboard contains information such as the overall and function-specific cyclomatic complexity, line coverage of each function and the classes, and showcases which tests cover the corresponding lines.
 
 ![HTML Coverage](readme_assets/html-coverage.png)  
 
 ![HTML Coverage Lines](readme_assets/html-coverage-lines.png)
+
+You can view the full report online [ChallengeManagement Test Report](https://htmlpreview.github.io/?https://github.com/hellogeraldblah/ICT2x01-p4-8/blob/whiteboxtest/codeception/codar-web/tests/_output/coverage/challengeManagement.php.html) or [Report Dashboard](https://htmlpreview.github.io/?https://raw.githubusercontent.com/hellogeraldblah/ICT2x01-p4-8/whiteboxtest/codeception/codar-web/tests/_output/coverage/dashboard.html).
 
 ![HTML Coverage Line Gif](readme_assets/html-testcase-coverage.gif)
 
