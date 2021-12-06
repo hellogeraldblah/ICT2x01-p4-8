@@ -54,13 +54,13 @@ if (!isset($_SESSION["user_id"]))
 
                 <!-- Number of moves -->
                 <label class="form-control-label" for="challengeImage">Number of Moves</label>
-                <input type="number" class="form-control" placeholder="Number of moves to complete the challenge!" name="number_of_moves"/>
+                <input type="number" class="form-control" placeholder="Number of moves to complete the challenge!" name="number_of_moves" required/>
 
                 <p></p>
 
                 <!-- Challenge file upload -->
                 <label class="form-control-label" for="challengeImage">Challenge Design Image</label>
-                <input type="file" class="form-control" name="fileToUpload" id="fileToUpload"/>
+                <input type="file" class="form-control" name="fileToUpload" id="fileToUpload" required/>
 
               </form>
 

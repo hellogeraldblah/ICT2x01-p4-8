@@ -14,6 +14,7 @@ define("__CODAR_DATABASE_FILE__", __DATABASE_DIR__ . "codar-db.sqlite");
 define("__INDEX_PAGE__", __ROOT__ . "index.php");
 
 
+define("__DASHBOARD_IMG_DIR__", __ROOT__ . "/assets/img/dashboard/");
 define("__CHALLENGES_MAP_DIR__", "/assets/img/challenges/");
 define("__MAP_UPLOADS_DIR__", __ROOT__ . "/assets/img/challenges/");
 ?>

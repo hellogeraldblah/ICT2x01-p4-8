@@ -162,7 +162,6 @@ $challenge_list = $challenge_management_obj->get_challenges($conn);
     <form name="myform" method="POST" action="game_over.php">
       <input type="hidden" id="moves_input" name="moves" value=""><br>
       <input type="hidden" id="challenge_id_input" name="challenge_id" value="<?php echo $challenge->get_id(); ?>"><br>
-      <button type="submit"></button>
     </form>
 
 <!-- Blockly javascript -->
@@ -173,7 +172,7 @@ $challenge_list = $challenge_management_obj->get_challenges($conn);
 
 <!-- Tutorial javascript -->
 <script src="../assets/node_modules/popperjs/core/dist/umd/shepherd.min.js"></script>
-<script src="../assets/node_modules/shepherd.js/dist/js/shepherd.min.js"></script> -->
+<script src="../assets/node_modules/shepherd.js/dist/js/shepherd.min.js"></script>
 <link rel="stylesheet" href="../assets/node_modules/shepherd.js/dist/css/shepherd.css"/>
 <!-- End of Tutorial javascript -->
 
@@ -182,8 +181,6 @@ $challenge_list = $challenge_management_obj->get_challenges($conn);
 <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
 <script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
 <script src="../assets/js/plugins/chartjs.min.js"></script>
-
-<!-- <script src="https://cdn.jsdelivr.net/npm/shepherd.js@5.0.1/dist/js/shepherd.js"></script> -->
 
 <script>
     var moves = 0;
