@@ -1,6 +1,6 @@
 <?php
 
-require_once "../constants.php";
+require_once "constants.php";
 
 if(!defined("__MAX_CHALLENGE_MOVES__")) define("__MAX_CHALLENGE_MOVES__", 100); # Maximum moves a challenge can have
 if(!defined("__MAX_FILE_SIZE__")) define("__MAX_FILE_SIZE__", 5000000); # Maximum challenge file size: 5mb
@@ -10,7 +10,7 @@ require_once __CLASSES_DIR__ . "challenge.php";
 
 class ChallengeManagement {
 
-  private function get_last_id($conn) {
+  public function get_last_id($conn) {
     $number_of_rows = $conn->querySingle("SELECT COUNT(*) as COUNT FROM challenges");
     return $number_of_rows;
   }
