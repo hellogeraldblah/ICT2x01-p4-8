@@ -146,7 +146,7 @@ Here is an embedded video that runs through all the test cases the team has crea
 [![IMAGE ALT TEXT HERE](https://user-images.githubusercontent.com/48905199/144790851-7afc3d09-359c-4bfe-99e0-928c2bf3d358.png)](https://youtu.be/F2rMhGwOggw)
 
 #### 2. Detailed Information of System Test Cases
-Here is an embedded pdf detailing all the system test cases the team has created and refined from the Milestone 2 submission.
+Here is an embedded PDF document detailing all the system test cases the team has created and refined from the Milestone 2 submission.
 [ICT2x01_Milestone3_Report_UAT_System_Test_Cases_LabGroup(4)-(Team8)_AY2122.pdf](https://github.com/hellogeraldblah/ICT2x01-p4-8/files/7658832/ICT2x01_Milestone3_Report_UAT_System_Test_Cases_LabGroup.4.-.Team8._AY2122.pdf)
 
 ### Whitebox Testing
