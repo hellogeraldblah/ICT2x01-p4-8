@@ -152,8 +152,8 @@ Here is an embedded video that runs through all the test cases that we have crea
 | Precondition | 1. Browser is already opened |
 | Test Steps | 1. Type Type “http://localhost:8000/index.php” into browsers’ URL bar <br /> 2. Press enter on the keyboard <br /> 3. Observe Screen |
 | Test Data | - |
-| Expected Results | Picture |
-| Actual Results | Picture |
+| Expected Results | ![ST1 Expected Results](readme_assets/uat_testing/image1.png) |
+| Actual Results | ![ST1 Actual Results](readme_assets/uat_testing/image2.png) |
 | Pass/Fail | Pass |
 
 | Test Case ID | ST2 |
