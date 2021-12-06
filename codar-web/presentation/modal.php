@@ -1,6 +1,3 @@
-<?php
-
-?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -35,8 +32,7 @@
     <script>
        $(document).ready(function(){
             $('#exampleModal').modal('show');
-        }); 
+        });
     </script>
   </body>
 </html>
-

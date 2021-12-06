@@ -1,18 +1,3 @@
-<!--
-=========================================================
-* Soft UI Dashboard - v1.0.3
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/soft-ui-dashboard
-* Copyright 2021 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://www.creative-tim.com/license)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
---> 
 <?php
 session_start();
 
@@ -30,29 +15,26 @@ if (!isset($_SESSION["user_id"]))
   $page="Dashboard";
   require_once "../constants.php";
 ?>
-<head>
-</head>
-<?php include "modal.php" ?>
 
- 
+<?php include "modal.php" ?>
 <?php $page="Dashboard"; ?>
+<link rel="stylesheet" href="/assets/css/dashboard.css">
 <!-- Header -->
 <?php require_once __SHARED_PRESENTATION_DIR__ . "head.php" ?>
-<link rel="stylesheet" href="/assets/css/dashboard.css"> 
 
 <!-- End of Header -->
 
 <body class="g-sidenav-show bg-gray-100">
 
   <!-- Side Panel -->
-  <?php include "shared_presentation/sidepanel.php" ?>
- 
+  <?php require_once __SHARED_PRESENTATION_DIR__ . "sidepanel.php" ?>
+
   <!-- End Side Panel -->
 
   <main class="main-content position-relative max-height-vh-100 h-100 mt-1 border-radius-lg ">
 
     <!-- Navbar -->
-    <?php include "shared_presentation/navbar.php"; ?>
+    <?php require_once __SHARED_PRESENTATION_DIR__ . "navbar.php"; ?>
     <!-- End Navbar -->
 
     <div class="container-fluid py-4">
@@ -71,7 +53,7 @@ if (!isset($_SESSION["user_id"]))
                     <h5 class="font-weight-bolder mb-0">WiFi Module ESP8266</h5>
                     <p class="text-sm mb-0 text-capitalize font-weight-bold">Please ensure that you're connected.</p>
                   </div>
-                  <img src="data:image/png;base64,<?php echo base64_encode(file_get_contents("../images/wifi-signal.png")); ?>"width="60">
+                  <img src="data:image/png;base64,<?php echo base64_encode(file_get_contents(__DASHBOARD_IMG_DIR__ . "wifi-signal.png")); ?>"width="60">
                 </div>
                 <div class="col-4 text-end">
                   <div class="icon icon-shape bg-gradient-dark shadow text-center border-radius-md">
@@ -91,7 +73,7 @@ if (!isset($_SESSION["user_id"]))
                     <h5 class="font-weight-bolder mb-0">Ultrasonic</h5>
                     <p class="text-sm mb-0 text-capitalize font-weight-bold">Please ensure that you're connected.</p>
                   </div>
-                  <img src="data:image/png;base64,<?php echo base64_encode(file_get_contents("../images/ultrasonic_icon.png")); ?>"width="90">
+                  <img src="data:image/png;base64,<?php echo base64_encode(file_get_contents(__DASHBOARD_IMG_DIR__ . "ultrasonic_icon.png")); ?>"width="90">
                 </div>
                 <div class="col-4 text-end">
                   <div class="icon icon-shape bg-gradient-dark shadow text-center border-radius-md">
@@ -113,7 +95,7 @@ if (!isset($_SESSION["user_id"]))
                     </h5>
                     <p class="text-sm mb-0 text-capitalize font-weight-bold">Please ensure that you're connected.</p>
                   </div>
-                  <img src="data:image/png;base64,<?php echo base64_encode(file_get_contents("../images/TCRT5000 IR Module.png")); ?>"width="90">
+                  <img src="data:image/png;base64,<?php echo base64_encode(file_get_contents(__DASHBOARD_IMG_DIR__ . "TCRT5000 IR Module.png")); ?>"width="90">
                 </div>
                 <div class="col-4 text-end">
                   <div class="icon icon-shape bg-gradient-dark shadow text-center border-radius-md">
@@ -133,7 +115,7 @@ if (!isset($_SESSION["user_id"]))
                     <h5 class="font-weight-bolder mb-0">IR optical speed sensors</h5>
                     <p class="text-sm mb-0 text-capitalize font-weight-bold">Please ensure that you're connected.</p>
                   </div>
-                  <img src="data:image/png;base64,<?php echo base64_encode(file_get_contents("../images/speed_sensor.png")); ?>"width="90">
+                  <img src="data:image/png;base64,<?php echo base64_encode(file_get_contents(__DASHBOARD_IMG_DIR__ . "speed_sensor.png")); ?>"width="90">
                 </div>
                 <div class="col-4 text-end">
                   <div class="icon icon-shape bg-gradient-dark shadow text-center border-radius-md">
@@ -177,14 +159,14 @@ if (!isset($_SESSION["user_id"]))
                   </div>
                   </div>
               </div>
-              
+
             </div>
           </div>
         </div>
       </div>
-    
+
       <!-- Footer -->
-      <?php include "shared_presentation/footer.php" ?>
+      <?php require_once __SHARED_PRESENTATION_DIR__ . "footer.php" ?>
       <!-- End Footer -->
 
     </div>

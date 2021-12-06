@@ -1,10 +1,12 @@
 <?php
-  
+
+require_once "../constants.php";
+
 class DBphp extends SQLite3
 {
     function __construct()
     {
-        $this->open('codar_infomations.db');
+        $this->open(__DATABASE_DIR__ . 'codar_infomations.db');
     }
 
 }
@@ -12,7 +14,7 @@ $db = new DBphp();
 $query1="SELECT * FROM car_info ORDER BY distance DESC";
 
 $result=$db->query($query1);
-    
+
 /* Fetch Rows from the SQL query */
 while ($row = $result->fetchArray()) {
     echo'<tr>';
@@ -24,5 +26,3 @@ while ($row = $result->fetchArray()) {
 
 $db->close();
 ?>
-
-

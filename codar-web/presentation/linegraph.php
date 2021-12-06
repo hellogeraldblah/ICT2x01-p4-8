@@ -1,5 +1,5 @@
 <?php
- 
+
 $dataPoints = array(
 	array("y" => 10, "label" => "5"),
 	array("y" => 15, "label" => "10"),
@@ -16,14 +16,14 @@ $dataPoints = array(
 	array("y" => 130, "label" => "65"),
 	array("y" => 150, "label" => "70")
 );
- 
+
 ?>
 <!DOCTYPE HTML>
 <html>
 <head>
 <script>
 window.onload = function () {
- 
+
 var chart = new CanvasJS.Chart("chartContainer", {
 	title: {
 		text: "Speed of Car"
@@ -40,7 +40,7 @@ var chart = new CanvasJS.Chart("chartContainer", {
 	}]
 });
 chart.render();
- 
+
 }
 </script>
 </head>
@@ -48,4 +48,4 @@ chart.render();
 <div id="chartContainer" style="height: 370px; width: 100%;"></div>
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 </body>
-</html>             
+</html>
