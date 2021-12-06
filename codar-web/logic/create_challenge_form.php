@@ -15,11 +15,10 @@
     if (empty($error_message)) {
 
       $filename = $challenge_management_obj->generate_filename($conn);
-      $challenge_management_obj->create_challenge($conn, $challenge_name, $challenge_moves, $challenge_file_info);
-
+      $rowId = $challenge_management_obj->create_challenge($conn,$challenge_name, $challenge_moves, $challenge_file_info);
       upload_file($challenge_file_info, $filename);
       //create achievement
-      $achievementManagement_obj->createAchievement($rowId);
+      $achievementManagement_obj->createAchievement($conn, $rowId);
       header("Location: ../presentation/challenges.php");
     } else {
       echo "<script>alert('" . $error_message . "')</script>";

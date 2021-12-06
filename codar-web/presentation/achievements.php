@@ -18,8 +18,9 @@ if (!isset($_SESSION["user_id"]))
 <!-- Achievement Class -->
 <?php
 require_once __LOGIC_DIR__ . "achievementManagement.php";
-$achievementsManagement = new AchievementManagement($conn);
-$achievements = $achievementsManagement->viewAchievement($_SESSION["user_id"]);
+$achievementsArr = array();
+$achievementsManagement = new AchievementManagement();
+$achievements = $achievementsManagement->viewAchievement($conn,$_SESSION["user_id"],$achievementsArr); //need to change to session id
 ?>
 
 <!-- Header -->

@@ -22,7 +22,7 @@ require_once __LOGIC_DIR__ . "achievementManagement.php";
 
 $challenge = $challenge_management_obj->search_challenge($conn, $_POST["challenge_id"]);
 $earned_stars = $challenge_management_obj->determineNumberOfStars($conn, $_POST["challenge_id"], $_POST["moves"]);
-$achievementManagement_obj->awardAchievement($_SESSION["user_id"],$_POST["challenge_id"],$earned_stars); //need to change to session ID
+$achievementManagement_obj->awardAchievement($conn, $_SESSION["user_id"],$_POST["challenge_id"],$earned_stars); //need to change to session ID
 
 ?>
 
