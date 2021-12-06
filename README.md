@@ -151,10 +151,11 @@ Here is an embedded PDF document detailing all the system test cases the team ha
 [ICT2x01_Milestone3_Report_UAT_System_Test_Cases_LabGroup(4)-(Team8)_AY2122.pdf](https://github.com/hellogeraldblah/ICT2x01-p4-8/files/7658832/ICT2x01_Milestone3_Report_UAT_System_Test_Cases_LabGroup.4.-.Team8._AY2122.pdf)
 
 #### 3. Use Case Diagram
+![Use case diagram image](readme_assets/use-case-diagram.jpg)
 
 The Use Case Diagram has been updated.
-    - Removed UC6 Modify Profile
-    - Removed UC11 Enter Programming Commands
+    * Removed UC6 Modify Profile
+    * Removed UC11 Enter Programming Commands
 
 ### Whitebox Testing
 The class that we have chosen to perform our whitebox test suite is the ChallengeManagement class. The team felt that this class would be the most meaningful as the core idea of the project (Gamification) majorly depends on this class.
