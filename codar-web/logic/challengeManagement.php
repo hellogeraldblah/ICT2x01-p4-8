@@ -60,11 +60,14 @@ class ChallengeManagement {
       $error_message .= "Challenge File is too large. \\n";
     }
 
-    // Check if image file is a actual image or fake image
-    $check = getimagesize($challenge_file_info["tmp_name"]);
-    if($check == false) {
-      $error_message .= "Challenge File is not an image. \\n";
+    if ($challenge_file_info["size"] != 0) {
+      // Check if image file is a actual image or fake image
+      $check = getimagesize($challenge_file_info["tmp_name"]);
+      if($check == false) {
+        $error_message .= "Challenge File is not an image. \\n";
+      }
     }
+
 
     // Allow only jpg, png and jpeg file formats
     $imageFileExt = strtolower(pathinfo($challenge_file_info["name"], PATHINFO_EXTENSION));
