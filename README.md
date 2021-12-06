@@ -190,14 +190,14 @@ Here is an embedded PDF document detailing all the system test cases the team ha
 The Use Case Diagram has been updated.
 
 * Removed UC6 Modify Profile
-* Removed UC11 Enter Programming Commands
+* Updated UC11 Enter Programming Commands to now extend from UC7 Play Challenge
 
 ### Whitebox Testing
 The class that we have chosen to perform our whitebox test suite is the ChallengeManagement class. The team felt that this class would be the most meaningful as the core idea of the project (Gamification) majorly depends on this class.
 
 The classes it interacts with are as follows:
 - AchievementManagement Class `[codar-web/logic/achievementManagement.php]`
-- Challenge Class `[codar-web/logic/classes/achievement.php]`
+- Challenge Class `[codar-web/logic/classes/challenge.php]`
 
 The framework we have chosen is the [Codeception Framework](https://codeception.com/) v4.1.22 which uses [PHPUnit](https://phpunit.de/) v8.5.20. Additionally, we have also enabled the [code coverage](https://codeception.com/docs/11-Codecoverage) feature for test statistics. The coverage we have chosen is the statement coverage which is performed by [PCOV](https://github.com/krakjoe/pcov). A custom test suite has been written to perform unit testing on the ChallengeManagement class.
 
