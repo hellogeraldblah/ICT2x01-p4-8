@@ -182,7 +182,7 @@ Here is an embedded video that runs through all the test cases the team has crea
 
 #### 2. Detailed Information of System Test Cases
 Here is an embedded PDF document detailing all the system test cases the team has created and refined from the Milestone 2 submission.
-[ICT2x01_Milestone3_Report_UAT_System_Test_Cases_LabGroup(4)-(Team8)_AY2122.pdf](readme_assets/ICT2x01_Milestone3_Report/UAT_System_Test_Cases_Document/LabGroup4-Team8_AY2122.pdf)
+[ICT2x01_Milestone3_Report_UAT_System_Test_Cases_LabGroup(4)-(Team8)_AY2122.pdf](readme_assets/readme_assets/ICT2x01_Milestone3_Report:UAT_System_Test_Cases_Document:LabGroup4-Team8_AY2122.pdf)
 
 #### 3. Use Case Diagram
 ![Use case diagram image](readme_assets/use-case-diagram.jpg)
