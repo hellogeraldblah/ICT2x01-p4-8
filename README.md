@@ -32,16 +32,21 @@
     │   └── database.php
     ├── logic
     │   ├── classes
+    │   │   └── achievement.php
     │   │   └── challenge.php
+    │   ├── achievementManagement.php
     │   ├── challengeManagement.php
     │   └── create_challenge_form.php
+    │   └── edit_challenge_form.php
     └── presentation
         ├── achievements.php
+        ├── allAchievements.php
         ├── blockly.php
         ├── challenges.php
         ├── create_challenge.php
         ├── dashboard.php
         ├── edit_challenge.php
+        ├── game_over.php
         ├── play_challenge.php
         ├── profile.php
         ├── shared_presentation
@@ -59,22 +64,29 @@
 3. Codeception PHP Testing Framework v4.1.22 (For whitebox testing)
 
 ## Prerequisites
+Between Windows or Mac/Linux OS, PHP is required to run Codar along with the SQLite3 extension. The following are guides on the installation of software for the respective OS.
+
 ### Mac/Linux OS
+1. Install PHP v7.3/7.4  
 [Linux guide to install php v7.3](https://askubuntu.com/questions/1231381/unable-to-install-php-7-3-on-ubuntu-20-04)  
+2. Install SQLite3 extension for PHP  
 [Linux guide to install and enable sqlite3 extension](https://stackoverflow.com/questions/948899/how-to-enable-sqlite3-for-php)  
 
 ### Windows OS
+1. Install PHP  
 [Install PHP from official PHP downloads page](https://www.php.net/downloads)  
-[Set php.exe as part of OS environment variable](https://stackoverflow.com/questions/2736528/how-to-set-the-env-variable-for-php)  
+2. For convenience, configure php.exe as system environment variable   
+[Configure php.exe as part of OS environment variable](https://stackoverflow.com/questions/2736528/how-to-set-the-env-variable-for-php)
+3. Enable SQLite3 for php.exe   
 [Windows guide to enable sqlite3 extension](https://roytuts.com/configure-php-7-and-sqlite3-in-windows/)  
 
-### How To Run
-1. Change your working directory to ICT2x01-p4-8/codar-web/
+### How To Run Codar
+1. Change your working directory to ICT2x01-p4-8/codar-web/  
 `cd ../codar-web`
-2. Execute command to host application on localhost, in this case port 8000 is used
+2. Execute command to host application on localhost, in this case port 8000 is used  
 `php -S localhost:8000`
-3. Open any browser and enter the url:
-`localhost:8000`
+3. Open any browser and enter the url:  
+`localhost:8000/sign-in.php`
 
 ## Development Workflow
 _As of **Mon 15 Nov 2021**_  
@@ -94,6 +106,10 @@ For example (bugfix/x):
 [bugfixes/login_system] - Branch containing the fix for a bug in login system
 [bugfixes/view_profile] - Branch containing the fix for a visual bug in profile page
 
+5. **whiteboxtest/x** -- Branch containing code for whitebox testing
+For example (whiteboxtest/x):
+[whiteboxtest/codeception] - Branch containing codes and resources for the usage of codeception test framework
+
 ### Workflow Commandments
 1. Nobody shall commit to `main` and `development` branch
 1.1. Exceptions to the development branch can be made under the following conditions:
@@ -109,7 +125,8 @@ For example (bugfix/x):
 #### 1. Determine Meaningful Branch Name
 Ensure that the name of the branch correctly identifies the feature that you are planning to develop/fix.
 
-#### 2. Create The Branch 
+
+#### 2. Create The Branch
 If you are planning to add a new feature/fix, create the branch off the **development** branch. Unless the development of the new feature requires certain aspects of in-development branches. *please seek team approval before doing so.
 
 Example for branching off development branch:  
@@ -125,10 +142,94 @@ Once the pull request is approved, you would usually delete the branch to avoid 
 
 
 ### UAT
-description...
+#### 1. Embedded Youtube Video
+Here is an embedded video that runs through all the test cases the team has created and refined from the Milestone 2 submission.
+[![IMAGE ALT TEXT HERE](https://user-images.githubusercontent.com/48905199/144790851-7afc3d09-359c-4bfe-99e0-928c2bf3d358.png)](https://youtu.be/F2rMhGwOggw)
+
+#### 2. Detailed Information of System Test Cases
+Here is an embedded PDF document detailing all the system test cases the team has created and refined from the Milestone 2 submission.
+[ICT2x01_Milestone3_Report_UAT_System_Test_Cases_LabGroup(4)-(Team8)_AY2122.pdf](https://github.com/hellogeraldblah/ICT2x01-p4-8/files/7658832/ICT2x01_Milestone3_Report_UAT_System_Test_Cases_LabGroup.4.-.Team8._AY2122.pdf)
+
+#### 3. Use Case Diagram
+![Use case diagram image](readme_assets/use-case-diagram.jpg)
+
+The Use Case Diagram has been updated.
+
+* Removed UC6 Modify Profile
+* Removed UC11 Enter Programming Commands
 
 ### Whitebox Testing
-The class that we have chosen to perform our whitebox test suite is the ChallengeManagement class. The team felt that this class would be the most meaninigful as the core idea of the project (Gamification) majorly depends on this class.
+The class that we have chosen to perform our whitebox test suite is the ChallengeManagement class. The team felt that this class would be the most meaningful as the core idea of the project (Gamification) majorly depends on this class.
 
-The framework we have chosen is the [Codeception Framework](https://codeception.com/) v4.1.22 which uses PHPUnit v8.5.20. Additionally, we have also enabled the [codecoverage](https://codeception.com/docs/11-Codecoverage) feature for test statistics. A custom test suite has been written to perform unit testing on the ChallengeManagement class. 
+The classes it interacts with are as follows:
+- AchievementManagement Class `[codar-web/logic/achievementManagement.php]`
+- Challenge Class `[codar-web/logic/classes/achievement.php]`
 
+The framework we have chosen is the [Codeception Framework](https://codeception.com/) v4.1.22 which uses PHPUnit v8.5.20. Additionally, we have also enabled the [codecoverage](https://codeception.com/docs/11-Codecoverage) feature for test statistics. A custom test suite has been written to perform unit testing on the ChallengeManagement class.
+
+#### File/Directory Structure and information
+`codar-web/codeception.yml` contains information on the test configuration.  
+`codar-web/test_assets/` contains resources that are used purely for testing.  
+`codar-web/tests/unit/challengeManagementTest.php` is where the test suite is located.  
+`codar-web/tests/_output/coverage/challengeManagement.php.html` contains a HTML report of the test suite.
+
+#### How to install Codeception
+[Codeception Quickstart Guide](https://codeception.com/quickstart)
+
+1. Download codeception  
+`wget https://codeception.com/codecept.phar`
+2. Install codeception using phar  
+`php codecept.phar`
+3. Since codeception requires php curl and mbstring extension as well,  
+[Guide on installing php curl extension](https://stackoverflow.com/questions/33775897/how-do-i-install-the-ext-curl-extension-with-php-7)  
+`sudo apt-get install php7.4-curl`   
+[Guide on installing php mbstring extension](https://askubuntu.com/questions/491629/how-to-install-php-mbstring-extension-in-ubuntu)  
+`sudo apt-get install php7.4-mbstring`  
+4. Install pcov for [codeception code coverage](https://codeception.com/docs/11-Codecoverage)  
+[Guide on installing pcov](https://github.com/krakjoe/pcov/blob/develop/INSTALL.md)  
+`sudo apt install php-pcov`
+
+
+#### How to run Codeception
+1. Ensure you are in the `whiteboxtest/codeception` branch
+2. Change your working directory to ICT2x01-p4-8/codar-web/  
+`cd ICT2x01-p4-8/codar-web`
+3. Execute the following command  
+`./codecept.phar run unit --coverage --coverage-html`  
+\* if you encounter an error specifying insufficient permissions, you might consider using `sudo`.
+
+\* Visit the following directory `codar-web/tests/_output/coverage/challengeManagement.php.html` to view the HTML report of the test suite or view it online [here](https://htmlpreview.github.io/?https://github.com/hellogeraldblah/ICT2x01-p4-8/blob/whiteboxtest/codeception/codar-web/tests/_output/coverage/challengeManagement.php.html).
+
+
+#### Test Cases
+The challengeManagementTest file can be located at `codar-web/tests/unit/challengeManagementTest.php`. The test cases are as follows:
+- `testRetrieveChallenge()`
+- `testGetLastId()`
+- `testValidateName()`
+- `testValidateMoves()`
+- `testValidateFile()`
+- `testValidateChallenge()`
+- `testGenerateFile()`
+- `testCreateChallenge()`
+- `testSearchChallenge()`
+- `testGetChallenge()`
+- `testEditChallengeName()`
+- `testEditChallengeMoves()`
+- `testEditChallengeFile()`
+- `testDetermineNumberOfStars()`
+
+
+#### Test Suite Code Coverage Statistics
+The code coverage statistic was generated using [Codeception](https://codeception.com/) and the [PCOV](https://github.com/krakjoe/pcov) extension. The full HTML report coverage can be found in `codar-web/tests/_output/coverage/challengeManagement.php.html` or [here](https://htmlpreview.github.io/?https://github.com/hellogeraldblah/ICT2x01-p4-8/blob/whiteboxtest/codeception/codar-web/tests/_output/coverage/challengeManagement.php.html). Additionally, the report showcases the number of test cases that the line was used in.
+
+You can view the full report online [here](https://htmlpreview.github.io/?https://github.com/hellogeraldblah/ICT2x01-p4-8/blob/whiteboxtest/codeception/codar-web/tests/_output/coverage/challengeManagement.php.html).
+
+![HTML Coverage](readme_assets/html-coverage.png)  
+
+![HTML Coverage Lines](readme_assets/html-coverage-lines.png)
+
+![HTML Coverage Line Gif](readme_assets/html-testcase-coverage.gif)
+
+
+#### Codeception Unit Test Demonstration
+![Codeception demonstration gif](readme_assets/codeception_demo.gif)
