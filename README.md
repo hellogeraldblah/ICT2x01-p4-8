@@ -190,6 +190,7 @@ Here is an embedded PDF document detailing all the system test cases the team ha
 The Use Case Diagram has been updated.
 
 * Removed UC6 Modify Profile
+* Removed UC11 Enter Programming Commands from UC5 Create Challenge
 * Updated UC11 Enter Programming Commands to now extend from UC7 Play Challenge
 
 ### Whitebox Testing
