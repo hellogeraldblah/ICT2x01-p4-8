@@ -141,6 +141,8 @@ Once the pull request is approved, you would usually delete the branch to avoid 
 
 
 ### UAT
+
+[![IMAGE ALT TEXT HERE](https://img.https://youtu.be/C1CrM24z10I/0.jpg)](https://youtu.be/C1CrM24z10I)
 description...
 
 ### Whitebox Testing
