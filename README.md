@@ -184,6 +184,36 @@ Here is an embedded video that runs through all the test cases that we have crea
 | Actual Results | Picture |
 | Pass/Fail | Pass |
 
+| Test Case ID | ST5 |
+| ------------ | --- |
+| Test Case Name | Attempt Unsuccessful Registration |
+| Precondition | User is in registration page |
+| Test Steps | 1. Type name into Name input field <br /> 2. Type username into Username input field <br /> 3. Type password into Password input field <br /> 4. Type password length < 8 characters <br /> 5. Click on Register button <br /> 6. Observe screen |
+| Test Data | Name: Mike Hunt <br /> Username: mike <br /> Password pass |
+| Expected Results | Picture |
+| Actual Results | Picture |
+| Pass/Fail | Pass |
+
+| Test Case ID | ST6 |
+| ------------ | --- |
+| Test Case Name | Attempt Valid Login |
+| Precondition | User is in login page <br /> User mike exists |
+| Test Steps | 1. Type username into username input field <br /> 2. Type password into password input field <br /> 3. Click on Login button <br /> 4. Observe screen |
+| Test Data | Username: mike <br /> Password P@ssw0rd123 |
+| Expected Results | Picture |
+| Actual Results | Picture |
+| Pass/Fail | Pass |
+
+| Test Case ID | ST7 |
+| ------------ | --- |
+| Test Case Name | View Profile Page |
+| Precondition | User is logged in <br /> User is in dashboard page |
+| Test Steps | 1. Click on Profile button <br /> 2. Observe screen |
+| Test Data | - |
+| Expected Results | Picture |
+| Actual Results | Picture |
+| Pass/Fail | Pass |
+
 ### Whitebox Testing
 The class that we have chosen to perform our whitebox test suite is the ChallengeManagement class. The team felt that this class would be the most meaningful as the core idea of the project (Gamification) majorly depends on this class.
 
