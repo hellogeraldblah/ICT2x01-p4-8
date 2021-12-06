@@ -148,7 +148,7 @@ Here is an embedded video that runs through all the test cases that we have crea
 | ------------ | --- |
 | Test Case Name | Open |
 | Precondition | Browser is already opened |
-| Test Steps | 1. Type Type “http://localhost:8000/index.php” <br /> into browsers’ URL bar <br /> 2. Press enter on the keyboard <br /> 3. Observe Screen |
+| Test Steps | 1. Type Type “http://localhost:8000/index.php” into browsers’ URL bar <br /> 2. Press enter on the keyboard <br /> 3. Observe Screen |
 | Test Data | - |
 | Expected Results | Picture |
 | Actual Results | Picture |
@@ -170,6 +170,16 @@ Here is an embedded video that runs through all the test cases that we have crea
 | Precondition | User is in login page |
 | Test Steps | 1. Click on “Don’t have an account? Sign up” button <br /> 2. Observe screen |
 | Test Data | - |
+| Expected Results | Picture |
+| Actual Results | Picture |
+| Pass/Fail | Pass |
+
+| Test Case ID | ST4 |
+| ------------ | --- |
+| Test Case Name | Attempt Successful Registration |
+| Precondition | User is in registration page |
+| Test Steps | 1. Type name into Name input field <br /> 2. Type username into Username input field <br /> 3. Type password into Password input field <br /> 4. Type password into Re-type Password input field <br /> 5. Click on Register button <br /> 6. Observe screen <br /> 7. Click on Proceed to Login button <br /> 8. Observe screen |
+| Test Data | Name: Mike Hunt <br /> Username: mike <br /> Password P@ssw0rd123 |
 | Expected Results | Picture |
 | Actual Results | Picture |
 | Pass/Fail | Pass |
