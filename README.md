@@ -141,9 +141,21 @@ Once the pull request is approved, you would usually delete the branch to avoid 
 
 
 ### UAT
-
+Here is an embedded video that runs through all the test cases that we have created and refined from the Milestone 2 submission.
 [![IMAGE ALT TEXT HERE](https://user-images.githubusercontent.com/48905199/144790851-7afc3d09-359c-4bfe-99e0-928c2bf3d358.png)](https://youtu.be/F2rMhGwOggw)
-description...
+
+| Test Case ID | ST1 |
+| ------------ | --- |
+| Test Case Name | Open |
+| Precondition | Browser is already opened |
+| Test Steps | 1. Type Type “http://localhost:8000/index.php” into browsers’ URL bar
+               2. Press enter on the keyboard
+               3. Observe Screen |
+| Test Data | - |
+| Expected Results | Open |
+| Actual Results | Open |
+| Pass/Fail | Pass |
+ 
 
 ### Whitebox Testing
 The class that we have chosen to perform our whitebox test suite is the ChallengeManagement class. The team felt that this class would be the most meaningful as the core idea of the project (Gamification) majorly depends on this class.
