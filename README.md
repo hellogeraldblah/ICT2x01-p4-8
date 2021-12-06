@@ -207,6 +207,8 @@ The challengeManagementTest file can be located at `codar-web/tests/unit/challen
 #### Test Suite Code Coverage Statistics
 The code coverage statistic was generated using [Codeception](https://codeception.com/) and the [PCOV](https://github.com/krakjoe/pcov) extension. The full HTML report coverage can be found in `codar-web/tests/_output/coverage/challengeManagement.php.html`. Additionally, the report showcases the number of test cases that the line was used in.
 
+You can view the full report [Here]
+
 ![HTML Coverage](readme_assets/html-coverage.png)  
 
 ![HTML Coverage Lines](readme_assets/html-coverage-lines.png)
