@@ -160,7 +160,7 @@ Ensure that the name of the branch correctly identifies the feature that you are
 If you are planning to add a new feature/fix, create the branch off the **development** branch. Unless the development of the new feature requires certain aspects of in-development branches. *please seek team approval before doing so.
 
 Example for branching off development branch:  
-`git branch -b features/x development` or create a new branch through the Github website. [Main Page](https://github.com/hellogeraldblah/ICT2x01-p4-8)
+`git branch -b features/x development` or create a new branch through the Github website.
 
 #### 3. Merging Of Feature/Fix Branch
 When you have finalised your code and are ready to merge the branch (feature/fix) into the development branch, create a new "Pull Request" and select the merging from new branch to **development** branch. Any collaborator is able to review and approve.
