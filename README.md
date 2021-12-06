@@ -234,6 +234,116 @@ Here is an embedded video that runs through all the test cases that we have crea
 | Actual Results | Picture |
 | Pass/Fail | Pass |
 
+| Test Case ID | ST10 |
+| ------------ | --- |
+| Test Case Name | View Create Challenges Page |
+| Precondition | 1. User is logged in <br /> 2. User is in dashboard page |
+| Test Steps | 1. Click on Create Challenges button <br /> 2. Observe screen |
+| Test Data | - |
+| Expected Results | Picture |
+| Actual Results | Picture |
+| Pass/Fail | Pass |
+
+| Test Case ID | ST11 |
+| ------------ | --- |
+| Test Case Name | Close Application from Dashboard |
+| Precondition | 1. User is logged in <br /> 2. User is in dashboard page |
+| Test Steps | 1. Click on "X" of browser <br /> 2. Observe screen |
+| Test Data | - |
+| Expected Results | Picture |
+| Actual Results | Picture |
+| Pass/Fail | Pass |
+
+| Test Case ID | ST12 |
+| ------------ | --- |
+| Test Case Name | View Edit Challenges Page |
+| Precondition | 1. User is logged in <br /> 2. User is in challenges page <br /> 3. Challenge list contains at least one challenge |
+| Test Steps | 1. Click on Edit button of the first challenge <br /> 2. Observe screen |
+| Test Data | - |
+| Expected Results | Picture |
+| Actual Results | Picture |
+| Pass/Fail | Pass |
+
+| Test Case ID | ST13 |
+| ------------ | --- |
+| Test Case Name | Attempt to Play Challenge |
+| Precondition | 1. User is logged in <br /> 2. User is in challenges page <br /> 3. Challenge list contains at least one challenge |
+| Test Steps | 1. Click on Play button of the first challenge <br /> 2. Observe screen |
+| Test Data | - |
+| Expected Results | Picture |
+| Actual Results | Picture |
+| Pass/Fail | Pass |
+
+| Test Case ID | ST14 |
+| ------------ | --- |
+| Test Case Name | Attempt to Save An Invalid Edit of Challenge |
+| Precondition | 1. User is logged in <br /> 2. User is in challenges page <br /> 3. Challenge list contains at least one challenge <br /> 4. User is in Edit challenge page |
+| Test Steps | 1. Edit moves to “351” <br /> 2. Click on "Save" button <br /> 3. Observe screen |
+| Test Data | - |
+| Expected Results | Picture |
+| Actual Results | Picture |
+| Pass/Fail | Pass |
+
+| Test Case ID | ST15 |
+| ------------ | --- |
+| Test Case Name | Attempt to Save An Valid Edit of Challenge |
+| Precondition | 1. User is logged in <br /> 2. User is in challenges page <br /> 3. Challenge list contains at least one challenge <br /> 4. User is in Edit challenge page |
+| Test Steps | 1. Enter challenge name as given into ‘Challenge Name’ input field <br /> 2. Enter number of moves as given into ‘Number of Moves’ input field <br /> 3. Enter map design as given into Map input field <br /> 4. Click on “Save” button <br /> 5. Observe screen |
+| Test Data | - |
+| Expected Results | Picture |
+| Actual Results | Picture |
+| Pass/Fail | Pass |
+
+| Test Case ID | ST16 |
+| ------------ | --- |
+| Test Case Name | View Game Over Message |
+| Precondition | 1. User is logged in <br /> 2. User is in challenges page <br /> 3. Challenge list contains challenge #1 |
+| Test Steps | 1. Enter the solution into Solution input field <br /> 2. Click on "Send" button <br /> 3. Observe screen |
+| Test Data | Solution <br /> Move Up x 8 <br /> Turn Right x 4 <br /> Move Down x 7 <br /> Turn Right x 3 <br /> Move Up x 8 <br /> |
+| Expected Results | Picture |
+| Actual Results | Picture |
+| Pass/Fail | Pass |
+
+| Test Case ID | ST17 |
+| ------------ | --- |
+| Test Case Name | Attempt to Restart Challenge |
+| Precondition | 1. User is logged in <br /> 2. User is in challenges page <br /> 3. User is in game over screen |
+| Test Steps | 1. Click on “Restart” button <br /> 2. Observe screen |
+| Test Data | - |
+| Expected Results | Picture |
+| Actual Results | Picture |
+| Pass/Fail | Pass |
+
+| Test Case ID | ST18 |
+| ------------ | --- |
+| Test Case Name | Close Application from Game Over Screen |
+| Precondition | 1. User is logged in <br /> 2. User is in challenges page <br /> 3. User is in game over screen |
+| Test Steps | 1. Click on “Quit” button <br /> 2. Observe screen |
+| Test Data | - |
+| Expected Results | Picture |
+| Actual Results | Picture |
+| Pass/Fail | Pass |
+
+| Test Case ID | ST19 |
+| ------------ | --- |
+| Test Case Name | Attempt to Create Invalid Challenge |
+| Precondition | 1. User is logged in <br /> 2. User is in Create Challenge page |
+| Test Steps | 1. Enter challenge name as given into ‘Challenge Name’ input field <br /> 2. Leave ‘Numbers of Moves’ input field as blank <br /> 3. Enter map design as given into Map input field <br /> 4. Click on “Create” button <br /> 5. Observe screen  |
+| Test Data | - |
+| Expected Results | Picture |
+| Actual Results | Picture |
+| Pass/Fail | Pass |
+
+| Test Case ID | ST20 |
+| ------------ | --- |
+| Test Case Name | Attempt to Create Valid Challenge |
+| Precondition | 1. User is logged in <br /> 2. User is in Create Challenge page |
+| Test Steps | 1. Enter challenge name as given into ‘Challenge Name’ input field <br /> 2. Enter number of moves as given into ‘Number of Moves’ input field <br /> 3. Enter map design as given into Map input field <br /> 4. Click on “Create” button <br /> 5. Observe screen  |
+| Test Data | - |
+| Expected Results | Picture |
+| Actual Results | Picture |
+| Pass/Fail | Pass |
+
 ### Whitebox Testing
 The class that we have chosen to perform our whitebox test suite is the ChallengeManagement class. The team felt that this class would be the most meaningful as the core idea of the project (Gamification) majorly depends on this class.
 
