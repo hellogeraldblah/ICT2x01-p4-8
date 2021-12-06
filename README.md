@@ -141,9 +141,11 @@ Once the pull request is approved, you would usually delete the branch to avoid 
 
 
 ### UAT
+#### 1. Embedded Youtube Video
 Here is an embedded video that runs through all the test cases that we have created and refined from the Milestone 2 submission.
 [![IMAGE ALT TEXT HERE](https://user-images.githubusercontent.com/48905199/144790851-7afc3d09-359c-4bfe-99e0-928c2bf3d358.png)](https://youtu.be/F2rMhGwOggw)
 
+#### 2. Detailed Information of System Test Cases
 | Test Case ID | ST1 |
 | ------------ | --- |
 | Test Case Name | Open |
