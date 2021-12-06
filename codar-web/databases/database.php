@@ -1,6 +1,6 @@
 <?php
 
-require_once "constants.php";
+require_once "../constants.php";
 
 // get database connection
 function connect($db_filepath=""){
