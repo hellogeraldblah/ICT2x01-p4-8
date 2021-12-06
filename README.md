@@ -156,7 +156,7 @@ The framework we have chosen is the [Codeception Framework](https://codeception.
 `codar-web/codeception.yml` contains information on the test configuration.  
 `codar-web/test_assets/` contains resources that are used purely for testing.  
 `codar-web/tests/unit/challengeManagementTest.php` is where the test suite is located.  
-`codar-web/tests/_output/coverage/challengeManagement.php.html` contains a HTML report of the test suite.
+`codar-web/tests/_output/coverage/challengeManagement.php.html` contains a HTML report of the test suite.  
 `codar-web/tests/_output/coverage/dashboard.html` contains the information on the test suite.
 
 #### How to install Codeception
