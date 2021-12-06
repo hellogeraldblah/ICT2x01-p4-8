@@ -141,8 +141,9 @@ Once the pull request is approved, you would usually delete the branch to avoid 
 
 
 ### UAT
+<img width="1420" alt="Screenshot 2021-12-06 at 12 58 24 PM" src="https://user-images.githubusercontent.com/48905199/144790345-8ba0886e-cf09-4ed4-a4ad-3fa1cc494d62.png">
 
-[![IMAGE ALT TEXT HERE](https://img.https://youtu.be/C1CrM24z10I/0.jpg)](https://youtu.be/C1CrM24z10I)
+[![IMAGE ALT TEXT HERE]<img width="1420" alt="Screenshot 2021-12-06 at 12 58 24 PM" src="https://user-images.githubusercontent.com/48905199/144790345-8ba0886e-cf09-4ed4-a4ad-3fa1cc494d62.png">](https://youtu.be/F2rMhGwOggw)
 description...
 
 ### Whitebox Testing
